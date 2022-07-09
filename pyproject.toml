@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "ancv"
+version = "0.1.0"
+description = "Render 'JSON Resume' sources to ANSI-enriched output for terminal clients (cURL, wget, ...) to consume."
+authors = ["Alex Povel <python@alexpovel.de>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+gidgethub = "^5.1.0"
+aiohttp = {extras = ["speedups"], version = "^3.8.1"}
+pydantic = "^1.9.1"
+structlog = "^21.5.0"
+cachetools = "^5.2.0"
+humanize = "^4.1.0"
+rich = "^12.4.4"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+pytest = "^7.1.2"
+datamodel-code-generator = {extras = ["http"], version = "^0.13.0"}
+mypy = "^0.960"
+types-cachetools = "^5.0.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.datamodel-codegen]
+target-python-version = "3.10"
+
+[tool.mypy]
+mypy_path = "stubs/"
+show_error_codes = true
+strict = true
+namespace_packages = true
+disallow_any_unimported = true
+disallow_any_explicit = true
+disallow_any_generics = true
+disallow_subclassing_any = true

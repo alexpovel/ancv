@@ -1,0 +1,333 @@
+{
+    "basics": {
+        "name": "John Doe",
+        "label": "Programmer",
+        "image": null,
+        "email": "john@gmail.com",
+        "phone": "(912) 555-4321",
+        "url": "https://johndoe.com",
+        "summary": "A summary of John Doe that is more than 200 characters long so that it can be tested and verified to see if it works and how linebreaks are processed.",
+        "location": {
+            "address": "2712 Broadway St\nSecond Street, San Francisco, CA 94111",
+            "postalCode": "CA 94115",
+            "city": "San Francisco",
+            "countryCode": "US",
+            "region": "California"
+        },
+        "profiles": [
+            {
+                "network": "Twitter",
+                "username": "john",
+                "url": "https://twitter.com/john"
+            },
+            {
+                "network": "LinkedIn",
+                "username": "johndoe",
+                "url": "https://linkedin.com/johndoe"
+            },
+            {
+                "network": "Facebook",
+                "username": "john.doe",
+                "url": "https://facebook.com/john.doe"
+            },
+            {
+                "network": "GitHub",
+                "username": "johndoe",
+                "url": "https://github.com/johndoe"
+            }
+        ]
+    },
+    "work": [
+        {
+            "name": "Foogle",
+            "location": "San Francisco, CA",
+            "description": "A search engine for food",
+            "position": "Clerk",
+            "url": "https://example.com",
+            "startDate": "2016-01-30",
+            "endDate": null,
+            "summary": "Description of the work that was done.",
+            "highlights": [
+                "Started the company",
+                "Worked on the company's first product",
+                "Worked on the company's second product",
+                "Worked on the company's third product"
+            ]
+        },
+        {
+            "name": "Moogle",
+            "location": "San Antonio, TX",
+            "description": "A search engine for motorcycles",
+            "position": "Developer",
+            "url": "https://example.com",
+            "startDate": "2019-09-01",
+            "endDate": null,
+            "summary": "I don't even like motorcycles, what the heck.",
+            "highlights": [
+                "Started the company",
+                "Worked on the company's first product",
+                "Worked on the company's second product",
+                "Worked on the company's third product, which was a motorcycle calender app that I was able to make in a week using blockchain technology."
+            ]
+        }
+    ],
+    "volunteer": [
+        {
+            "organization": "Somewhat Red Cross",
+            "position": "Volunteer Organizer",
+            "url": "https://example.com/",
+            "startDate": "2012-01-01",
+            "endDate": "2013-01-01",
+            "summary": "Description of the work that was done, and the impact it had on the organization (quite a bit of text here).\nThere's more than one line here, so that we can test if linebreaks are processed correctly.",
+            "highlights": [
+                "Awarded 'Volunteer of the Month of February'",
+                "Awarded 'Volunteer of the Month of March'",
+                "Awarded 'Volunteer of the Month of April'",
+                "Awarded 'Volunteer of the Year 2012'"
+            ]
+        },
+        {
+            "organization": "Animal Rescue League",
+            "position": "Pet Officer",
+            "url": "https://example.com/",
+            "startDate": "2002-03-01",
+            "endDate": "2020-03-30",
+            "summary": "Description of the work that was done, and the impact it had on the organization (quite a bit of text here).\nThere's more than one line here, so that we can test if linebreaks are processed correctly.",
+            "highlights": [
+                "Awarded 'Goodest Boy of the Month of February'",
+                "Awarded 'Goodest Boy of the Month of March'",
+                "Awarded 'Goodest Boy of the Month of April'",
+                "Awarded 'Goodest Boy of the Year 2010'"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Massachusets Institute of Harvard-Stanford",
+            "url": "https://example.com/",
+            "area": "Computer Science",
+            "studyType": "Bachelor",
+            "startDate": "1999-10-01",
+            "endDate": "2013-01-01",
+            "score": "3.9",
+            "courses": [
+                "DB1337 - Basic SQL",
+                "DB1338 - Advanced SQL",
+                "DB1339 - SQL for Data Analysis"
+            ]
+        },
+        {
+            "institution": "Homeschooled",
+            "url": "https://example.com/",
+            "area": "Everything",
+            "studyType": "Master",
+            "startDate": "2013-01-01",
+            "endDate": "2016-01-01",
+            "score": "2.1",
+            "courses": [
+                "HH0001 - Washing the Dishes",
+                "HH0002 - Cleaning the Laundry",
+                "HH0003 - Making the Bed",
+                "HH0004 - Cleaning the Bathroom"
+            ]
+        }
+    ],
+    "awards": [
+        {
+            "title": "Biggest Volunteer of the Day",
+            "date": "2014-11-13",
+            "awarder": "Self-Award",
+            "summary": "There is probably greater honor."
+        },
+        {
+            "title": "Top Gun Award",
+            "date": "2010-12-12",
+            "awarder": "City of San Francisco",
+            "summary": "All I did was show up."
+        },
+        {
+            "title": "German Television Award",
+            "date": "2008-10-12",
+            "awarder": "ARD, ZDF, RTL, Sat.1",
+            "summary": "I did not accept this one."
+        }
+    ],
+    "certificates": [
+        {
+            "name": "Certificate of Excellence",
+            "date": "2021-11-07",
+            "issuer": "Legitimate Certificate Authority",
+            "url": "https://certificate.com"
+        },
+        {
+            "name": "Certificate of Merit",
+            "date": "2020-11-11",
+            "issuer": "United States of America",
+            "url": "https://example.com"
+        }
+    ],
+    "publications": [
+        {
+            "name": "A Publication",
+            "publisher": "IEEE",
+            "releaseDate": "2014-10-29",
+            "url": "https://publication.com",
+            "summary": "This paper is about how I did this and that, despite the fact that I did not write it.\nCome to think of it, I probably committed a felony."
+        },
+        {
+            "name": "Hex-Quantum Fields of Becker-Mendel Swirls in the Presence of a Non-Abelian Group",
+            "publisher": "Physics of the Literally Impossible",
+            "releaseDate": "2009-03-04",
+            "url": "https://publication.com",
+            "summary": "No one knows what this paper is about.\nAlmost every person thought it was about quantum mechanics, but I am not sure.\nIn fact, they called it impossible. They were right."
+        }
+    ],
+    "skills": [
+        {
+            "name": "Web Development",
+            "level": "Master",
+            "keywords": [
+                "HTML",
+                "CSS",
+                "JavaScript"
+            ]
+        },
+        {
+            "name": "Compression",
+            "level": "Novice",
+            "keywords": [
+                "GZIP",
+                "BZIP2"
+            ]
+        }
+    ],
+    "languages": [
+        {
+            "language": "Spanish",
+            "fluency": "Native Speaker"
+        },
+        {
+            "language": "English",
+            "fluency": "Professional Proficiency"
+        },
+        {
+            "language": "French",
+            "fluency": "Beginner"
+        },
+        {
+            "language": "German",
+            "fluency": "Beginner"
+        }
+    ],
+    "interests": [
+        {
+            "name": "Wildlife",
+            "keywords": [
+                "Ferrets",
+                "Unicorns"
+            ]
+        },
+        {
+            "name": "Cars",
+            "keywords": [
+                "BMW",
+                "Mercedes",
+                "Porsche"
+            ]
+        },
+        {
+            "name": "Computers",
+            "keywords": [
+                "Microsoft",
+                "Apple",
+                "Linux"
+            ]
+        }
+    ],
+    "references": [
+        {
+            "name": "Raphael from Burger World at the corner of Main Avenue and Market Street",
+            "reference": "Please hire this person, they are a great person. They absolutely never stop talking about the best burger in the world, which you can get right across the street from our restaurant.\nThey are also a great person to have around, mostly."
+        },
+        {
+            "name": "Manuela Trouchot",
+            "reference": "Qu'est-ce que tu viens de dire sur moi, petite fille ? Je vous ferai savoir que j'ai été diplômé premier de ma classe dans les Navy Seals, et j'ai été impliqué dans de nombreux raids secrets sur Al-Quaeda, et j'ai plus de 300 meurtres confirmés. Je suis formé à la guerre des gorilles et je suis le meilleur tireur d'élite de toutes les forces armées américaines. Tu n'es rien pour moi mais juste une autre cible. Je vais vous anéantir avec une précision sans précédent sur cette Terre, notez mes paroles. Tu penses pouvoir t'en sortir en me disant ce genre de choses sur Internet ? Détrompez-vous, idiot. Comme nous"
+        }
+    ],
+    "projects": [
+        {
+            "name": "Calculater",
+            "description": "A calculator that can add, subtract, multiply, and divide but takes a long time to do so. It also has a lot of bugs.",
+            "highlights": [
+                "Won best project award (probably)",
+                "Used Enterprise Java Beans technology"
+            ],
+            "keywords": [
+                "HTML",
+                "Java",
+                "JavaScript"
+            ],
+            "startDate": "1998-08-03",
+            "endDate": "2021-04-28",
+            "url": "https://calculater.com/",
+            "roles": [
+                "Team Lead",
+                "Developer",
+                "Tester",
+                "Project Manager",
+                "Scrum Master",
+                "Product Owner",
+                "CTO",
+                "CFO",
+                "CEO"
+            ],
+            "entity": "Coders for Change",
+            "type": "Application"
+        },
+        {
+            "name": "Better Catter",
+            "description": "An app to visit friendly nextdoor cats to pet them. It is a good app. Neighborhood cats are happy this app finally landed in the app store.",
+            "highlights": [
+                "Never miss a cat",
+                "Solitude is a thing of the past now",
+                "Don't be allergic to cats"
+            ],
+            "keywords": [
+                "CSS",
+                "JavaScript",
+                "x86 Assembly"
+            ],
+            "startDate": "2019-04-01",
+            "endDate": "2019-04-01",
+            "url": "https://bettercatter.com/",
+            "roles": [
+                "Top Level Engineer",
+                "Chief Cat Officer"
+            ],
+            "entity": null,
+            "type": "Application"
+        },
+        {
+            "name": "iPhone 14",
+            "description": "Always needing the latest and greatest, I got sick of waiting and built my own next-gen iPhone. It's a great phone, but it's not the best phone. I am also looking for a lawyer now.",
+            "highlights": [
+                "Bricked",
+                "Woops"
+            ],
+            "keywords":[
+                "Hammer",
+                "Nails",
+                "Some cables"
+            ],
+            "startDate": "2020-04-01",
+            "endDate": "2020-04-01",
+            "url": "https://iphone14.com",
+            "roles": [
+                "Boss",
+                "Defendant"
+            ],
+            "entity": "Self-Employed",
+            "type": "Device"
+        }
+    ]
+}

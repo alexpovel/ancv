@@ -1,0 +1,2 @@
+class ResumeLookupError(LookupError):
+    pass

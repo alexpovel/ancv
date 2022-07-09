@@ -1,0 +1,25 @@
+<svg width="555" height="290" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <g stroke-width="4">
+    <g stroke="gray" fill-opacity="0.8">
+      <circle cx="145" cy="145" r="140" fill="orange" />
+      <circle cx="410" cy="145" r="140" fill="skyblue" />
+    </g>
+    <g stroke="black">
+      <g fill-opacity="0">
+        <path d="M 330,100 S 330 145 277.5 145" />
+      </g>
+      <circle cx="277.5" cy="145" r="3" fill="black" />
+    </g>
+    <g text-anchor="middle" font-weight="bold" font-family="sans-serif">
+      <text x="330" y="100" dy="-1ex"> You! </text>
+      <text y="145">
+        <tspan x="145" dy="-0.5ex"> People working </tspan>
+        <tspan x="145" dy="2.5ex"> with resumes </tspan>
+      </text>
+      <text y="145">
+        <tspan x="410" dy="-0.5ex"> People working </tspan>
+        <tspan x="410" dy="2.5ex"> with terminals </tspan>
+      </text>
+    </g>
+  </g>
+</svg>
