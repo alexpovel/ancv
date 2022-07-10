@@ -1,35 +1,19 @@
-from abc import ABC, abstractmethod
 from datetime import date
 from typing import Optional
 
+from pydantic import BaseModel
 from rich.style import Style
 
 
-class Theme(ABC):
-    @property
-    @abstractmethod
-    def emphasis(self) -> list[Style]:
-        pass
+class Theme(BaseModel):
+    emphasis: list[Style]
+    headlines: list[Style]
+    bullet: str
+    rulechar: str
+    datefmt: str
 
-    @property
-    @abstractmethod
-    def headlines(self) -> list[Style]:
-        pass
-
-    @property
-    @abstractmethod
-    def bullet(self) -> str:
-        pass
-
-    @property
-    @abstractmethod
-    def rulechar(self) -> str:
-        pass
-
-    @property
-    @abstractmethod
-    def datefmt(self) -> str:
-        pass
+    class Config:
+        arbitrary_types_allowed = True  # No validator for `Style` available
 
     @staticmethod
     def date_range(
@@ -53,45 +37,29 @@ class Theme(ABC):
                 raise TypeError(f"Invalid date range: {start} - {end}")
 
 
-class Plain(Theme):
-    @property
-    def emphasis(self) -> list[Style]:
-        return [Style(), Style(), Style(), Style()]
-
-    @property
-    def headlines(self) -> list[Style]:
-        return [Style(), Style(), Style(), Style()]
-
-    @property
-    def bullet(self) -> str:
-        return "*"
-
-    @property
-    def rulechar(self) -> str:
-        return "─"
-
-    @property
-    def datefmt(self) -> str:
-        return "%Y-%m-%d"
-
-
-class Basic(Theme):
-    @property
-    def emphasis(self) -> list[Style]:
-        return [Style(bold=True), Style(italic=True), Style(underline=True), Style()]
-
-    @property
-    def headlines(self) -> list[Style]:
-        return [Style(bold=True), Style(italic=True), Style(underline=True), Style()]
-
-    @property
-    def bullet(self) -> str:
-        return "*"
-
-    @property
-    def rulechar(self) -> str:
-        return "─"
-
-    @property
-    def datefmt(self) -> str:
-        return "%B %d, %Y"
+THEMES = {
+    "plain": Theme(
+        emphasis=[Style(), Style(), Style(), Style()],
+        headlines=[Style(), Style(), Style(), Style()],
+        bullet="*",
+        rulechar="─",
+        datefmt="%Y-%m-%d",
+    ),
+    "basic": Theme(
+        emphasis=[
+            Style(bold=True),
+            Style(italic=True),
+            Style(underline=True),
+            Style(),
+        ],
+        headlines=[
+            Style(bold=True),
+            Style(italic=True),
+            Style(underline=True),
+            Style(),
+        ],
+        bullet="*",
+        rulechar="─",
+        datefmt="%B %d, %Y",
+    ),
+}

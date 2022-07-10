@@ -2,9 +2,9 @@ from typing import AsyncGenerator
 
 from aiohttp import ClientSession, web
 from ancv import GH_REQUESTER, GH_TOKEN, REPO_URL
-from ancv.utils.exceptions import ResumeLookupError
+from ancv.utils.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.utils.logging import LOGGER
-from ancv.visualization.rendering import render
+from ancv.visualization.templates import Template
 from ancv.web.client import get_resume
 from cachetools import TTLCache
 from gidgethub.aiohttp import GitHubAPI
@@ -108,4 +108,9 @@ async def username(request: web.Request) -> web.Response:
         log.warning(str(e))
         return web.Response(text=str(e))
     else:
-        return web.Response(text=render(resume))
+        try:
+            template = Template.from_model_config(resume)
+        except ResumeConfigError as e:
+            log.warning(str(e))
+            return web.Response(text=str(e))
+        return web.Response(text=template.render())

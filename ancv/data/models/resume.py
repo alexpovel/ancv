@@ -114,6 +114,13 @@ class Reference(BaseModel):
     )
 
 
+class TemplateConfig(BaseModel):
+    template: str = "Sequential"
+    theme: str = "basic"
+    translation: str = "en"
+    ascii_only: bool = False
+
+
 class Meta(BaseModel):
     class Config:
         extra = Extra.allow
@@ -126,6 +133,9 @@ class Meta(BaseModel):
     )
     lastModified: Optional[datetime] = Field(
         None, description="Using ISO 8601 with YYYY-MM-DDThh:mm:ss"
+    )
+    config: TemplateConfig = Field(
+        TemplateConfig(), description="Template configuration to control display"
     )
 
 
@@ -284,8 +294,8 @@ class ResumeSchema(BaseModel):
     projects: Optional[list[Project]] = Field(
         None, description="Specify career projects"
     )
-    meta: Optional[Meta] = Field(
-        None,
+    meta: Meta = Field(
+        Meta(),
         description="The schema version and any other tooling configuration lives here",
     )
 

@@ -4,8 +4,7 @@ from http import HTTPStatus
 import aiohttp
 import gidgethub
 from ancv import SIPrefix
-from ancv.data.models.github import Gist
-from ancv.data.models.resume import ResumeSchema
+from ancv.data.models import Gist, ResumeSchema
 from ancv.utils.exceptions import ResumeLookupError
 from ancv.utils.logging import LOGGER
 from gidgethub.aiohttp import GitHubAPI
