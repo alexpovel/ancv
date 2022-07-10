@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from datetime import date, datetime
-from typing import Optional
+from typing import Optional, Union
 
 from pydantic import AnyUrl, BaseModel, EmailStr, Extra, Field
 
@@ -288,3 +288,35 @@ class ResumeSchema(BaseModel):
         None,
         description="The schema version and any other tooling configuration lives here",
     )
+
+
+ResumeItem = Union[  # Python 3.10 syntax using pipes aka `|` gave 'valid-type' error
+    Award,
+    Basics,
+    Certificate,
+    EducationItem,
+    Interest,
+    Language,
+    Location,
+    Profile,
+    Project,
+    Publication,
+    Reference,
+    Skill,
+    VolunteerItem,
+    WorkItem,
+]
+
+ResumeItemContainer = Optional[
+    list[Award]
+    | list[Certificate]
+    | list[EducationItem]
+    | list[Interest]
+    | list[Language]
+    | list[Project]
+    | list[Publication]
+    | list[Reference]
+    | list[Skill]
+    | list[VolunteerItem]
+    | list[WorkItem]
+]
