@@ -55,7 +55,7 @@ async def get_resume(
             "Resume file too large" f" (limit: {naturalsize(size_limit)}, got {size})."
         )
     log.info("Fetching resume contents of user.")
-    raw_resume = await github.getitem(str(file.raw_url))
+    raw_resume: str = await github.getitem(str(file.raw_url))
     log.info("Got raw resume of user.")
 
     try:

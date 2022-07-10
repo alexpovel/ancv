@@ -1,7 +1,6 @@
 from typing import AsyncGenerator
 
-import aiohttp
-from aiohttp import web
+from aiohttp import ClientSession, web
 from ancv import GH_REQUESTER, GH_TOKEN, REPO_URL
 from ancv.utils.exceptions import ResumeLookupError
 from ancv.utils.logging import LOGGER
@@ -37,7 +36,7 @@ async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
     log.debug("App context initialization starting.")
 
     log.debug("Starting client session.")
-    session = aiohttp.ClientSession()
+    session = ClientSession()
     log = log.bind(session=session)
     log.debug("Started client session.")
 
@@ -94,8 +93,12 @@ async def username(request: web.Request) -> web.Response:
     log.info(request.message.headers)
 
     user = request.match_info["username"]
-    session = request.app["client_session"]
-    github = request.app["github"]
+
+    # Implicit 'downcasting' from `Any` doesn't require an explicit `cast` call, just
+    # regular type hints:
+    # https://adamj.eu/tech/2021/07/06/python-type-hints-how-to-use-typing-cast/
+    session: ClientSession = request.app["client_session"]
+    github: GitHubAPI = request.app["github"]
 
     log = log.bind(user=user)
 
