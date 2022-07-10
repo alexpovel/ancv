@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import date
+from datetime import date, datetime
 from typing import Optional
 
 from pydantic import AnyUrl, BaseModel, EmailStr, Extra, Field, constr
@@ -124,7 +124,7 @@ class Meta(BaseModel):
     version: Optional[str] = Field(
         None, description="A version field which follows semver - e.g. v1.0.0"
     )
-    lastModified: Optional[str] = Field(
+    lastModified: Optional[datetime] = Field(
         None, description="Using ISO 8601 with YYYY-MM-DDThh:mm:ss"
     )
 
