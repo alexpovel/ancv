@@ -1,13 +1,14 @@
 from typing import AsyncGenerator
 
 from aiohttp import ClientSession, web
+from cachetools import TTLCache
+from gidgethub.aiohttp import GitHubAPI
+
 from ancv import GH_REQUESTER, GH_TOKEN, REPO_URL
 from ancv.utils.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.utils.logging import LOGGER
 from ancv.visualization.templates import Template
 from ancv.web.client import get_resume
-from cachetools import TTLCache
-from gidgethub.aiohttp import GitHubAPI
 
 _ROUTES = web.RouteTableDef()
 

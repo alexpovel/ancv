@@ -2,6 +2,16 @@ from abc import ABC, abstractmethod
 from functools import partial, singledispatchmethod
 from typing import NamedTuple, Optional
 
+from rich import box
+from rich.align import Align
+from rich.console import Console, ConsoleOptions, Group, NewLine, RenderableType, group
+from rich.padding import Padding
+from rich.panel import Panel
+from rich.rule import Rule
+from rich.style import Style
+from rich.table import Column, Table
+from rich.text import Text
+
 from ancv.data.models.resume import (
     Award,
     Basics,
@@ -24,15 +34,6 @@ from ancv.utils.exceptions import ResumeConfigError
 from ancv.visualization import WIDTH, RenderableGenerator
 from ancv.visualization.themes import THEMES, Theme
 from ancv.visualization.translations import TRANSLATIONS, Translation
-from rich import box
-from rich.align import Align
-from rich.console import Console, ConsoleOptions, Group, NewLine, RenderableType, group
-from rich.padding import Padding
-from rich.panel import Panel
-from rich.rule import Rule
-from rich.style import Style
-from rich.table import Column, Table
-from rich.text import Text
 
 
 class Template(ABC):

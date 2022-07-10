@@ -30,6 +30,10 @@ build-backend = "poetry.core.masonry.api"
 [tool.datamodel-codegen]
 target-python-version = "3.10"
 
+[tool.isort]
+# https://pycqa.github.io/isort/docs/configuration/black_compatibility.html
+profile = "black"
+
 [tool.mypy]
 mypy_path = "stubs/"
 show_error_codes = true
