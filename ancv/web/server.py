@@ -2,7 +2,7 @@ from typing import AsyncGenerator
 
 import aiohttp
 from aiohttp import web
-from ancv import GH_REQUESTER, GH_TOKEN
+from ancv import GH_REQUESTER, GH_TOKEN, REPO_URL
 from ancv.utils.exceptions import ResumeLookupError
 from ancv.utils.logging import LOGGER
 from ancv.visualization.rendering import render
@@ -82,11 +82,10 @@ def is_terminal_client(user_agent: str) -> bool:
 @_ROUTES.get("/")
 async def root(request: web.Request) -> web.Response:
     user_agent = request.headers.get("User-Agent", "")
-    url = "https://github.com/alexpovel/ancv"
 
     if is_terminal_client(user_agent):
-        return web.Response(text=f"Visit {url} to get started.\n")
-    raise web.HTTPFound(url)  # Redirect
+        return web.Response(text=f"Visit {REPO_URL} to get started.\n")
+    raise web.HTTPFound(REPO_URL)  # Redirect
 
 
 @_ROUTES.get("/{username}")
