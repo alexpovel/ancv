@@ -13,13 +13,13 @@ from ancv.web.client import get_resume
 _ROUTES = web.RouteTableDef()
 
 
-def run() -> None:
+def run(host: str, port: int, path: str) -> None:
     LOGGER.debug("Instantiating web application.")
     app = web.Application()
     LOGGER.debug("Adding routes.")
     app.add_routes(_ROUTES)
     app.cleanup_ctx.append(app_context)
-    web.run_app(app)
+    web.run_app(app, host=host, port=port, path=path)
 
 
 async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
