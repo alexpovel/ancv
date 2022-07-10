@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Any, Mapping, Optional
+from typing import Mapping, Optional
 
 from pydantic import BaseModel, Field, HttpUrl
 
