@@ -42,7 +42,8 @@ class Theme(ABC):
         match (start, end):
             case (None, None):
                 return ""
-            case (None, date() as end):  # https://github.com/python/mypy/issues/12364#issuecomment-1179683164
+            # https://github.com/python/mypy/issues/12364#issuecomment-1179683164:
+            case (None, date() as end):
                 return f"{sep} {end.strftime(fmt)}"
             case (date() as start, None):
                 return f"{start.strftime(fmt)} {sep} {ongoing}"
