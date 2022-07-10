@@ -3,7 +3,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Optional
 
-from pydantic import AnyUrl, BaseModel, EmailStr, Extra, Field, constr
+from pydantic import AnyUrl, BaseModel, EmailStr, Extra, Field
 
 
 class Location(BaseModel):
@@ -127,12 +127,6 @@ class Meta(BaseModel):
     lastModified: Optional[datetime] = Field(
         None, description="Using ISO 8601 with YYYY-MM-DDThh:mm:ss"
     )
-
-
-class Iso8601(BaseModel):
-    __root__: constr(  # type: ignore[valid-type]
-        regex=r"^([1-2][0-9]{3}-[0-1][0-9]-[0-3][0-9]|[1-2][0-9]{3}-[0-1][0-9]|[1-2][0-9]{3})$"
-    ) = Field(..., description="e.g. 2014-06-29")
 
 
 class WorkItem(BaseModel):
