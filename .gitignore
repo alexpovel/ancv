@@ -2,6 +2,9 @@
 
 .vscode/
 
+# pydeps dependency graph output file
+depgraph.svg
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

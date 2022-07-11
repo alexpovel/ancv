@@ -1,6 +1,10 @@
 typecheck:
 	mypy -p ancv
 
+depgraph.svg:
+	@command -v dot > /dev/null || (echo "Please install graphviz for its 'dot' command." && exit 1)
+	@pydeps --max-bacon=4 --cluster -T svg -o "$@" ancv
+
 resume.py:
 	datamodel-codegen \
 		--url "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json" \
