@@ -1,3 +1,8 @@
+.PHONY: test typecheck
+
+test:
+	pytest
+
 typecheck:
 	mypy -p ancv
 
