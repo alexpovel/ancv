@@ -1,14 +1,16 @@
 .PHONY: test typecheck
 
+LIBRARY = ancv
+
 test:
 	pytest
 
 typecheck:
-	mypy -p ancv
+	mypy -p ${LIBRARY}
 
 depgraph.svg:
 	@command -v dot > /dev/null || (echo "Please install graphviz for its 'dot' command." && exit 1)
-	@pydeps --max-bacon=4 --cluster -T svg -o "$@" ancv
+	@pydeps --max-bacon=4 --cluster -T svg -o "$@" ${LIBRARY}
 
 resume.py:
 	datamodel-codegen \
