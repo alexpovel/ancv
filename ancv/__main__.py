@@ -1,7 +1,9 @@
 import json
+import sys
 from typing import TextIO
 
 import click
+from pydantic import ValidationError
 
 import ancv.web.server
 from ancv.data.models.resume import ResumeSchema
@@ -33,6 +35,21 @@ def render(file: TextIO) -> None:
     output = template.render()
     print(output)
     return None
+
+
+@cli.command(help="Checks the validity of the given JSON resume without rendering.")
+@click.argument("file", type=click.File())
+def validate(file: TextIO) -> None:
+    contents = json.loads(file.read())
+    ec = 0
+    try:
+        ResumeSchema(**contents)
+    except ValidationError as e:
+        print(str(e))
+        ec = 1
+    else:
+        print("Pass!")
+    sys.exit(ec)
 
 
 if __name__ == "__main__":
