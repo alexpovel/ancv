@@ -1,17 +1,5 @@
-environment: {}
-parameters: {}
 packages:
   - name: ancv
-    environment: {}
-    parameters: {}
-    annotations: {}
-    functions:
-      - name: hello
-        binary: false
-        main: ''
-        runtime: 'python:default'
-        web: true
-        parameters: {}
-        environment: {}
-        annotations: {}
-        limits: {}
+    actions:
+      - name: run
+        runtime: "python:default"
