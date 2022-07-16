@@ -1,12 +1,20 @@
-.PHONY: test typecheck
+.PHONY: tests test typecheck formatcheck isortcheck
 
 LIBRARY = ancv
+
+tests: test typecheck formatcheck isortcheck
 
 test:
 	pytest
 
 typecheck:
 	mypy -p ${LIBRARY}
+
+formatcheck:
+	black --check --diff ${LIBRARY}
+
+isortcheck:
+	isort . --check --diff
 
 requirements.txt:
 	poetry export --with=dev --output=requirements.txt
