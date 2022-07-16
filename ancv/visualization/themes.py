@@ -23,18 +23,15 @@ class Theme(BaseModel):
         sep: str = "-",
         ongoing: str = "present",
     ) -> str:
-        match (start, end):
-            case (None, None):
+        if start is None:
+            if end is None:
                 return ""
-            # https://github.com/python/mypy/issues/12364#issuecomment-1179683164:
-            case (None, date() as end):
-                return f"{sep} {end.strftime(fmt)}"
-            case (date() as start, None):
-                return f"{start.strftime(fmt)} {sep} {ongoing}"
-            case (date() as start, date() as end):
-                return f"{start.strftime(fmt)} {sep} {end.strftime(fmt)}"
-            case _:
-                raise TypeError(f"Invalid date range: {start} - {end}")
+            return f"{sep} {end.strftime(fmt)}"
+
+        if end is None:
+            return f"{start.strftime(fmt)} {sep} {ongoing}"
+
+        return f"{start.strftime(fmt)} {sep} {end.strftime(fmt)}"
 
 
 THEMES = {

@@ -352,17 +352,12 @@ class Sequential(Template):
     @format.register
     @staticmethod
     def _(item: Language, theme: Theme) -> RenderableGenerator:
-        match item:
-            # Not sure this is the best way; very verbose since every possible
-            # combination needs to be handled.
-            case Language(language=str() as name, fluency=None):
-                yield Text(name)
-            case Language(language=None, fluency=str() as level):
-                yield Text(level)
-            case Language(language=str() as name, fluency=str() as level):
-                yield Text.assemble(
-                    (name, theme.emphasis[0]), " ", (level, theme.emphasis[1])
-                )
+        if (language := item.language) is not None:
+            yield Text.assemble(
+                (language, theme.emphasis[0]),
+                " ",
+                (item.fluency or "", theme.emphasis[1]),
+            )
 
     @format.register
     @staticmethod

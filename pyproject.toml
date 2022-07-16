@@ -6,7 +6,8 @@ authors = ["Alex Povel <python@alexpovel.de>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+# https://stackoverflow.com/a/69608708/11477374:
+python = "^3.9.8"
 gidgethub = "^5.1.0"
 aiohttp = {extras = ["speedups"], version = "^3.8.1"}
 pydantic = "^1.9.1"
@@ -30,7 +31,7 @@ requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.datamodel-codegen]
-target-python-version = "3.10"
+target-python-version = "3.9"
 
 [tool.isort]
 # https://pycqa.github.io/isort/docs/configuration/black_compatibility.html

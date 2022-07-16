@@ -300,7 +300,7 @@ class ResumeSchema(BaseModel):
     )
 
 
-ResumeItem = Union[  # Python 3.10 syntax using pipes aka `|` gave 'valid-type' error
+ResumeItem = Union[
     Award,
     Basics,
     Certificate,
@@ -317,16 +317,17 @@ ResumeItem = Union[  # Python 3.10 syntax using pipes aka `|` gave 'valid-type' 
     WorkItem,
 ]
 
-ResumeItemContainer = Optional[
-    list[Award]
-    | list[Certificate]
-    | list[EducationItem]
-    | list[Interest]
-    | list[Language]
-    | list[Project]
-    | list[Publication]
-    | list[Reference]
-    | list[Skill]
-    | list[VolunteerItem]
-    | list[WorkItem]
+ResumeItemContainer = Union[
+    list[Award],
+    list[Certificate],
+    list[EducationItem],
+    list[Interest],
+    list[Language],
+    list[Project],
+    list[Publication],
+    list[Reference],
+    list[Skill],
+    list[VolunteerItem],
+    list[WorkItem],
+    None,
 ]

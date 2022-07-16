@@ -31,7 +31,7 @@ Be warned though, this is entirely useless:
 This being a hobby project, new (and old) features were tried out and used:
 
 - fully async using [`aiohttp`](https://docs.aiohttp.org/en/stable/) and [gidgethub](https://gidgethub.readthedocs.io/en/latest/index.html)
-- [structural pattern matching](https://peps.python.org/pep-0634/), introduced in Python 3.10
+- ~~[structural pattern matching](https://peps.python.org/pep-0634/), introduced in Python 3.10~~ Not used since [unsupported by AWS lambda](https://github.com/aws/aws-lambda-base-images/issues/31) (2022-07-16)
 - [fully typed](https://mypy.readthedocs.io/en/stable/index.html) using Python type hints, verified through `mypy --strict` (with additional, [even stricter settings](pyproject.toml))
 - [structural logging](https://github.com/hynek/structlog) with a JSON event stream output
 - [`pydantic`](https://pydantic-docs.helpmanual.io/) for fully typed data validation (e.g., for APIs), facilitated by [automatic `pydantic` model generation](https://koxudaxi.github.io/datamodel-code-generator/) from e.g. OpenAPI specs like [GitHub's](https://github.com/github/rest-api-description/tree/main/descriptions/api.github.com) or [JSON Resume's](https://github.com/jsonresume/resume-schema/blob/master/schema.json), allowing full support from `mypy` and the IDE when using said validated data

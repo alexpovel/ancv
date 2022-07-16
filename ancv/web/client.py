@@ -40,10 +40,10 @@ async def get_resume(
         log = log.bind(gist_url=gist.url)
         log.info("Parsed gist of user.")
 
-        match gist:
-            case Gist(files={"resume.json": file}):
-                log.info("Gist matched.")
-                break
+        file = gist.files.get("resume.json", None)
+        if file is not None:
+            log.info("Gist matched.")
+            break
 
         log.info("Gist unsuitable, trying next.")
     else:  # nobreak
