@@ -4,6 +4,32 @@ version = "0.1.0"
 description = "Render 'JSON Resume' sources to ANSI-enriched output for terminal clients (cURL, wget, ...) to consume."
 authors = ["Alex Povel <python@alexpovel.de>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://ancv.io"
+repository = "https://github.com/alexpovel/ancv/"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Environment :: Web Environment",
+    "Framework :: AnyIO",
+    "Framework :: AsyncIO",
+    "Framework :: Pytest",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Natural Language :: English",
+    "Natural Language :: German",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Office/Business",
+    "Topic :: System :: Shells",
+    "Topic :: Terminals",
+    "Topic :: Terminals :: Terminal Emulators/X Terminals",
+    "Topic :: Text Processing",
+    "Topic :: Text Processing :: Markup",
+    "Typing :: Typed",
+]
 
 [tool.poetry.dependencies]
 # https://stackoverflow.com/a/69608708/11477374:
