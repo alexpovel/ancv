@@ -8,7 +8,7 @@ depgraph.svg
 # We're not using this directly, but `poetry.lock`. However, since Python dependencies
 # are still a nightmare, we'll use `poetry.lock` to generate `requirements.txt` and
 # use that temporarily.
-requirements.txt
+# requirements.txt
 
 # DigitalOcean stuff
 .do/**/.deployed
