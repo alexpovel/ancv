@@ -8,6 +8,9 @@ test:
 typecheck:
 	mypy -p ${LIBRARY}
 
+requirements.txt:
+	poetry export --with=dev --output=requirements.txt
+
 depgraph.svg:
 	@command -v dot > /dev/null || (echo "Please install graphviz for its 'dot' command." && exit 1)
 	@pydeps --max-bacon=4 --cluster -T svg -o "$@" ${LIBRARY}
