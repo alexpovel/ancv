@@ -1,0 +1,20 @@
+environment: {}
+parameters: {}
+packages:
+  - name: ancv
+    environment:
+      GH_REQUESTER: "${GH_REQUESTER}"
+      GH_TOKEN: "${GH_TOKEN}"
+      REPO_URL: "${REPO_URL}"
+    parameters: {}
+    annotations: {}
+    functions:
+      - name: hello
+        binary: false
+        main: ''
+        runtime: 'python:default'
+        web: true
+        parameters: {}
+        environment: {}
+        annotations: {}
+        limits: {}
