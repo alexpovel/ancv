@@ -1,13 +1,20 @@
-alerts:
-  - rule: DEPLOYMENT_FAILED
-  - rule: DOMAIN_FAILED
-functions:
-  - name: ancv-api
-    github:
-      branch: master
-      deploy_on_push: true
-      repo: alexpovel/ancv
-    routes:
-      - path: /api
-    source_dir: .do/
-name: ancv
+spec:
+  name: ancv
+  alerts:
+    - rule: DEPLOYMENT_FAILED
+    - rule: DOMAIN_FAILED
+  functions:
+    - name: ancv-api
+      github:
+        branch: master
+        deploy_on_push: true
+        repo: alexpovel/ancv
+      routes:
+        - path: /api
+      source_dir: .do/
+      envs:
+        - key: "GH_REQUESTER"
+          type: "secret"
+        - key: "GH_TOKEN"
+          type: "secret"
+        - key: "REPO_URL"
