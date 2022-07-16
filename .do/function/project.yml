@@ -1,5 +1,5 @@
 packages:
-  - name: ancv
+  - name: api
     actions:
-      - name: run
+      - name: render
         runtime: "python:default"

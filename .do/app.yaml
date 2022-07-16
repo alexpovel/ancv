@@ -3,13 +3,13 @@ alerts:
   - rule: DEPLOYMENT_FAILED
   - rule: DOMAIN_FAILED
 functions:
-  - name: ancv-api
+  - name: api
     github:
       branch: do
       deploy_on_push: true
       repo: alexpovel/ancv
     routes:
-      - path: /api
+      - path: /
     source_dir: .do/function/
     envs:
       - key: "GH_REQUESTER"
