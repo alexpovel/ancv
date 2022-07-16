@@ -10,6 +10,9 @@ depgraph.svg
 # use that temporarily.
 requirements.txt
 
+# DigitalOcean stuff
+.do/**/.deployed
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
