@@ -1,4 +1,5 @@
 import json
+
 import pytest
 
 from tests import DATA_DIR
