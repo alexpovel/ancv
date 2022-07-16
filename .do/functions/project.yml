@@ -1,5 +1,5 @@
 packages:
-  - name: api
+  - name: v1
     actions:
       - name: render
         runtime: "python:default"

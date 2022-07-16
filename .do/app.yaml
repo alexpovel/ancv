@@ -10,7 +10,7 @@ functions:
       repo: alexpovel/ancv
     routes:
       - path: /
-    source_dir: .do/function/
+    source_dir: .do/functions/
     envs:
       - key: "GH_REQUESTER"
         type: "SECRET"
