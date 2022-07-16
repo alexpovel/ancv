@@ -1,10 +1,10 @@
+import os
 from typing import AsyncGenerator
 
 from aiohttp import ClientSession, web
 from cachetools import TTLCache
 from gidgethub.aiohttp import GitHubAPI
 
-from ancv import GH_REQUESTER, GH_TOKEN, REPO_URL
 from ancv.utils.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.utils.logging import LOGGER
 from ancv.visualization.templates import Template
@@ -44,8 +44,8 @@ async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
     log.debug("Creating GitHub API instance.")
     github = GitHubAPI(
         session,
-        requester=GH_REQUESTER,
-        oauth_token=GH_TOKEN,
+        requester=os.environ["GH_REQUESTER"],
+        oauth_token=os.environ["GH_TOKEN"],
         cache=TTLCache(maxsize=1e2, ttl=60),
     )
     log = log.bind(github=github)
@@ -82,6 +82,8 @@ def is_terminal_client(user_agent: str) -> bool:
 @_ROUTES.get("/")
 async def root(request: web.Request) -> web.Response:
     user_agent = request.headers.get("User-Agent", "")
+
+    REPO_URL = os.environ["REPO_URL"]
 
     if is_terminal_client(user_agent):
         return web.Response(text=f"Visit {REPO_URL} to get started.\n")
