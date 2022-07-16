@@ -6,7 +6,7 @@ spec:
   functions:
     - name: ancv-api
       github:
-        branch: master
+        branch: do
         deploy_on_push: true
         repo: alexpovel/ancv
       routes:
