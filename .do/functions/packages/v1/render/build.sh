@@ -2,7 +2,7 @@
 
 # set -e
 
-pip install ancv
+pip install --user ancv
 
 # echo "In build script"
 # virtualenv --without-pip virtualenv
