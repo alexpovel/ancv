@@ -10,7 +10,7 @@ spec:
         deploy_on_push: true
         repo: alexpovel/ancv
       routes:
-        - path: /
+        - path: /api
       source_dir: .do/functions/
       envs:
         - key: "GH_REQUESTER"
