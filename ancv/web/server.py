@@ -44,7 +44,7 @@ async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
     log.debug("Creating GitHub API instance.")
     github = GitHubAPI(
         session,
-        requester="ancv",
+        requester=os.environ.get("GH_REQUESTER", "ancv"),
         oauth_token=os.environ.get("GH_TOKEN", None),
         cache=TTLCache(maxsize=1e2, ttl=60),
     )
@@ -83,7 +83,7 @@ def is_terminal_client(user_agent: str) -> bool:
 async def root(request: web.Request) -> web.Response:
     user_agent = request.headers.get("User-Agent", "")
 
-    REPO_URL = os.environ["REPO_URL"]
+    REPO_URL = os.environ.get("REPO_URL", "https://ancv.io")
 
     if is_terminal_client(user_agent):
         return web.Response(text=f"Visit {REPO_URL} to get started.\n")
