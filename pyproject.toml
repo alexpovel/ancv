@@ -36,7 +36,7 @@ classifiers = [
 python = "^3.9.8"
 gidgethub = "^5.1.0"
 aiohttp = {extras = ["speedups"], version = "^3.8.1"}
-pydantic = "^1.9.1"
+pydantic = {extras = ["email"], version = "^1.9.1"}
 structlog = "^21.5.0"
 cachetools = "^5.2.0"
 humanize = "^4.1.0"
