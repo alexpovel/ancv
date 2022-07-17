@@ -5,6 +5,7 @@ from aiohttp import ClientSession, web
 from cachetools import TTLCache
 from gidgethub.aiohttp import GitHubAPI
 
+from ancv import METADATA
 from ancv.utils.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.utils.logging import LOGGER
 from ancv.visualization.templates import Template
@@ -44,7 +45,7 @@ async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
     log.debug("Creating GitHub API instance.")
     github = GitHubAPI(
         session,
-        requester=os.environ.get("GH_REQUESTER", "ancv"),
+        requester=os.environ.get("GH_REQUESTER", METADATA.name),
         oauth_token=os.environ.get("GH_TOKEN", None),
         cache=TTLCache(maxsize=1e2, ttl=60),
     )
@@ -83,7 +84,9 @@ def is_terminal_client(user_agent: str) -> bool:
 async def root(request: web.Request) -> web.Response:
     user_agent = request.headers.get("User-Agent", "")
 
-    REPO_URL = os.environ.get("REPO_URL", "https://github.com/alexpovel/ancv")
+    REPO_URL = os.environ.get(
+        "REPO_URL", METADATA.project_url[0] if METADATA.project_url else ""
+    )
 
     if is_terminal_client(user_agent):
         return web.Response(text=f"Visit {REPO_URL} to get started.\n")
