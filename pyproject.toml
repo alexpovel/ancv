@@ -51,8 +51,6 @@ datamodel-code-generator = {extras = ["http"], version = "^0.13.0"}
 mypy = "^0.960"
 types-cachetools = "^5.0.1"
 pydeps = "^1.10.18"
-
-[tool.poetry.group.dev.dependencies]
 bumpversion = "^0.6.0"
 
 [build-system]
