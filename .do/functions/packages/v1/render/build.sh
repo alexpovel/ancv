@@ -9,8 +9,8 @@
 
 virtualenv virtualenv
 source virtualenv/bin/activate
-pip install ancv
-# pip install -r requirements.txt
+# pip install ancv
+pip install -r requirements.txt
 deactivate
 
 # virtualenv --without-pip virtualrofl
