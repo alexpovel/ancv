@@ -10,7 +10,7 @@
 virtualenv virtualenv
 source virtualenv/bin/activate
 # pip install ancv
-pip install -r requirements.txt
+pip install pyjokes
 deactivate
 
 # virtualenv --without-pip virtualrofl
