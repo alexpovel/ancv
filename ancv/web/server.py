@@ -83,7 +83,7 @@ def is_terminal_client(user_agent: str) -> bool:
 async def root(request: web.Request) -> web.Response:
     user_agent = request.headers.get("User-Agent", "")
 
-    REPO_URL = os.environ.get("REPO_URL", "https://ancv.io")
+    REPO_URL = os.environ.get("REPO_URL", "https://github.com/alexpovel/ancv")
 
     if is_terminal_client(user_agent):
         return web.Response(text=f"Visit {REPO_URL} to get started.\n")
