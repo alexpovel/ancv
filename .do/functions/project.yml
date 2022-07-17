@@ -3,3 +3,5 @@ packages:
     actions:
       - name: render
         runtime: "python:default"
+      - name: fetch
+        runtime: "go:default"
