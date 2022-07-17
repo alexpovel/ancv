@@ -60,6 +60,15 @@ This being a hobby project, new (and old) features were tried out and used:
 
 Skeleton + Theme + Language + ASCII-mode toggle + Resume Data ==> terminal CV
 
+## Contributing
+
+Set up your environment:
+
+1. [Install `poetry`](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
+2. Run `poetry install`
+3. Enter into the created environment with `poetry shell`
+4. Set up `git` hooks provided by [`pre-commit`](https://pre-commit.com/#intro): `pre-commit install --hook-type pre-push`
+
 ## TODO
 
 - [ ] Core application
