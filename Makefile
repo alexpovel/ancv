@@ -1,9 +1,12 @@
-.PHONY: tests test typecheck formatcheck isortcheck
+.PHONY: tests test typecheck formatcheck isortcheck image
 
 RUN = poetry run
 LIBRARY = ancv
 
 tests: test typecheck formatcheck isortcheck
+
+# Ensure the Docker image also builds properly
+alltests: tests image
 
 test:
 	${RUN} pytest
@@ -16,6 +19,9 @@ formatcheck:
 
 isortcheck:
 	${RUN} isort . --check --diff
+
+image:
+	@docker build --progress=plain --no-cache --tag ${LIBRARY}/${LIBRARY} .
 
 # Hooks need to be added here manually if other 'types' are later added:
 hooks:

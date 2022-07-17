@@ -4,6 +4,6 @@ repos:
       - id: run-all-tests
         name: Run all tests
         language: system
-        entry: make tests
+        entry: make alltests
         stages:
           - "push"
