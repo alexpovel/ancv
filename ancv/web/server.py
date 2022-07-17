@@ -45,7 +45,7 @@ async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
     github = GitHubAPI(
         session,
         requester="ancv",
-        oauth_token=os.environ["GH_TOKEN"],
+        oauth_token=os.environ.get("GH_TOKEN", None),
         cache=TTLCache(maxsize=1e2, ttl=60),
     )
     log = log.bind(github=github)
