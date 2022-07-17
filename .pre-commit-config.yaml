@@ -1,9 +1,45 @@
 repos:
   - repo: local
     hooks:
-      - id: run-all-tests
-        name: Run all tests
+      - id: run-tests
+        name: Run tests
         language: system
-        entry: make alltests
+        entry: make test
+        stages:
+          - "commit"
+          - "push"
+  - repo: local
+    hooks:
+      - id: run-typecheck
+        name: Run typecheck
+        language: system
+        entry: make typecheck
+        stages:
+          - "commit"
+          - "push"
+  - repo: local
+    hooks:
+      - id: check-formatting
+        name: Check formatting
+        language: system
+        entry: make formatcheck
+        stages:
+          - "commit"
+          - "push"
+  - repo: local
+    hooks:
+      - id: check-import-sorting
+        name: Check import sorting
+        language: system
+        entry: make isortcheck
+        stages:
+          - "commit"
+          - "push"
+  - repo: local
+    hooks:
+      - id: build-image
+        name: Build image
+        language: system
+        entry: make image
         stages:
           - "push"

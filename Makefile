@@ -25,7 +25,7 @@ image:
 
 # Hooks need to be added here manually if other 'types' are later added:
 hooks:
-	@pre-commit install --hook-type pre-push
+	@pre-commit install --hook-type pre-push --hook-type pre-commit
 
 requirements.txt:
 	poetry export --with=dev --output=requirements.txt
