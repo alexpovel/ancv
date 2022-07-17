@@ -14,7 +14,7 @@ RUN apt-get update \
     && apt-get install --no-install-recommends --yes \
     curl
 
-RUN curl -sSL https://install.python-poetry.org | python -
+RUN curl -sSL https://install.python-poetry.org | python - --version 1.2.0b3
 
 # README.md is junk but poetry requests it and fails otherwise.
 COPY pyproject.toml poetry.lock README.md ./
