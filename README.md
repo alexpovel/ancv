@@ -67,7 +67,7 @@ Set up your environment:
 1. [Install `poetry`](https://python-poetry.org/docs/master/#installing-with-the-official-installer)
 2. Run `poetry install`
 3. Enter into the created environment with `poetry shell`
-4. Set up `git` hooks provided by [`pre-commit`](https://pre-commit.com/#intro): `pre-commit install --hook-type pre-push`
+4. Set up `git` hooks provided by [`pre-commit`](https://pre-commit.com/#intro): `make hooks`
 
 ## TODO
 
