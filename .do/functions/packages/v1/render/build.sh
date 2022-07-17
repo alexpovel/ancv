@@ -3,14 +3,14 @@
 # set -e
 
 # echo $(whoami)
-whoami
+# whoami
 
-id
+# id
 
-# virtualenv --without-pip virtualenv
+virtualenv --without-pip virtualenv
 # pip install --user ancv
 
-# pip install -r requirements.txt --target virtualenv/lib/python3.9/site-packages
+pip install ancv --target virtualenv/lib/python3.9/site-packages
 # source virtualenv/bin/activate
 
 # echo "In build script"
