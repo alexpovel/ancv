@@ -5,6 +5,8 @@
 # echo $(whoami)
 whoami
 
+id
+
 # virtualenv --without-pip virtualenv
 # pip install --user ancv
 
