@@ -10,7 +10,7 @@
 virtualenv --without-pip virtualenv
 # pip install --user ancv
 
-pip install ancv --target virtualenv/lib/python3.9/site-packages
+pip install pyjokes --target virtualenv/lib/python3.9/site-packages
 # source virtualenv/bin/activate
 
 # echo "In build script"
