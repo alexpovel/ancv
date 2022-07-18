@@ -261,7 +261,7 @@ class ResumeSchema(BaseModel):
     class Config:
         extra = Extra.forbid
 
-    _schema: Optional[AnyUrl] = Field(
+    schema_: Optional[AnyUrl] = Field(
         None,
         alias="$schema",
         description="link to the version of the schema that can validate the resume",
