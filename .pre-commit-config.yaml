@@ -1,19 +1,10 @@
 repos:
   - repo: local
     hooks:
-      - id: run-tests
-        name: Run tests
+      - id: check-import-sorting
+        name: Check import sorting
         language: system
-        entry: make test
-        stages:
-          - "commit"
-          - "push"
-  - repo: local
-    hooks:
-      - id: run-typecheck
-        name: Run typecheck
-        language: system
-        entry: make typecheck
+        entry: make isortcheck
         stages:
           - "commit"
           - "push"
@@ -28,10 +19,19 @@ repos:
           - "push"
   - repo: local
     hooks:
-      - id: check-import-sorting
-        name: Check import sorting
+      - id: run-typecheck
+        name: Run typecheck
         language: system
-        entry: make isortcheck
+        entry: make typecheck
+        stages:
+          - "commit"
+          - "push"
+  - repo: local
+    hooks:
+      - id: run-tests
+        name: Run tests
+        language: system
+        entry: make test
         stages:
           - "commit"
           - "push"
