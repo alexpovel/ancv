@@ -1,4 +1,8 @@
 repos:
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v2.28.0
+    hooks:
+      - id: commitizen
   - repo: local
     hooks:
       - id: check-import-sorting

@@ -25,7 +25,7 @@ image:
 
 # Hooks need to be added here manually if other 'types' are later added:
 hooks:
-	@pre-commit install --hook-type pre-push --hook-type pre-commit
+	@pre-commit install --hook-type pre-push --hook-type pre-commit --hook-type commit-msg
 
 bump:
 	@${RUN} bumpversion $(v) || \
