@@ -1,27 +1,65 @@
 # From https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python#publishing-to-package-registries
 
-name: "Publish to PyPI"
+name: "Publish"
 
 on:
   push:
-    tags:
-      - v**
+    branches:
+      - main
 
 jobs:
-  publish:
-    runs-on: ubuntu-latest
+  tests:
+    strategy:
+      matrix:
+        python-version: ["3.10"]
+        os: ["ubuntu-latest"]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
       - name: Install Poetry
         uses: snok/install-poetry@v1.3.0
         with:
           version: 1.2.0b3
+      - name: Set up Python environment
+        run: poetry install
+      - name: Run tests
+        run: make test
+      - name: Run type checks
+        run: make typecheck
+      - name: Check code formatting
+        run: make formatcheck
+      - name: Check imports formatting
+        run: make isortcheck
+  release:
+    runs-on: ubuntu-latest
+    needs: tests
+    steps:
+      - uses: google-github-actions/release-please-action@v3
+        id: release
+        with:
+          release-type: python
+          package-name: ancv
+      - uses: actions/checkout@v2
+        # these if statements ensure that a publication only occurs when a new release
+        # is created:
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        if: ${{ steps.release.outputs.release_created }}
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.3.0
+        with:
+          version: 1.2.0b3
+        if: ${{ steps.release.outputs.release_created }}
       - name: Build package
         run: poetry build
+        if: ${{ steps.release.outputs.release_created }}
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@v1.5.0
         with:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
+        if: ${{ steps.release.outputs.release_created }}
