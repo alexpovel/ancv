@@ -4,7 +4,7 @@ Getting you [an CV](https://www.youtube.com/watch?v=mJUtMEJdvqM) (ANSI-v?) strai
 
 Be warned though, this is entirely useless:
 
-![Users Venn diagram](docs/users-venn.svg)
+![Users Venn diagram](docs/images/users-venn.svg)
 
 ## Getting started
 
