@@ -1,3 +1,5 @@
+import os
+
 import structlog
 from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
@@ -10,3 +12,5 @@ structlog.configure(
 )
 
 LOGGER = structlog.get_logger()
+
+LOGGER.debug(f"Starting up with environment: {os.environ}")
