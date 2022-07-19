@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/alexpovel/ancv/compare/v0.5.0...v0.5.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* **build:** Move Docker image creation to 'publish' pipeline ([b43039f](https://github.com/alexpovel/ancv/commit/b43039f19d38390fff6eb20b6b6423dd0770e3e3))
+
 ## [0.5.0](https://github.com/alexpovel/ancv/compare/v0.4.0...v0.5.0) (2022-07-19)
 
 
