@@ -84,13 +84,20 @@ def is_terminal_client(user_agent: str) -> bool:
 async def root(request: web.Request) -> web.Response:
     user_agent = request.headers.get("User-Agent", "")
 
-    REPO_URL = os.environ.get(
-        "REPO_URL", METADATA.project_url[0] if METADATA.project_url else ""
-    )
+    HOMEPAGE = os.environ.get("HOMEPAGE", METADATA.home_page or "")
 
     if is_terminal_client(user_agent):
-        return web.Response(text=f"Visit {REPO_URL} to get started.\n")
-    raise web.HTTPFound(REPO_URL)  # Redirect
+        return web.Response(text=f"Visit {HOMEPAGE} to get started.\n")
+
+    # When visiting this endpoint in a browser, we want to redirect to the homepage.
+    # That page cannot be this same path under the same hostname again, else we get a
+    # loop.
+    browser_page = os.environ.get(
+        "LANDING_PAGE",
+        METADATA.project_url[0] if METADATA.project_url else "https://github.com/",
+    )
+
+    raise web.HTTPFound(browser_page)  # Redirect
 
 
 @_ROUTES.get("/{username}")
