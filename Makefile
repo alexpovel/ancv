@@ -21,7 +21,7 @@ isortcheck:
 	${RUN} isort . --check --diff
 
 image:
-	@docker build --progress=plain --no-cache --tag ${LIBRARY}/${LIBRARY} .
+	@docker build --progress=plain --tag ${LIBRARY}/${LIBRARY} .
 
 # Hooks need to be added here manually if other 'types' are later added:
 hooks:
