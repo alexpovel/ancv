@@ -69,36 +69,6 @@ Set up your environment:
 3. Enter into the created environment with `poetry shell`
 4. Set up `git` hooks provided by [`pre-commit`](https://pre-commit.com/#intro): `make hooks`
 
-## TODO
-
-- [ ] Core application
-  - [ ] 3 full templates implemented
-  - [ ] ASCII-safe mode implemented
-- [ ] Implement test suite
-  - [ ] Unit tests (not many to do...)
-  - [ ] Integration tests:
-    - [ ] Create *one* fully featured JSON resume
-    - [ ] Create derived resumes with all possible fields (all combinations thereof?) set to `None` where legal (given the schema)
-    - [ ] Compare all these to expected files (the files contain the ANSI escape characters literally)
-  - [ ] [Load tests](https://molotov.readthedocs.io/en/stable/index.html)
-- [ ] Other
-  - [ ] ~~<https://ancv.io> landing page for browsers~~ (just a redirect to GitHub for now)
-  - [x] Venn diagram
-    - [x] ~~[Hand- [ ]draw](https://www.youtube.com/watch?v=iN1MsCXkPSA) on ReMarkable?~~
-    - [x] One circle: 'people working with resumes'
-    - [x] other circle: 'people working with terminals'
-    - [x] *tiny* overlap: 'you', with arrow
-  - [ ] Demos
-    - [ ] `curl`, `wget` (PowerShell?) examples
-    - [ ] all templates
-      - [ ] all languages
-
-## Roadmap
-
-- [ ] Multiple `locale` support for hardcoded strings (like `Present` for a missing end date)
-  - [ ] German, French, Spanish
-- [ ] Image support (fetch bitmap, convert to ASCII art ([random example](https://gist.github.com/mayjs/5dc934d42bad05825ea9cd5a26517d97)))
-
 ## Other solutions
 
 Very hard to find any, and even hard to google.
