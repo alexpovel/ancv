@@ -12,6 +12,9 @@ repos:
         stages:
           - "commit"
           - "push"
+        types:
+          - file
+          - python
   - repo: local
     hooks:
       - id: check-formatting
@@ -21,6 +24,9 @@ repos:
         stages:
           - "commit"
           - "push"
+        types:
+          - file
+          - python
   - repo: local
     hooks:
       - id: run-typecheck
@@ -30,6 +36,9 @@ repos:
         stages:
           - "commit"
           - "push"
+        types:
+          - file
+          - python
   - repo: local
     hooks:
       - id: run-tests
@@ -39,6 +48,9 @@ repos:
         stages:
           - "commit"
           - "push"
+        types:
+          - file
+          - python
   - repo: local
     hooks:
       - id: build-image
