@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/alexpovel/ancv/compare/v0.4.0...v0.5.0) (2022-07-19)
+
+
+### Features
+
+* **build:** Add GitHub Actions job to upload Docker image ([b2e54f2](https://github.com/alexpovel/ancv/commit/b2e54f2593de4b1db3be12e35f4f94ec5fd73a9e))
+
 ## [0.4.0](https://github.com/alexpovel/ancv/compare/v0.3.0...v0.4.0) (2022-07-18)
 
 
