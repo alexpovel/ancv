@@ -1,5 +1,5 @@
 import os
-from typing import AsyncGenerator
+from typing import AsyncGenerator, Optional
 
 from aiohttp import ClientSession, web
 from cachetools import TTLCache
@@ -14,7 +14,7 @@ from ancv.web.client import get_resume
 _ROUTES = web.RouteTableDef()
 
 
-def run(host: str, port: int, path: str) -> None:
+def run(host: Optional[str], port: Optional[int], path: Optional[str]) -> None:
     LOGGER.debug("Instantiating web application.")
     app = web.Application()
     LOGGER.debug("Adding routes.")
