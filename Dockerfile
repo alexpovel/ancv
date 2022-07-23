@@ -26,4 +26,4 @@ COPY ancv/ ./ancv/
 RUN poetry config virtualenvs.create false && poetry install --no-dev
 
 EXPOSE 8080
-CMD [ "python", "-m", "ancv", "serve", "--port", "8080" ]
+CMD [ "python", "-m", "ancv", "serve", "api", "--port", "8080" ]
