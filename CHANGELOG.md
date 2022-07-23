@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.0](https://github.com/alexpovel/ancv/compare/v0.5.2...v0.6.0) (2022-07-23)
+
+
+### Features
+
+* **cli:** Add `--verbose` CLI option ([0c22e8c](https://github.com/alexpovel/ancv/commit/0c22e8cc92edf1b8ba7ac532b4b30d352183416c))
+* **cli:** Replace `click` with `typer` ([a50d347](https://github.com/alexpovel/ancv/commit/a50d347a0829c305578f308dd0a2c375c1098a3f))
+
 ## [0.5.2](https://github.com/alexpovel/ancv/compare/v0.5.1...v0.5.2) (2022-07-19)
 
 
