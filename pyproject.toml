@@ -43,7 +43,7 @@ humanize = "^4.1.0"
 rich = "^12.4.4"
 typer = "^0.6.1"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black = "^22.3.0"
 isort = "^5.10.1"
 pytest = "^7.1.2"
