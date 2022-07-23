@@ -9,6 +9,7 @@ from structlog import get_logger
 from ancv import METADATA
 from ancv.utils.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.visualization.templates import Template
+from ancv.web import is_terminal_client
 from ancv.web.client import get_resume
 
 LOGGER = get_logger()
@@ -69,18 +70,6 @@ async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
     log.debug("Closed client session.")
 
     log.info("App context teardown done.")
-
-
-def is_terminal_client(user_agent: str) -> bool:
-    user_agent = user_agent.lower()
-    return any(
-        client in user_agent
-        for client in [
-            "curl",
-            "wget",
-            "powershell",
-        ]
-    )
 
 
 @_ROUTES.get("/")
