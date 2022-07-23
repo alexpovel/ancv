@@ -74,5 +74,19 @@ def validate(
         print("Pass!")
 
 
+@app.callback()
+def main(
+    verbose: bool = typer.Option(
+        False, "--verbose", "-v", help="Turn on verbose logging output (WIP)."
+    )
+) -> None:
+    """CLI-wide, global options.
+
+    https://typer.tiangolo.com/tutorial/commands/callback/
+    """
+
+    pass
+
+
 if __name__ == "__main__":
     app()
