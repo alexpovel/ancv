@@ -5,11 +5,15 @@ locally.
 """
 
 import json
+import logging
+import os
 from pathlib import Path
 from typing import Optional
 
+import structlog
 import typer
 from pydantic import ValidationError
+from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
 import ancv.web.server
 from ancv.data.models.resume import ResumeSchema
@@ -77,7 +81,7 @@ def validate(
 @app.callback()
 def main(
     verbose: bool = typer.Option(
-        False, "--verbose", "-v", help="Turn on verbose logging output (WIP)."
+        False, "--verbose", "-v", help="Turn on verbose logging output."
     )
 ) -> None:
     """CLI-wide, global options.
@@ -85,7 +89,19 @@ def main(
     https://typer.tiangolo.com/tutorial/commands/callback/
     """
 
-    pass
+    structlog.configure(  # This is global state
+        processors=[  # https://www.structlog.org/en/stable/api.html#procs
+            TimeStamper(fmt="iso", utc=True, key="ts"),
+            add_log_level,
+            JSONRenderer(sort_keys=True),
+        ],
+        wrapper_class=structlog.make_filtering_bound_logger(
+            logging.DEBUG if verbose else logging.INFO
+        ),
+    )
+
+    log = structlog.get_logger()
+    log.debug(f"Starting up with environment: {os.environ}")
 
 
 if __name__ == "__main__":

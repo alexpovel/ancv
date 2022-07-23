@@ -6,12 +6,14 @@ import gidgethub
 from gidgethub.aiohttp import GitHubAPI
 from humanize import naturalsize
 from pydantic import ValidationError
+from structlog import get_logger
 
 from ancv import SIPrefix
 from ancv.data.models.github import Gist
 from ancv.data.models.resume import ResumeSchema
 from ancv.utils.exceptions import ResumeLookupError
-from ancv.utils.logging import LOGGER
+
+LOGGER = get_logger()
 
 
 async def get_resume(

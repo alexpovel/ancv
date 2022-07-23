@@ -4,12 +4,14 @@ from typing import AsyncGenerator, Optional
 from aiohttp import ClientSession, web
 from cachetools import TTLCache
 from gidgethub.aiohttp import GitHubAPI
+from structlog import get_logger
 
 from ancv import METADATA
 from ancv.utils.exceptions import ResumeConfigError, ResumeLookupError
-from ancv.utils.logging import LOGGER
 from ancv.visualization.templates import Template
 from ancv.web.client import get_resume
+
+LOGGER = get_logger()
 
 _ROUTES = web.RouteTableDef()
 
