@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.6.1](https://github.com/alexpovel/ancv/compare/v0.6.0...v0.6.1) (2022-07-23)
+
+
+### Bug Fixes
+
+* **build:** Fixed Dockerfile using old CLI syntax ([39fa5c8](https://github.com/alexpovel/ancv/commit/39fa5c8227c1ca47d3531e384c0ace46762b9ec9))
+* **cli:** Turn 'Arguments' into 'Options' ([756b681](https://github.com/alexpovel/ancv/commit/756b6818403052b6bd1588c72dab7065f5e45e9b))
+
 ## [0.6.0](https://github.com/alexpovel/ancv/compare/v0.5.2...v0.6.0) (2022-07-23)
 
 
