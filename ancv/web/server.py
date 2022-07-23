@@ -20,6 +20,7 @@ def run(host: Optional[str], port: Optional[int], path: Optional[str]) -> None:
     LOGGER.debug("Adding routes.")
     app.add_routes(_ROUTES)
     app.cleanup_ctx.append(app_context)
+    LOGGER.info("Loaded, starting server...")
     web.run_app(app, host=host, port=port, path=path)
 
 
@@ -65,7 +66,7 @@ async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
     await app["client_session"].close()
     log.debug("Closed client session.")
 
-    log.debug("App context teardown done.")
+    log.info("App context teardown done.")
 
 
 def is_terminal_client(user_agent: str) -> bool:
