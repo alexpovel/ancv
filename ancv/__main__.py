@@ -27,9 +27,9 @@ app.add_typer(server_app, name="serve")
 
 @server_app.command()
 def api(
-    host: str = typer.Argument("0.0.0.0", help="Hostname to bind to."),
-    port: int = typer.Argument(8080, help="Port to bind to."),
-    path: Optional[str] = typer.Argument(
+    host: str = typer.Option("0.0.0.0", help="Hostname to bind to."),
+    port: int = typer.Option(8080, help="Port to bind to."),
+    path: Optional[str] = typer.Option(
         None, help="File system path for an HTTP server UNIX domain socket."
     ),
 ) -> None:
