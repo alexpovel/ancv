@@ -15,9 +15,9 @@ import typer
 from pydantic import ValidationError
 from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
-import ancv.web.server
 from ancv.data.models.resume import ResumeSchema
 from ancv.visualization.templates import Template
+from ancv.web.server import API
 
 app = typer.Typer(no_args_is_help=True, help=__doc__)
 server_app = typer.Typer(no_args_is_help=True, help="Interacts with the web server.")
@@ -35,7 +35,7 @@ def api(
 ) -> None:
     """Starts the web server and serves the API."""
 
-    ancv.web.server.run(host=host, port=port, path=path)
+    API.run(host=host, port=port, path=path)
 
 
 @app.command()
