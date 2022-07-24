@@ -1,0 +1,44 @@
+name: Setup poetry and project environment
+
+on:
+  workflow_call:
+    inputs:
+      python-version:
+        required: true
+        type: string
+      poetry-version:
+        default: 1.2.0b3
+        required: false
+        type: string
+
+jobs:
+  setup-poetry-and-project-environment:
+    name: Setup poetry and project environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      # Installing via `pipx` is 'fully supported', so no need for
+      # https://github.com/snok/install-poetry, which is a bit slower. See also
+      # https://python-poetry.org/docs/master/#installing-with-pipx
+      - name: Install Poetry
+        run: pipx install poetry==${{ inputs.poetry-version }}
+
+        # Counterintuitively, the Python setup step itself is setup *after* installing
+        # `poetry`, else the `poetry` command isn't found and the setup step fails. See
+        # also:
+        # https://github.com/marketplace/actions/setup-python#caching-packages-dependencies
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python-version }}
+          cache: poetry
+
+      - name: Set up Python environment
+        # `poetry env use` instructs all `poetry` runs to go through the correct (NOT
+        # the default aka system) Python environment, see also:
+        # https://github.com/actions/setup-python/issues/374#issuecomment-1088938718
+        # As long as we then call all actions via `poetry run ...`, we're fine.
+        run: |
+          poetry env use ${{ inputs.python-version }}
+          poetry install
