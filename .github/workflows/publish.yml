@@ -21,17 +21,29 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      # Installing via `pipx` is 'fully supported', so no need for
+      # https://github.com/snok/install-poetry, which is a bit slower. See also
+      # https://python-poetry.org/docs/master/#installing-with-pipx
+      - name: Install Poetry
+        run: pipx install poetry==1.2.0b3
+
+        # Counterintuitively, the Python setup step itself is setup *after* installing
+        # `poetry`, else the `poetry` command isn't found and the setup step fails. See
+        # also:
+        # https://github.com/marketplace/actions/setup-python#caching-packages-dependencies
       - uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1.3.0
-        with:
-          version: 1.2.0b3
+          cache: poetry
 
       - name: Set up Python environment
-        run: poetry install
+        # `poetry env use` instructs all `poetry` runs to go through the correct (NOT
+        # the default aka system) Python environment, see also:
+        # https://github.com/actions/setup-python/issues/374#issuecomment-1088938718
+        # As long as we then call all actions via `poetry run ...`, we're fine.
+        run: |
+          poetry env use ${{ matrix.python-version }}
+          poetry install
 
       - name: Run tests
         run: make test
@@ -69,15 +81,20 @@ jobs:
     if: ${{ needs.release-please.outputs.created }}
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
 
       - name: Install Poetry
-        uses: snok/install-poetry@v1.3.0
+        run: pipx install poetry==1.2.0b3
+
+      - uses: actions/setup-python@v4
         with:
-          version: 1.2.0b3
+          python-version: "3.10"
+          cache: poetry
+
+      - name: Set up Python environment
+        run: |
+          poetry env use 3.10
+          poetry install
 
       - name: Build package
         run: poetry build
