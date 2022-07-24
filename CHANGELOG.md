@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.0](https://github.com/alexpovel/ancv/compare/v0.6.1...v0.7.0) (2022-07-24)
+
+
+### Features
+
+* **ci:** Cache `poetry` dependencies ([23dca4b](https://github.com/alexpovel/ancv/commit/23dca4bb08815c6949df12b777a27d13e2162c3d))
+* **cli:** Add command to serve a single file ([6318e96](https://github.com/alexpovel/ancv/commit/6318e96ee8b9070a599e6223b70e9a87b8c875ae))
+
 ## [0.6.1](https://github.com/alexpovel/ancv/compare/v0.6.0...v0.6.1) (2022-07-23)
 
 
