@@ -15,7 +15,7 @@ import typer
 from pydantic import ValidationError
 from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
-from ancv.data.models.resume import ResumeSchema
+from ancv.utils.exceptions import ResumeConfigError
 from ancv.visualization.templates import Template
 from ancv.web.server import API
 
@@ -47,11 +47,7 @@ def render(
 ) -> None:
     """Locally renders the JSON resume at the given file path."""
 
-    with open(path, "r", encoding="utf8") as file:
-        contents = json.loads(file.read())
-
-    resume = ResumeSchema(**contents)
-    template = Template.from_model_config(resume)
+    template = Template.from_file(path)
     output = template.render()
     print(output)
     return None
@@ -66,12 +62,9 @@ def validate(
 ) -> None:
     """Checks the validity of the given JSON resume without rendering."""
 
-    with open(path, "r", encoding="utf8") as file:
-        contents = json.loads(file.read())
-
     try:
-        ResumeSchema(**contents)
-    except ValidationError as e:
+        Template.from_file(path)
+    except (ValidationError, ResumeConfigError) as e:
         print(str(e))
         raise typer.Exit(code=1)
     else:

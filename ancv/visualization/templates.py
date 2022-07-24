@@ -1,5 +1,7 @@
+import json
 from abc import ABC, abstractmethod
 from functools import partial, singledispatchmethod
+from pathlib import Path
 from typing import NamedTuple, Optional
 
 from rich import box
@@ -107,6 +109,13 @@ class Template(ABC):
             translation=translation,
             ascii_only=model.meta.config.ascii_only,
         )
+
+    @classmethod
+    def from_file(cls, file: Path) -> "Template":
+        with open(file, "r", encoding="utf8") as f:
+            contents = json.loads(f.read())
+
+        return cls.from_model_config(ResumeSchema(**contents))
 
 
 class PaddingLevels(NamedTuple):
