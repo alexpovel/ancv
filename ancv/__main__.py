@@ -4,7 +4,6 @@ Comes with a server serving either an API or a single file, and a CLI to render 
 locally.
 """
 
-import json
 import logging
 import os
 from pathlib import Path
@@ -17,7 +16,7 @@ from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
 from ancv.utils.exceptions import ResumeConfigError
 from ancv.visualization.templates import Template
-from ancv.web.server import API
+from ancv.web.server import APIHandler, FileHandler, ServerContext
 
 app = typer.Typer(no_args_is_help=True, help=__doc__)
 server_app = typer.Typer(no_args_is_help=True, help="Interacts with the web server.")
@@ -35,7 +34,23 @@ def api(
 ) -> None:
     """Starts the web server and serves the API."""
 
-    API.run(host=host, port=port, path=path)
+    context = ServerContext(host=host, port=port, path=path)
+    APIHandler().run(context)
+
+
+@server_app.command()
+def file(
+    file: Path = typer.Argument(Path("resume.json")),
+    host: str = typer.Option("0.0.0.0", help="Hostname to bind to."),
+    port: int = typer.Option(8080, help="Port to bind to."),
+    path: Optional[str] = typer.Option(
+        None, help="File system path for an HTTP server UNIX domain socket."
+    ),
+) -> None:
+    """Starts the web server and serves a single, rendered resume file."""
+
+    context = ServerContext(host=host, port=port, path=path)
+    FileHandler(file).run(context)
 
 
 @app.command()

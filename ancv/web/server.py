@@ -1,5 +1,7 @@
 import os
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from pathlib import Path
 from typing import AsyncGenerator, Optional
 
 from aiohttp import ClientSession, web
@@ -16,25 +18,36 @@ from ancv.web.client import get_resume
 LOGGER = get_logger()
 
 
-class Server(ABC):
-    @classmethod
+@dataclass
+class ServerContext:
+    host: Optional[str]
+    port: Optional[int]
+    path: Optional[str]
+
+
+class Runnable(ABC):
     @abstractmethod
-    def run(cls, host: Optional[str], port: Optional[int], path: Optional[str]) -> None:
-        pass
+    def run(self, context: ServerContext) -> None:
+        ...
 
 
-class API(Server):
-    ROUTES = web.RouteTableDef()
-
-    @classmethod
-    def run(cls, host: Optional[str], port: Optional[int], path: Optional[str]) -> None:
+class APIHandler(Runnable):
+    def run(self, context: ServerContext) -> None:
         LOGGER.debug("Instantiating web application.")
         app = web.Application()
+
         LOGGER.debug("Adding routes.")
-        app.add_routes(cls.ROUTES)
-        app.cleanup_ctx.append(cls.app_context)
+        app.add_routes(
+            [
+                web.get("/", self.root),
+                web.get("/{username}", self.username),
+            ]
+        )
+
+        app.cleanup_ctx.append(self.app_context)
+
         LOGGER.info("Loaded, starting server...")
-        web.run_app(app, host=host, port=port, path=path)
+        web.run_app(app, host=context.host, port=context.port, path=context.path)
 
     @staticmethod
     async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
@@ -81,9 +94,7 @@ class API(Server):
 
         log.info("App context teardown done.")
 
-    @ROUTES.get("/")
-    @staticmethod
-    async def root(request: web.Request) -> web.Response:
+    async def root(self, request: web.Request) -> web.Response:
         user_agent = request.headers.get("User-Agent", "")
 
         HOMEPAGE = os.environ.get("HOMEPAGE", METADATA.home_page or "")
@@ -101,10 +112,8 @@ class API(Server):
 
         raise web.HTTPFound(browser_page)  # Redirect
 
-    @ROUTES.get("/{username}")
-    @staticmethod
-    async def username(request: web.Request) -> web.Response:
-        log = LOGGER
+    async def username(self, request: web.Request) -> web.Response:
+        log = LOGGER.bind(request=request)
         log.info(request.message.headers)
 
         user = request.match_info["username"]
@@ -128,4 +137,25 @@ class API(Server):
             except ResumeConfigError as e:
                 log.warning(str(e))
                 return web.Response(text=str(e))
+            log.debug("Serving rendered template.")
             return web.Response(text=template.render())
+
+
+class FileHandler(Runnable):
+    def __init__(self, file: Path) -> None:
+        self.template = Template.from_file(file)
+        self.rendered = self.template.render()
+
+    def run(self, context: ServerContext) -> None:
+        LOGGER.debug("Instantiating web application.")
+        app = web.Application()
+
+        LOGGER.debug("Adding routes.")
+        app.add_routes([web.get("/", self.root)])
+
+        LOGGER.info("Loaded, starting server...")
+        web.run_app(app, host=context.host, port=context.port, path=context.path)
+
+    async def root(self, request: web.Request) -> web.Response:
+        LOGGER.debug("Serving rendered template.", request=request)
+        return web.Response(text=self.rendered)
