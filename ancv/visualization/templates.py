@@ -35,7 +35,7 @@ from ancv.data.models.resume import (
     VolunteerItem,
     WorkItem,
 )
-from ancv.utils.exceptions import ResumeConfigError
+from ancv.exceptions import ResumeConfigError
 from ancv.visualization import WIDTH, RenderableGenerator
 from ancv.visualization.themes import THEMES, Theme
 from ancv.visualization.translations import TRANSLATIONS, Translation

@@ -11,7 +11,7 @@ from structlog import get_logger
 from ancv import SIPrefix
 from ancv.data.models.github import Gist
 from ancv.data.models.resume import ResumeSchema
-from ancv.utils.exceptions import ResumeLookupError
+from ancv.exceptions import ResumeLookupError
 
 LOGGER = get_logger()
 

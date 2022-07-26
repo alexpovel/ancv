@@ -14,7 +14,7 @@ import typer
 from pydantic import ValidationError
 from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
-from ancv.utils.exceptions import ResumeConfigError
+from ancv.exceptions import ResumeConfigError
 from ancv.visualization.templates import Template
 from ancv.web.server import APIHandler, FileHandler, ServerContext
 

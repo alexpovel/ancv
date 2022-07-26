@@ -10,7 +10,7 @@ from gidgethub.aiohttp import GitHubAPI
 from structlog import get_logger
 
 from ancv import METADATA
-from ancv.utils.exceptions import ResumeConfigError, ResumeLookupError
+from ancv.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.visualization.templates import Template
 from ancv.web import is_terminal_client
 from ancv.web.client import get_resume
