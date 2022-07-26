@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/alexpovel/ancv/compare/v0.7.0...v0.8.0) (2022-07-26)
+
+
+### Features
+
+* **app:** Add `ascii_only` option ([2efdc09](https://github.com/alexpovel/ancv/commit/2efdc09496a7be679ecb0d938283404850b972a6))
+
 ## [0.7.0](https://github.com/alexpovel/ancv/compare/v0.6.1...v0.7.0) (2022-07-24)
 
 
