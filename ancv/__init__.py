@@ -74,6 +74,11 @@ class Metadata(BaseModel):
 
     @validator("project_url")
     def strip_prefix(cls, v: Optional[list[str]]) -> Optional[list[str]]:
+        """Strips the prefixes 'Name, ' from the URLs.
+
+        For example, extracts just the URL from:
+        'Repository, https://github.com/namespace/ancv/'.
+        """
         if v is None:
             return v
         return [url.split()[-1] for url in v]
