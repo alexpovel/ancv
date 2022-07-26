@@ -1,7 +1,9 @@
 import json
 from abc import ABC, abstractmethod
+from contextlib import redirect_stdout
 from functools import partial, singledispatchmethod
 from pathlib import Path
+from tempfile import SpooledTemporaryFile
 from typing import NamedTuple, Optional
 
 from rich import box
@@ -14,6 +16,7 @@ from rich.style import Style
 from rich.table import Column, Table
 from rich.text import Text
 
+from ancv import SIPrefix
 from ancv.data.models.resume import (
     Award,
     Basics,
@@ -60,20 +63,27 @@ class Template(ABC):
         pass
 
     def render(self) -> str:
-        console = Console(
-            width=WIDTH,
-            color_system="256",
-            force_terminal=False,
-            force_jupyter=False,
-            force_interactive=False,
-            no_color=False,
-            tab_size=4,
-            legacy_windows=False,
-        )
+        encoding = "ascii" if self.ascii_only else "utf-8"
+        f = SpooledTemporaryFile(max_size=SIPrefix.MEGA, mode="w", encoding=encoding)
 
-        with console.capture() as capture:
-            console.print(self)
+        with redirect_stdout(f):
+            # `Console` ultimately checks `f.encoding` for its encoding. If we don't
+            # specify `file` aka `f`, it will default to `sys.stdout`. Redirecting all
+            # of that to a fake, in-memory file with an artificial/controlled encoding
+            # will fool `rich` into using its ASCII-only rendering.
+            console = Console(
+                width=WIDTH,
+                color_system="256",
+                force_terminal=False,
+                force_jupyter=False,
+                force_interactive=False,
+                no_color=False,
+                tab_size=4,
+                legacy_windows=False,
+            )
 
+            with console.capture() as capture:
+                console.print(self)
         return capture.get()
 
     @classmethod

@@ -135,7 +135,9 @@ class Meta(BaseModel):
         None, description="Using ISO 8601 with YYYY-MM-DDThh:mm:ss"
     )
     config: TemplateConfig = Field(
-        TemplateConfig(), description="Template configuration to control display"
+        TemplateConfig(),
+        alias="ancv",
+        description="Template configuration to control display",
     )
 
 
