@@ -14,6 +14,7 @@ import typer
 from pydantic import ValidationError
 from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
+from ancv import METADATA
 from ancv.exceptions import ResumeConfigError
 from ancv.visualization.templates import Template
 from ancv.web.server import APIHandler, FileHandler, ServerContext
@@ -84,6 +85,13 @@ def validate(
         raise typer.Exit(code=1)
     else:
         print("Pass!")
+
+
+@app.command()
+def version() -> None:
+    """Prints the application version."""
+
+    print(f"ancv {METADATA.version}")
 
 
 @app.callback()

@@ -27,6 +27,11 @@ def test_serve_api_exists():
     assert result.exit_code == 0
 
 
+def test_version_exists():
+    result = RUNNER.invoke(app, ["version"])
+    assert result.exit_code == 0
+
+
 @pytest.mark.parametrize("filename", RESUMES)
 # All resumes as a single fixture wouldn't be too bad either but doesn't work:
 # https://stackoverflow.com/q/56672179/11477374
