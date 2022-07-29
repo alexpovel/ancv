@@ -12,11 +12,15 @@ from typing import Optional
 import structlog
 import typer
 from pydantic import ValidationError
+from rich import print as rprint
+from rich.tree import Tree
 from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
 from ancv.exceptions import ResumeConfigError
 from ancv.reflection import METADATA
 from ancv.visualization.templates import Template
+from ancv.visualization.themes import THEMES
+from ancv.visualization.translations import TRANSLATIONS
 from ancv.web.server import APIHandler, FileHandler, ServerContext
 
 app = typer.Typer(no_args_is_help=True, help=__doc__)
@@ -92,6 +96,32 @@ def version() -> None:
     """Prints the application version."""
 
     print(f"ancv {METADATA.version}")
+
+
+@app.command()
+def list() -> None:
+    """Lists all available components (templates, themes and translations)."""
+
+    # This is pretty raw, but it works. Could make it prettier using more of `rich`.
+
+    tree = Tree("Components")
+
+    template_tree = Tree("Templates")
+    for template in Template.subclasses().keys():
+        template_tree.add(template)
+    tree.add(template_tree)
+
+    theme_tree = Tree("Themes")
+    for theme in THEMES:
+        theme_tree.add(theme)
+    tree.add(theme_tree)
+
+    translation_tree = Tree("Translations")
+    for translation in TRANSLATIONS:
+        translation_tree.add(translation)
+    tree.add(translation_tree)
+
+    rprint(tree)
 
 
 @app.callback()
