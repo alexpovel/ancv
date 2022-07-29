@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.9.0](https://github.com/alexpovel/ancv/compare/v0.8.0...v0.9.0) (2022-07-29)
+
+
+### Features
+
+* **cli:** Add `list` command to display all available components ([eaaa00c](https://github.com/alexpovel/ancv/commit/eaaa00ca89ffb22da79d9e9b49520e2953550389)), closes [#36](https://github.com/alexpovel/ancv/issues/36)
+* **cli:** Add `version` CLI command ([8332d84](https://github.com/alexpovel/ancv/commit/8332d84198cfe26b1a106edcbeba90f5cefa1522))
+
+
+### Bug Fixes
+
+* **tests:** Remove unused fixture ([6fd7baa](https://github.com/alexpovel/ancv/commit/6fd7baa8c07f2aef155f4d61437370471060c89d))
+
 ## [0.8.0](https://github.com/alexpovel/ancv/compare/v0.7.0...v0.8.0) (2022-07-26)
 
 
