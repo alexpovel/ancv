@@ -54,6 +54,18 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
+          # Docs say a token isn't required for public GitHub repositories using GH
+          # Actions, but it didn't work and failed with:
+          #
+          # [2022-08-08T19:50:41.725Z] ['error'] There was an error running the
+          # uploader: Error uploading to https://codecov.io: Error: There was an error
+          # fetching the storage URL during POST: 404 - {'detail':
+          # ErrorDetail(string='Unable to locate build via Github Actions API. Please
+          # upload with the Codecov repository upload token to resolve issue.',
+          # code='not_found')}
+          #
+          # See also: https://github.com/alexpovel/ancv/runs/7733256776?check_suite_focus=true#step:7:37
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
 
       - name: Run type checks
