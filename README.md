@@ -26,6 +26,8 @@ Be warned though, this is entirely useless:
 
 ## Design
 
+[![codecov](https://codecov.io/gh/alexpovel/ancv/branch/main/graph/badge.svg?token=I5XFLBHRCH)](https://codecov.io/gh/alexpovel/ancv)
+
 ### Features
 
 This being a hobby project, new (and old) features were tried out and used:
