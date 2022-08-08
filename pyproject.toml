@@ -51,10 +51,17 @@ datamodel-code-generator = {extras = ["http"], version = "^0.13.0"}
 mypy = "^0.960"
 types-cachetools = "^5.0.1"
 pydeps = "^1.10.18"
+pytest-cov = "^3.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+fail_under = 80.0
 
 [tool.datamodel-codegen]
 target-python-version = "3.10"
