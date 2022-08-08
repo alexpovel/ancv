@@ -9,7 +9,11 @@ tests: test typecheck formatcheck isortcheck
 alltests: tests image
 
 test:
-	${RUN} pytest
+	${RUN} pytest \
+		--cov=${LIBRARY} \
+		--cov-report=html \
+		--cov-report=term \
+		--cov-report=xml
 
 typecheck:
 	${RUN} mypy -p ${LIBRARY}
