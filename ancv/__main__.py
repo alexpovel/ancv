@@ -40,7 +40,22 @@ def api(
     """Starts the web server and serves the API."""
 
     context = ServerContext(host=host, port=port, path=path)
-    APIHandler().run(context)
+    api = APIHandler(
+        # https://docs.github.com/en/rest/overview/resources-in-the-rest-api#user-agent-required :
+        requester=os.environ.get("GH_REQUESTER", METADATA.name),
+        # Not specifying a token works just as well, but has a much lower request
+        # ceiling:
+        token=os.environ.get("GH_TOKEN"),
+        homepage=os.environ.get("HOMEPAGE", METADATA.home_page or "NO HOMEPAGE SET"),
+        # When visiting this endpoint in a browser, we want to redirect to the homepage.
+        # That page cannot be this same path under the same hostname again, else we get
+        # a loop.
+        landing_page=os.environ.get(
+            "LANDING_PAGE",
+            METADATA.project_url[0] if METADATA.project_url else "https://github.com/",
+        ),
+    )
+    api.run(context)
 
 
 @server_app.command()

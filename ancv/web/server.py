@@ -1,4 +1,3 @@
-import os
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from pathlib import Path
@@ -10,7 +9,6 @@ from gidgethub.aiohttp import GitHubAPI
 from structlog import get_logger
 
 from ancv.exceptions import ResumeConfigError, ResumeLookupError
-from ancv.reflection import METADATA
 from ancv.visualization.templates import Template
 from ancv.web import is_terminal_client
 from ancv.web.client import get_resume
@@ -32,6 +30,18 @@ class Runnable(ABC):
 
 
 class APIHandler(Runnable):
+    def __init__(
+        self,
+        requester: str,
+        token: Optional[str],
+        homepage: str,
+        landing_page: str,
+    ) -> None:
+        self.requester = requester
+        self.token = token
+        self.homepage = homepage
+        self.landing_page = landing_page
+
     def run(self, context: ServerContext) -> None:
         LOGGER.debug("Instantiating web application.")
         app = web.Application()
@@ -49,8 +59,7 @@ class APIHandler(Runnable):
         LOGGER.info("Loaded, starting server...")
         web.run_app(app, host=context.host, port=context.port, path=context.path)
 
-    @staticmethod
-    async def app_context(app: web.Application) -> AsyncGenerator[None, None]:
+    async def app_context(self, app: web.Application) -> AsyncGenerator[None, None]:
         """For an `aiohttp.web.Application`, provides statefulness by attaching objects.
 
         See also:
@@ -72,8 +81,8 @@ class APIHandler(Runnable):
         log.debug("Creating GitHub API instance.")
         github = GitHubAPI(
             session,
-            requester=os.environ.get("GH_REQUESTER", METADATA.name),
-            oauth_token=os.environ.get("GH_TOKEN", None),
+            requester=self.requester,
+            oauth_token=self.token,
             cache=TTLCache(maxsize=1e2, ttl=60),
         )
         log = log.bind(github=github)
@@ -97,20 +106,10 @@ class APIHandler(Runnable):
     async def root(self, request: web.Request) -> web.Response:
         user_agent = request.headers.get("User-Agent", "")
 
-        HOMEPAGE = os.environ.get("HOMEPAGE", METADATA.home_page or "")
-
         if is_terminal_client(user_agent):
-            return web.Response(text=f"Visit {HOMEPAGE} to get started.\n")
+            return web.Response(text=f"Visit {self.homepage} to get started.\n")
 
-        # When visiting this endpoint in a browser, we want to redirect to the homepage.
-        # That page cannot be this same path under the same hostname again, else we get a
-        # loop.
-        browser_page = os.environ.get(
-            "LANDING_PAGE",
-            METADATA.project_url[0] if METADATA.project_url else "https://github.com/",
-        )
-
-        raise web.HTTPFound(browser_page)  # Redirect
+        raise web.HTTPFound(self.landing_page)  # Redirect
 
     async def username(self, request: web.Request) -> web.Response:
         log = LOGGER.bind(request=request)
