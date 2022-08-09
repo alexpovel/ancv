@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from datetime import timedelta
 from pathlib import Path
 from typing import AsyncGenerator, Optional
 
@@ -9,6 +10,7 @@ from gidgethub.aiohttp import GitHubAPI
 from structlog import get_logger
 
 from ancv.exceptions import ResumeConfigError, ResumeLookupError
+from ancv.timing import Stopwatch
 from ancv.visualization.templates import Template
 from ancv.web import is_terminal_client
 from ancv.web.client import get_resume
@@ -112,6 +114,9 @@ class APIHandler(Runnable):
         raise web.HTTPFound(self.landing_page)  # Redirect
 
     async def username(self, request: web.Request) -> web.Response:
+        stopwatch = Stopwatch()
+        stopwatch(segment="Initialize Request")
+
         log = LOGGER.bind(request=request)
         log.info(request.message.headers)
 
@@ -125,19 +130,31 @@ class APIHandler(Runnable):
 
         log = log.bind(user=user)
 
+        stopwatch.stop()
         try:
-            resume = await get_resume(user=user, session=session, github=github)
+            resume = await get_resume(
+                user=user, session=session, github=github, stopwatch=stopwatch
+            )
         except ResumeLookupError as e:
+            stopwatch.stop()
             log.warning(str(e))
             return web.Response(text=str(e))
         else:
+            stopwatch(segment="Templating")
             try:
                 template = Template.from_model_config(resume)
             except ResumeConfigError as e:
                 log.warning(str(e))
                 return web.Response(text=str(e))
+
+            stopwatch(segment="Rendering")
+            resp = web.Response(text=template.render())
+            stopwatch.stop()
+
+            resp.headers["Server-Timing"] = server_timing_header(stopwatch.timings)
+
             log.debug("Serving rendered template.")
-            return web.Response(text=template.render())
+            return resp
 
 
 class FileHandler(Runnable):
@@ -158,3 +175,12 @@ class FileHandler(Runnable):
     async def root(self, request: web.Request) -> web.Response:
         LOGGER.debug("Serving rendered template.", request=request)
         return web.Response(text=self.rendered)
+
+
+def server_timing_header(timings: dict[str, timedelta]) -> str:
+    """https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing"""
+
+    return ", ".join(
+        f"{name.replace(' ', '-')};dur={duration.microseconds / 1e3}"
+        for name, duration in timings.items()
+    )

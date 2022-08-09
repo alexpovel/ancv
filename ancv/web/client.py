@@ -12,15 +12,17 @@ from ancv import SIPrefix
 from ancv.data.models.github import Gist
 from ancv.data.models.resume import ResumeSchema
 from ancv.exceptions import ResumeLookupError
+from ancv.timing import Stopwatch
 
 LOGGER = get_logger()
 
 
 async def get_resume(
-    user: str, session: aiohttp.ClientSession, github: GitHubAPI
+    user: str, session: aiohttp.ClientSession, github: GitHubAPI, stopwatch: Stopwatch
 ) -> ResumeSchema:
     log = LOGGER.bind(user=user, session=session)
 
+    stopwatch("Fetching user")
     try:
         # This generates an additional request, counting towards our limit. However,
         # it seems the cleanest way to check for user existence before iterating over
@@ -35,6 +37,7 @@ async def get_resume(
             raise ResumeLookupError(f"User {user} not found.")
         raise e
 
+    stopwatch("Fetching gists")
     gists = github.getiter(f"/users/{user}/gists")
     async for raw_gist in gists:
         log.info("Got raw gist of user.")
@@ -61,6 +64,7 @@ async def get_resume(
     raw_resume: str = await github.getitem(str(file.raw_url))
     log.info("Got raw resume of user.")
 
+    stopwatch("Validation")
     try:
         resume = ResumeSchema(**json.loads(raw_resume))
     except json.decoder.JSONDecodeError:
