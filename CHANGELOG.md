@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/alexpovel/ancv/compare/v0.9.0...v0.10.0) (2022-08-10)
+
+
+### Features
+
+* **web:** Provide `Server-Timing` Header ([a2c2b9e](https://github.com/alexpovel/ancv/commit/a2c2b9eaab58288e0095b467a139b242fa5f8c73))
+
 ## [0.9.0](https://github.com/alexpovel/ancv/compare/v0.8.0...v0.9.0) (2022-08-08)
 
 
