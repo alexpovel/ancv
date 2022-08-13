@@ -48,7 +48,7 @@ def test_stopwatch_basics():
     }
     for real, expected in zip(stopwatch.timings.values(), expected.values()):
         # https://stackoverflow.com/a/1133888/11477374 :
-        os_thread_sleep_uncertainty_microseconds = 20_000
+        os_thread_sleep_uncertainty_microseconds = 25_000
         assert (
             pytest.approx(
                 real.microseconds, abs=os_thread_sleep_uncertainty_microseconds
