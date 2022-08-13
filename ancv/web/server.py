@@ -180,7 +180,11 @@ class FileHandler(Runnable):
 def server_timing_header(timings: dict[str, timedelta]) -> str:
     """https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing"""
 
+    # For controlling `timedelta` conversion precision, see:
+    # https://docs.python.org/3/library/datetime.html#datetime.timedelta.total_seconds
+    # E.g., `td.microseconds` will return `0` for `timedelta(seconds=1)`, not 1e6.
+
     return ", ".join(
-        f"{name.replace(' ', '-')};dur={duration.microseconds / 1e3}"
+        f"{name.replace(' ', '-')};dur={duration // timedelta(milliseconds=1)}"
         for name, duration in timings.items()
     )
