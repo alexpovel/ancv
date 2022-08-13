@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.11.0](https://github.com/alexpovel/ancv/compare/v0.10.0...v0.11.0) (2022-08-13)
+
+
+### Features
+
+* **api:** Enable GitHub username validation ([614167b](https://github.com/alexpovel/ancv/commit/614167b8e4c4947b1e9f63a0ddfafbfee785ab85)), closes [#7](https://github.com/alexpovel/ancv/issues/7)
+* **api:** Raise 'correct' status code upon lookup error ([8ae751f](https://github.com/alexpovel/ancv/commit/8ae751f6bb5ae29e940ebc816cb1aaf6f2a92dc3))
+* **app:** Cover GitHub API rate limit exceeding w/ a server response ([99c6039](https://github.com/alexpovel/ancv/commit/99c60393c44301b6bab6eaedbce10bed1a5db48b))
+
 ## [0.10.0](https://github.com/alexpovel/ancv/compare/v0.9.0...v0.10.0) (2022-08-10)
 
 
