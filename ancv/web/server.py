@@ -45,22 +45,22 @@ class APIHandler(Runnable):
         self.homepage = homepage
         self.landing_page = landing_page
 
-    def run(self, context: ServerContext) -> None:
         LOGGER.debug("Instantiating web application.")
-        app = web.Application()
+        self.app = web.Application()
 
         LOGGER.debug("Adding routes.")
-        app.add_routes(
+        self.app.add_routes(
             [
                 web.get("/", self.root),
                 web.get("/{username}", self.username),
             ]
         )
 
-        app.cleanup_ctx.append(self.app_context)
+        self.app.cleanup_ctx.append(self.app_context)
 
+    def run(self, context: ServerContext) -> None:
         LOGGER.info("Loaded, starting server...")
-        web.run_app(app, host=context.host, port=context.port, path=context.path)
+        web.run_app(self.app, host=context.host, port=context.port, path=context.path)
 
     async def app_context(self, app: web.Application) -> AsyncGenerator[None, None]:
         """For an `aiohttp.web.Application`, provides statefulness by attaching objects.
@@ -163,15 +163,15 @@ class FileHandler(Runnable):
         self.template = Template.from_file(file)
         self.rendered = self.template.render()
 
-    def run(self, context: ServerContext) -> None:
         LOGGER.debug("Instantiating web application.")
-        app = web.Application()
+        self.app = web.Application()
 
         LOGGER.debug("Adding routes.")
-        app.add_routes([web.get("/", self.root)])
+        self.app.add_routes([web.get("/", self.root)])
 
+    def run(self, context: ServerContext) -> None:
         LOGGER.info("Loaded, starting server...")
-        web.run_app(app, host=context.host, port=context.port, path=context.path)
+        web.run_app(self.app, host=context.host, port=context.port, path=context.path)
 
     async def root(self, request: web.Request) -> web.Response:
         LOGGER.debug("Serving rendered template.", request=request)
