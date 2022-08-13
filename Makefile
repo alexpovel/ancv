@@ -31,10 +31,6 @@ image:
 hooks:
 	@pre-commit install --hook-type pre-push --hook-type pre-commit --hook-type commit-msg
 
-bump:
-	@${RUN} bumpversion $(v) || \
-		echo Provide the version type to bump: `make bump v={major,minor,patch}`
-
 requirements.txt:
 	poetry export --with=dev --output=requirements.txt
 
