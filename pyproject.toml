@@ -57,6 +57,7 @@ mypy = "^0.960"
 types-cachetools = "^5.0.1"
 pydeps = "^1.10.18"
 pytest-cov = "^3.0.0"
+pytest-aiohttp = "^1.0.4"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
