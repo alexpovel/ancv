@@ -1,7 +1,7 @@
 from contextlib import nullcontext as does_not_raise
 from datetime import timedelta
 from http import HTTPStatus
-from typing import Any, ContextManager
+from typing import Any, ContextManager, Optional
 
 import pytest
 from aiohttp.client import ClientResponse
@@ -45,12 +45,42 @@ class TestApiHandler:
         assert resp.status == expected_http_code
 
     @pytest.mark.parametrize(
-        ["username", "expected_http_code"],
+        ["username", "expected_http_code", "expected_error_message"],
         [
-            ("alexpovel", HTTPStatus.OK),
             (
-                "this-user-cannot-exist-because-its-username-is-way-too-long",
+                "alexpovel",
+                HTTPStatus.OK,
+                None,
+            ),
+            (
+                "thomasdavis",
+                HTTPStatus.OK,
+                None,
+            ),
+            (
+                "python",  # An organization without any gists...
                 HTTPStatus.NOT_FOUND,
+                "No 'resume.json' file found in any gist of 'python'.",
+            ),
+            (  # Let's hope this never turns into a real username...
+                "gj5489gujv4398x73x23x892",
+                HTTPStatus.NOT_FOUND,
+                "User gj5489gujv4398x73x23x892 not found.",
+            ),
+            (
+                "readme",  # GitHub blog of some sort
+                HTTPStatus.NOT_FOUND,
+                "User readme not found.",
+            ),
+            (
+                "this-user-should-fail-validation-because-its-username-is-way-too-long",
+                HTTPStatus.BAD_REQUEST,
+                "400: Invalid username: this-user-should-fail-validation-because-its-username-is-way-too-long",
+            ),
+            (
+                "-invalid",
+                HTTPStatus.BAD_REQUEST,
+                "400: Invalid username: -invalid",
             ),
         ],
     )
@@ -58,6 +88,7 @@ class TestApiHandler:
         self,
         username: str,
         expected_http_code: HTTPStatus,
+        expected_error_message: Optional[str],
         aiohttp_client: Any,
         api_client_app: Application,
         event_loop: Any,
@@ -66,6 +97,9 @@ class TestApiHandler:
 
         resp = await client.get(f"/{username}")
         assert resp.status == expected_http_code
+
+        if expected_error_message is not None:
+            assert await resp.text() == expected_error_message
 
     @pytest.mark.parametrize(
         ["username", "expected_contained_text"],

@@ -10,6 +10,7 @@ from cachetools import TTLCache
 from gidgethub.aiohttp import GitHubAPI
 from structlog import get_logger
 
+from ancv.data.validation import is_valid_github_username
 from ancv.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.timing import Stopwatch
 from ancv.visualization.templates import Template
@@ -122,6 +123,9 @@ class APIHandler(Runnable):
         log.info(request.message.headers)
 
         user = request.match_info["username"]
+
+        if not is_valid_github_username(user):
+            raise web.HTTPBadRequest(reason=f"Invalid username: {user}")
 
         # Implicit 'downcasting' from `Any` doesn't require an explicit `cast` call, just
         # regular type hints:
