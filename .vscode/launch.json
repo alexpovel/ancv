@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Run Server",
+            "name": "Python: Run API Server",
             "type": "python",
             "request": "launch",
             "module": "ancv",
@@ -15,6 +15,23 @@
             "args": [
                 "serve",
                 "api",
+                "--port",
+                "8080"
+            ],
+            "justMyCode": false,
+        },
+        {
+            "name": "Python: Run Single-File Server",
+            "type": "python",
+            "request": "launch",
+            "module": "ancv",
+            "autoReload": {
+                "enabled": true
+            },
+            "args": [
+                "serve",
+                "file",
+                "tests/test_data/resumes/full.json",
                 "--port",
                 "8080"
             ],
