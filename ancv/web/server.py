@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from datetime import timedelta
+from http import HTTPStatus
 from pathlib import Path
 from typing import AsyncGenerator, Optional
 
@@ -138,7 +139,7 @@ class APIHandler(Runnable):
         except ResumeLookupError as e:
             stopwatch.stop()
             log.warning(str(e))
-            return web.Response(text=str(e))
+            return web.Response(text=str(e), status=HTTPStatus.NOT_FOUND)
         else:
             stopwatch(segment="Templating")
             try:
