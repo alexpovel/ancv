@@ -30,9 +30,13 @@ async def get_resume(
         # to deal with.
         await github.getitem(f"/users/{user}")
     except gidgethub.BadRequest as e:
-        # Cannot cleanly just catch 404, since e.g. `RateLimitExceeded` inherits from
-        # `BadRequest`:
-        # https://gidgethub.readthedocs.io/en/latest/__init__.html#gidgethub.RateLimitExceeded
+        # `except `RateLimitExceeded` didn't work, it seems it's not correctly raised
+        # inside `gidgethub`.
+        if e.status_code == HTTPStatus.FORBIDDEN:
+            raise ResumeLookupError(
+                "Server exhausted its GitHub API rate limit, terribly sorry!"
+                + " Please try again later."
+            )
         if e.status_code == HTTPStatus.NOT_FOUND:
             raise ResumeLookupError(f"User {user} not found.")
         raise e
