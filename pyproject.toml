@@ -31,6 +31,11 @@ classifiers = [
     "Typing :: Typed",
 ]
 
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/alexpovel/ancv/issues/"
+"Changelog" = "https://github.com/alexpovel/ancv/blob/main/CHANGELOG.md"
+"Pull Requests" = "https://github.com/alexpovel/ancv/pulls"
+
 [tool.poetry.dependencies]
 # https://stackoverflow.com/a/69608708/11477374:
 python = "^3.10"
