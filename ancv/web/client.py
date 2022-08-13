@@ -18,7 +18,11 @@ LOGGER = get_logger()
 
 
 async def get_resume(
-    user: str, session: aiohttp.ClientSession, github: GitHubAPI, stopwatch: Stopwatch
+    user: str,
+    session: aiohttp.ClientSession,
+    github: GitHubAPI,
+    stopwatch: Stopwatch,
+    size_limit: int = 1 * SIPrefix.MEGA,
 ) -> ResumeSchema:
     log = LOGGER.bind(user=user, session=session)
 
@@ -58,7 +62,6 @@ async def get_resume(
     else:  # nobreak
         raise ResumeLookupError(f"No 'resume.json' file found in any gist of '{user}'.")
 
-    size_limit = SIPrefix.MEGA
     if file.size is None or file.size > size_limit:
         size = "unknown" if file.size is None else str(naturalsize(file.size))
         raise ResumeLookupError(
