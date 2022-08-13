@@ -1,5 +1,6 @@
 from contextlib import nullcontext as does_not_raise
 from datetime import timedelta
+from typing import ContextManager
 
 import pytest
 
@@ -78,6 +79,10 @@ from ancv.web.server import server_timing_header
         ),
     ],
 )
-def test_server_timing_header(timings, expected, expectation):
+def test_server_timing_header(
+    timings: dict[str, timedelta],
+    expected: str,
+    expectation: ContextManager,
+) -> None:
     with expectation:
         assert server_timing_header(timings) == expected

@@ -4,7 +4,7 @@ from ancv.data.validation import is_valid_github_username
 
 
 @pytest.mark.parametrize(
-    ["name", "validity"],
+    ["name", "valid"],
     [
         ("j", True),
         ("johndoe", True),
@@ -38,5 +38,5 @@ from ancv.data.validation import is_valid_github_username
         ("TIMMY; DROP TABLES :-)", False),
     ],
 )
-def test_is_valid_github_name(name, validity):
-    assert is_valid_github_username(name) == validity
+def test_is_valid_github_name(name: str, valid: bool) -> None:
+    assert is_valid_github_username(name) == valid

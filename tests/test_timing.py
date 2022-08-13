@@ -6,7 +6,7 @@ import pytest
 from ancv.timing import Stopwatch
 
 
-def test_stopwatch_disallows_same_segments():
+def test_stopwatch_disallows_same_segments() -> None:
     stopwatch = Stopwatch()
     with pytest.raises(ValueError):
         stopwatch("segment1")
@@ -26,7 +26,7 @@ def sleep(seconds: float) -> None:
         time.sleep(0.001)
 
 
-def test_stopwatch_basics():
+def test_stopwatch_basics() -> None:
     stopwatch = Stopwatch()
     stopwatch("segment1")
     sleep(0.1)
@@ -40,13 +40,13 @@ def test_stopwatch_basics():
     sleep(0.5)
     stopwatch.stop()
 
-    expected = {
+    expected_timings = {
         "segment1": timedelta(seconds=0.1),
         "segment2": timedelta(seconds=0.1),
         "segment3": timedelta(seconds=0.2),
         "segment4": timedelta(seconds=0.5),
     }
-    for real, expected in zip(stopwatch.timings.values(), expected.values()):
+    for real, expected in zip(stopwatch.timings.values(), expected_timings.values()):
         # https://stackoverflow.com/a/1133888/11477374 :
         os_thread_sleep_uncertainty_microseconds = 25_000
         assert (

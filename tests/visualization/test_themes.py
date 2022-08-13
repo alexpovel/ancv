@@ -1,4 +1,5 @@
 from datetime import date
+from typing import Optional
 
 import pytest
 
@@ -122,5 +123,12 @@ from ancv.visualization.themes import Theme
         ),
     ],
 )
-def test_default_date_range(start, end, fmt, sep, ongoing, expected):
+def test_default_date_range(
+    start: Optional[date],
+    end: Optional[date],
+    fmt: str,
+    sep: str,
+    ongoing: str,
+    expected: str,
+) -> None:
     assert Theme.date_range(start, end, fmt, sep, ongoing) == expected

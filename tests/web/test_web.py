@@ -40,5 +40,5 @@ from ancv.web import is_terminal_client
         ),
     ],
 )
-def test_is_terminal_client(user_agent, expected):
+def test_is_terminal_client(user_agent: str, expected: bool) -> None:
     assert is_terminal_client(user_agent) == expected
