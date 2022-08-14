@@ -52,12 +52,12 @@ async def get_resume(
         log = log.bind(gist_url=gist.url)
         log.info("Parsed gist of user.")
 
-        file = gist.files.get("resume.json", None)
-        if file is not None:
-            log.info("Gist matched.")
-            break
-
-        log.info("Gist unsuitable, trying next.")
+        match gist:
+            case Gist(files={"resume.json": file}):
+                log.info("Gist matched.")
+                break
+            case _:
+                log.info("Gist unsuitable, trying next.")
 
     if file.size is None or file.size > size_limit:
         size = "unknown" if file.size is None else str(naturalsize(file.size))
