@@ -1,5 +1,6 @@
 import json
 from http import HTTPStatus
+from types import SimpleNamespace
 
 import aiohttp
 import gidgethub
@@ -22,6 +23,7 @@ async def get_resume(
     session: aiohttp.ClientSession,
     github: GitHubAPI,
     stopwatch: Stopwatch,
+    filename: str = "resume.json",
     size_limit: int = 1 * SIPrefix.MEGA,
 ) -> ResumeSchema:
     log = LOGGER.bind(user=user, session=session)
@@ -33,7 +35,7 @@ async def get_resume(
             raw_gist = await anext(gists)
         except StopAsyncIteration:
             raise ResumeLookupError(
-                f"No 'resume.json' file found in any gist of '{user}'."
+                f"No '{filename}' file found in any gist of '{user}'."
             )
         except gidgethub.BadRequest as e:
             # `except `RateLimitExceeded` didn't work, it seems it's not correctly
@@ -52,8 +54,12 @@ async def get_resume(
         log = log.bind(gist_url=gist.url)
         log.info("Parsed gist of user.")
 
+        # https://peps.python.org/pep-0636/#matching-against-constants-and-enums :
+        obj = SimpleNamespace()  # Direct kwargs passing isn't mypy-friendly.
+        obj.filename = filename
+
         match gist:
-            case Gist(files={"resume.json": file}):
+            case Gist(files={obj.filename: file}):
                 log.info("Gist matched.")
                 break
             case _:

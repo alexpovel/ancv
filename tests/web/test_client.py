@@ -33,29 +33,57 @@ async def gh_api(client_session):
 
 
 @pytest.mark.parametrize(
-    ["username", "size_limit", "expectation"],
+    ["username", "size_limit", "filename", "expectation"],
     [
         (
             "alexpovel",
             1 * SIPrefix.MEGA,
+            "resume.json",
             does_not_raise(),
         ),
         (
             "alexpovel",
             0,
-            pytest.raises(ResumeLookupError),
+            "resume.json",
+            pytest.raises(
+                ResumeLookupError,
+                match=r"^Resume file too large \(limit: 0 Bytes, got \d+\.\d+ kB\)\.$",
+            ),
+        ),
+        (
+            "alexpovel",
+            1 * SIPrefix.MEGA,
+            "resume.invalid-json",
+            pytest.raises(ResumeLookupError, match=r"^Got malformed JSON\.$"),
+        ),
+        (
+            "alexpovel",
+            1 * SIPrefix.MEGA,
+            "resume.invalid-schema.json",
+            pytest.raises(
+                ResumeLookupError,
+                match=r"^Got legal JSON but wrong schema \(cf\. https://jsonresume\.org/schema/\)$",
+            ),
         ),
     ],
 )
 @pytest.mark.asyncio
-async def test_get_resume_size_limit(
+async def test_get_resume_validations(
     username: str,
     client_session: aiohttp.ClientSession,
     gh_api: GitHubAPI,
     stopwatch: Stopwatch,
     size_limit: int,
+    filename: str,
     expectation: ContextManager,
 ) -> None:
     api = await gh_api
     with expectation:
-        await get_resume(username, client_session, api, stopwatch, size_limit)
+        await get_resume(
+            user=username,
+            session=client_session,
+            github=api,
+            stopwatch=stopwatch,
+            filename=filename,
+            size_limit=size_limit,
+        )
