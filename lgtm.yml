@@ -1,6 +1,0 @@
-# https://lgtm.com/
-
-queries:
-  # We print stack traces into friendly error messages to help people debug their own
-  # files:
-  - exclude: py/stack-trace-exposure
