@@ -26,28 +26,27 @@ async def get_resume(
 ) -> ResumeSchema:
     log = LOGGER.bind(user=user, session=session)
 
-    stopwatch("Fetching user")
-    try:
-        # This generates an additional request, counting towards our limit. However,
-        # it seems the cleanest way to check for user existence before iterating over
-        # the user's gists, since catching exceptions raised in a generator are uglier
-        # to deal with.
-        await github.getitem(f"/users/{user}")
-    except gidgethub.BadRequest as e:
-        # `except `RateLimitExceeded` didn't work, it seems it's not correctly raised
-        # inside `gidgethub`.
-        if e.status_code == HTTPStatus.FORBIDDEN:
-            raise ResumeLookupError(
-                "Server exhausted its GitHub API rate limit, terribly sorry!"
-                + " Please try again later."
-            )
-        if e.status_code == HTTPStatus.NOT_FOUND:
-            raise ResumeLookupError(f"User {user} not found.")
-        raise e
-
-    stopwatch("Fetching gists")
+    stopwatch("Fetching Gists")
     gists = github.getiter(f"/users/{user}/gists")
-    async for raw_gist in gists:
+    while True:
+        try:
+            raw_gist = await anext(gists)
+        except StopAsyncIteration:
+            raise ResumeLookupError(
+                f"No 'resume.json' file found in any gist of '{user}'."
+            )
+        except gidgethub.BadRequest as e:
+            # `except `RateLimitExceeded` didn't work, it seems it's not correctly
+            # raised inside `gidgethub`.
+            if e.status_code == HTTPStatus.FORBIDDEN:
+                raise ResumeLookupError(
+                    "Server exhausted its GitHub API rate limit, terribly sorry!"
+                    + " Please try again later."
+                )
+            if e.status_code == HTTPStatus.NOT_FOUND:
+                raise ResumeLookupError(f"User {user} not found.")
+            raise e
+
         log.info("Got raw gist of user.")
         gist = Gist(**raw_gist)
         log = log.bind(gist_url=gist.url)
@@ -59,8 +58,6 @@ async def get_resume(
             break
 
         log.info("Gist unsuitable, trying next.")
-    else:  # nobreak
-        raise ResumeLookupError(f"No 'resume.json' file found in any gist of '{user}'.")
 
     if file.size is None or file.size > size_limit:
         size = "unknown" if file.size is None else str(naturalsize(file.size))
