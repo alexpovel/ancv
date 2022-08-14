@@ -1,6 +1,6 @@
 # ancv
 
-Getting you [an CV](https://www.youtube.com/watch?v=mJUtMEJdvqM) (pronounced as *[ANSI](https://en.wikipedia.org/wiki/ANSI_escape_code)-v*) straight to your terminal.
+Getting you [an CV](https://www.youtube.com/watch?v=mJUtMEJdvqM) (aka *[ANSI](https://en.wikipedia.org/wiki/ANSI_escape_code)-v*) straight to your terminal.
 
 Be warned though, for this is kinda useless and just for fun:
 
@@ -11,12 +11,8 @@ Be warned though, for this is kinda useless and just for fun:
 1. Create a resume according to the [JSON Resume Schema](https://jsonresume.org/schema/) (see also the [schema specification](https://github.com/jsonresume/resume-schema/blob/master/schema.json)) either:
 
    - manually,
-   - exporting from LinkedIn using [Joshua Tzucker's LinkedIn exporter](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/) ([repo](https://github.com/joshuatz/linkedin-to-jsonresume)), or
-   - exporting from one of the platforms advertised as offering [JSON resume integration](https://jsonresume.org/schema/):
-     - <https://gitconnected.com/portfolio-api>
-     - <https://represent.io/>
-     - <https://www.doyoubuzz.com/us/>
-     - ...
+   - exporting from [LinkedIn](https://www.linkedin.com/) using [Joshua Tzucker's LinkedIn exporter](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/) ([repo](https://github.com/joshuatz/linkedin-to-jsonresume)), or
+   - exporting from one of the platforms advertised as offering [JSON resume integration](https://jsonresume.org/schema/).
 2. [Create a gist](https://gist.github.com/) named `resume.json` with those resume contents.
    See [here](https://gist.github.com/thomasdavis/c9dcfa1b37dec07fb2ee7f36d7278105) for a working example from a [JSON Resume co-founder](https://github.com/orgs/jsonresume/people).
 3. Try it out, using...
