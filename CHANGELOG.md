@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.12.0](https://github.com/alexpovel/ancv/compare/v0.11.0...v0.12.0) (2022-08-14)
+
+
+### Features
+
+* **api:** Forego user existence check, try for gists directly ([9f83798](https://github.com/alexpovel/ancv/commit/9f83798021132a6089193887195a76c568ca9e77)), closes [#41](https://github.com/alexpovel/ancv/issues/41)
+
+
+### Documentation
+
+* Clean up README, move details to ARCHITECTURE doc ([79c61a8](https://github.com/alexpovel/ancv/commit/79c61a83cd8a2960ba3da893518863f9aef45866))
+
 ## [0.11.0](https://github.com/alexpovel/ancv/compare/v0.10.0...v0.11.0) (2022-08-13)
 
 
