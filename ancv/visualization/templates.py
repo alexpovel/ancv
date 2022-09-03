@@ -30,6 +30,7 @@ from ancv.data.models.resume import (
     ResumeItem,
     ResumeItemContainer,
     ResumeSchema,
+    Skill,
     TemplateConfig,
     VolunteerItem,
     WorkItem,
@@ -294,6 +295,19 @@ class Sequential(Template):
 
     @format.register
     @staticmethod
+    def _(item: Skill, theme: Theme) -> RenderableGenerator:
+        if name := item.name:
+            yield Text.assemble(
+                (name, theme.emphasis[0]),
+                (f" - {item.level}" if item.level else "", theme.emphasis[0]),
+            )
+            if keywords := item.keywords:
+                yield NewLine()
+                yield indent(Text(", ".join(keywords), style=theme.emphasis[1]))
+            yield NewLine()
+
+    @format.register
+    @staticmethod
     def _(item: VolunteerItem, theme: Theme) -> RenderableGenerator:
         yield from horizontal_fill(
             Text(item.organization or "", style=theme.emphasis[0]),
@@ -483,26 +497,11 @@ class Sequential(Template):
 
             yield NewLine()
 
-        if skills := self.model.skills:
-            yield from self.section("Skills")
-            table = Table.grid(
-                Column("name", style=self.theme.emphasis[0]),
-                Column("level"),
-                Column("keywords", style=self.theme.emphasis[1]),
-                padding=PaddingLevels(top=0, right=1, bottom=0, left=1),
-            )
-            for skill in skills:
-                if name := skill.name:
-                    keywords = ", ".join(skill.keywords) if skill.keywords else ""
-                    level = skill.level or ""
-                    table.add_row(name, level, keywords)
-            yield table
-            yield NewLine()
-
         container: ResumeItemContainer
         title: str
         for container, title in [
             (self.model.work, "Experience"),
+            (self.model.skills, "Skills"),
             (self.model.volunteer, "Volunteering"),
             (self.model.education, "Education"),
             (self.model.awards, "Awards"),
