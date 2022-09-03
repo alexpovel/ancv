@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.14.0](https://github.com/alexpovel/ancv/compare/v0.13.0...v0.14.0) (2022-09-03)
+
+
+### Features
+
+* **app:** Adjust CV sections order ([ac2ad1f](https://github.com/alexpovel/ancv/commit/ac2ad1f6f1f2b427eb5e1ca3f2f4a4271198f2e3))
+
+
+### Bug Fixes
+
+* **app:** Adjust defaults handling ([5a11a4c](https://github.com/alexpovel/ancv/commit/5a11a4cff00b5cf050d234accdab4449362d4a65))
+* **app:** Adjust rendering for skills to be 'sequential' as well ([bd27a4d](https://github.com/alexpovel/ancv/commit/bd27a4ddee18c76a91e2b75382ca32f619127735))
+* **app:** Fix whitespace in language rendering ([43e577a](https://github.com/alexpovel/ancv/commit/43e577af49c7454175105c1823fb9b0af0db729a))
+* **templating:** Fix whitespace/newlines around sections ([3e5b5c6](https://github.com/alexpovel/ancv/commit/3e5b5c687720641459cdbdb6cef1b06e5a4f6b86))
+* **test:** Expand `full.json` test input, fix/adjust whitespace correspondingly ([cd31537](https://github.com/alexpovel/ancv/commit/cd31537915575e37ff088c11bc0093b6a2f580f7))
+
 ## [0.13.0](https://github.com/alexpovel/ancv/compare/v0.12.0...v0.13.0) (2022-09-03)
 
 
