@@ -28,7 +28,7 @@ jobs:
       # https://github.com/snok/install-poetry, which is a bit slower. See also
       # https://python-poetry.org/docs/master/#installing-with-pipx
       - name: Install Poetry
-        run: pipx install poetry==1.2.0b3
+        run: pipx install poetry
 
         # Counterintuitively, the Python setup step itself is setup *after* installing
         # `poetry`, else the `poetry` command isn't found and the setup step fails. See
@@ -104,7 +104,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Install Poetry
-        run: pipx install poetry==1.2.0b3
+        run: pipx install poetry
 
       - uses: actions/setup-python@v4
         with:
