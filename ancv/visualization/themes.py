@@ -40,7 +40,7 @@ THEMES = {
         headlines=[Style(), Style(), Style(), Style()],
         bullet="*",
         rulechar="─",
-        datefmt="%Y-%m-%d",
+        datefmt="%Y-%m",
     ),
     "basic": Theme(
         emphasis=[
@@ -57,6 +57,6 @@ THEMES = {
         ],
         bullet="*",
         rulechar="─",
-        datefmt="%B %d, %Y",
+        datefmt="%B %Y",
     ),
 }
