@@ -1,16 +1,14 @@
 import json
 from abc import ABC, abstractmethod
 from contextlib import redirect_stdout
-from functools import partial, singledispatchmethod
+from functools import singledispatchmethod
 from pathlib import Path
 from tempfile import SpooledTemporaryFile
-from typing import NamedTuple, Optional
+from typing import MutableSequence, NamedTuple, Optional
 
-from rich import box
 from rich.align import Align
 from rich.console import Console, ConsoleOptions, Group, NewLine, RenderableType, group
 from rich.padding import Padding
-from rich.panel import Panel
 from rich.rule import Rule
 from rich.style import Style
 from rich.table import Column, Table
@@ -84,7 +82,7 @@ class Template(ABC):
 
             with console.capture() as capture:
                 console.print(self)
-        return capture.get()
+        return capture.get().strip()
 
     @classmethod
     # A property would be nicer but it's not supported from Python 3.11 on:
@@ -162,6 +160,25 @@ def horizontal_fill(left: RenderableType, right: RenderableType) -> RenderableGe
     if table.rows:
         yield table
         yield NewLine()
+
+
+def ensure_single_trailing_newline(sequence: MutableSequence[RenderableType]) -> None:
+    """Ensure that `sequence` ends w/ exactly one `NewLine`, removing if necessary.
+
+    This has to be done in-place (yuck) because `rich.console.Group.renderables` is a
+    read-only property. It can be modified in-place, but not assigned to again.
+    """
+    while True:
+        match sequence:
+            case [*_, NewLine(), NewLine()]:
+                sequence.pop()
+            case [*_, last] if not isinstance(last, NewLine):
+                sequence.append(NewLine())
+            case []:
+                sequence.append(NewLine())
+            case _:
+                break
+    return None
 
 
 class Sequential(Template):
@@ -439,12 +456,6 @@ class Sequential(Template):
     def __rich_console__(
         self, console: Console, options: ConsoleOptions
     ) -> RenderableGenerator:
-        panel = partial(
-            Panel,
-            box=box.SIMPLE,
-            padding=PaddingLevels(top=0, right=0, bottom=0, left=0),
-        )
-
         if basics := self.model.basics:
             yield from self.format(basics, self.theme)
 
@@ -464,6 +475,8 @@ class Sequential(Template):
                 yield NewLine()
                 yield from self.format(location, self.theme)
 
+            yield NewLine()
+
         if skills := self.model.skills:
             yield from self.section("Skills")
             table = Table.grid(
@@ -477,7 +490,8 @@ class Sequential(Template):
                     keywords = ", ".join(skill.keywords) if skill.keywords else ""
                     level = skill.level or ""
                     table.add_row(name, level, keywords)
-            yield panel(table)
+            yield table
+            yield NewLine()
 
         container: ResumeItemContainer
         title: str
@@ -496,6 +510,7 @@ class Sequential(Template):
             if container:
                 group = Group(
                     *self.section(title),
-                    self.format_and_group_all_elements(container),
+                    *self.format_and_group_all_elements(container).renderables,
                 )
-                yield panel(group)
+                ensure_single_trailing_newline(group.renderables)
+                yield group
