@@ -24,7 +24,17 @@ resp = requests.get(
     "https://api.github.com/rate_limit",
     headers=headers,
 )
+
+try:
+    remaining = resp.json()["resources"]["core"]["remaining"]
+except KeyError as e:
+    try:
+        if resp.json()["message"] == "Bad credentials":
+            raise KeyError("Bad credentials for GH_TOKEN") from e
+    except KeyError:
+        raise
+
 gh_rate_limited = pytest.mark.xfail(
-    condition=resp.json()["resources"]["core"]["remaining"] == 0,
+    condition=remaining == 0,
     reason="GitHub API rate limit reached. If you haven't already, set the 'GH_TOKEN' env var to a PAT.",
 )
