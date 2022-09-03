@@ -10,7 +10,7 @@ from ancv.exceptions import ResumeLookupError
 from ancv.reflection import METADATA
 from ancv.timing import Stopwatch
 from ancv.web.client import get_resume
-from tests import GH_TOKEN
+from tests import GH_TOKEN, gh_rate_limited
 
 
 @pytest.fixture(scope="function")
@@ -68,6 +68,7 @@ async def gh_api(client_session):
     ],
 )
 @pytest.mark.asyncio
+@gh_rate_limited
 async def test_get_resume_validations(
     username: str,
     client_session: aiohttp.ClientSession,

@@ -8,6 +8,7 @@ from aiohttp.client import ClientResponse
 from aiohttp.web import Application
 
 from ancv.web.server import server_timing_header
+from tests import gh_rate_limited
 
 
 @pytest.mark.filterwarnings("ignore:Request.message is deprecated")  # No idea...
@@ -84,6 +85,7 @@ class TestApiHandler:
             ),
         ],
     )
+    @gh_rate_limited
     async def test_username_endpoint(
         self,
         username: str,
@@ -107,6 +109,7 @@ class TestApiHandler:
             ("alexpovel", "Experience"),
         ],
     )
+    @gh_rate_limited
     async def test_return_content(
         self,
         username: str,
