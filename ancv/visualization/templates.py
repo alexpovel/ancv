@@ -169,7 +169,6 @@ def horizontal_fill(left: RenderableType, right: RenderableType) -> RenderableGe
 
     if table.rows:
         yield table
-        yield NewLine()
 
 
 def ensure_single_trailing_newline(sequence: MutableSequence[RenderableType]) -> None:
@@ -210,6 +209,7 @@ class Sequential(Template):
             return
         for item in container:
             yield from self.format(item, self.theme)
+            yield NewLine()
 
     @singledispatchmethod
     @staticmethod
@@ -272,26 +272,29 @@ class Sequential(Template):
         )
 
         if position := item.position:
-            yield indent(Text(position))
             yield NewLine()
+            yield indent(Text(position))
 
         if summary := item.summary:
-            yield indent(Text(summary))
             yield NewLine()
+            yield indent(Text(summary))
 
         if highlights := item.highlights:
+            yield NewLine()
             for highlight in highlights:
                 yield indent(indent(Text(f"{theme.bullet} {highlight}")))
-            yield NewLine()
 
-        yield indent(
-            Text.assemble(
-                item.location or "",
-                " - " if (item.location and item.url) else "",
-                (item.url or "", theme.emphasis[1]),
+        location = item.location
+        url = item.url
+        if location or url:
+            yield NewLine()
+            yield indent(
+                Text.assemble(
+                    location or "",
+                    " - " if (location and url) else "",
+                    (url or "", theme.emphasis[1]),
+                )
             )
-        )
-        yield NewLine()
 
     @format.register
     @staticmethod
@@ -315,20 +318,21 @@ class Sequential(Template):
         )
 
         if position := item.position:
-            yield indent(Text(position))
             yield NewLine()
+            yield indent(Text(position))
 
         if summary := item.summary:
-            yield indent(Text(summary))
             yield NewLine()
+            yield indent(Text(summary))
 
         if highlights := item.highlights:
+            yield NewLine()
             for highlight in highlights:
                 yield indent(indent(Text(f"{theme.bullet} {highlight}")))
-            yield NewLine()
 
-        yield indent(Text(item.url or "", theme.emphasis[1]))
-        yield NewLine()
+        if url := item.url:
+            yield NewLine()
+            yield indent(Text(url, theme.emphasis[1]))
 
     @format.register
     @staticmethod
@@ -336,7 +340,7 @@ class Sequential(Template):
         yield from horizontal_fill(
             Text.assemble(
                 (item.institution or "", theme.emphasis[0]),
-                ": " if item.institution else "",
+                ": " if item.area else "",
                 (item.area or "", theme.emphasis[1]),
                 f" ({item.studyType})" if item.studyType else "",
             ),
@@ -344,17 +348,17 @@ class Sequential(Template):
         )
 
         if score := item.score:
-            yield indent(Text(f"Score: {score}"))
             yield NewLine()
+            yield indent(Text(f"Score: {score}"))
 
         if courses := item.courses:
+            yield NewLine()
             for course in courses:
                 yield indent(indent(Text(f"{theme.bullet} {course}")))
-            yield NewLine()
 
         if url := item.url:
-            yield indent(Text(url, theme.emphasis[1]))
             yield NewLine()
+            yield indent(Text(url, theme.emphasis[1]))
 
     @format.register
     @staticmethod
@@ -368,8 +372,8 @@ class Sequential(Template):
         )
 
         if summary := item.summary:
-            yield indent(Text(summary))
             yield NewLine()
+            yield indent(Text(summary))
 
     @format.register
     @staticmethod
@@ -383,8 +387,8 @@ class Sequential(Template):
         )
 
         if url := item.url:
-            yield indent(Text(url, style=theme.emphasis[1]))
             yield NewLine()
+            yield indent(Text(url, style=theme.emphasis[1]))
 
     @format.register
     @staticmethod
@@ -398,33 +402,33 @@ class Sequential(Template):
         )
 
         if summary := item.summary:
-            yield indent(Text(summary))
             yield NewLine()
+            yield indent(Text(summary))
 
         if url := item.url:
-            yield indent(Text(url, style=theme.emphasis[1]))
             yield NewLine()
+            yield indent(Text(url, style=theme.emphasis[1]))
 
     @format.register
     @staticmethod
     def _(item: Language, theme: Theme) -> RenderableGenerator:
         if language := item.language:
+            yield NewLine()
             yield Text(language, style=theme.emphasis[0])
             if fluency := item.fluency:
                 yield NewLine()
                 yield indent(Text(fluency, style=theme.emphasis[1]))
-            yield NewLine()
 
     @format.register
     @staticmethod
     def _(item: Reference, theme: Theme) -> RenderableGenerator:
         if reference := item.reference:
-            yield indent(Text(reference, style=theme.emphasis[1]))
             yield NewLine()
+            yield indent(Text(reference, style=theme.emphasis[1]))
 
             if name := item.name:
-                yield indent(Text(f" - {name}", style=theme.emphasis[0]))
                 yield NewLine()
+                yield indent(Text(f" - {name}", style=theme.emphasis[0]))
 
     @format.register
     @staticmethod
