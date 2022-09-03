@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.13.0](https://github.com/alexpovel/ancv/compare/v0.12.0...v0.13.0) (2022-09-03)
+
+
+### Features
+
+* **app:** Make `ancv` available as an installable script ([cabd4ec](https://github.com/alexpovel/ancv/commit/cabd4ece22f651eeb17e662c52ec0f834e2e3fa8))
+* **app:** Provide date 'collapsing' for same-month ranges ([5e4cc52](https://github.com/alexpovel/ancv/commit/5e4cc529b2953708ca52757e146ac31f26806c84)), closes [#45](https://github.com/alexpovel/ancv/issues/45)
+* **app:** Remove day from date formatting ([08218b0](https://github.com/alexpovel/ancv/commit/08218b0d0d8f2ce0c6a5625115602c61abeb9acc))
+* **test:** Mark timings test as flaky, allowing reruns ([5b44cda](https://github.com/alexpovel/ancv/commit/5b44cdad17acc9b045e4a13cfa6f6df9bbc042f9))
+
+
+### Bug Fixes
+
+* **tests:** Expect tests to fail if GH API limit reached ([b6c97b5](https://github.com/alexpovel/ancv/commit/b6c97b5809d2d34196022949294b9b9446ca945a))
+
+
+### Documentation
+
+* Simplify README, add LinkedIn link ([a57e8d1](https://github.com/alexpovel/ancv/commit/a57e8d16db1dcdeb257ef409e0ca676d09f00ab3))
+
 ## [0.12.0](https://github.com/alexpovel/ancv/compare/v0.11.0...v0.12.0) (2022-08-14)
 
 
