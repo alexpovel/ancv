@@ -502,16 +502,16 @@ class Sequential(Template):
         title: str
         for container, title in [
             (self.model.work, "Experience"),
-            (self.model.skills, "Skills"),
-            (self.model.volunteer, "Volunteering"),
             (self.model.education, "Education"),
+            (self.model.skills, "Skills"),
             (self.model.awards, "Awards"),
             (self.model.certificates, "Certificates"),
             (self.model.publications, "Publications"),
             (self.model.languages, "Languages"),
             (self.model.references, "References"),
-            (self.model.interests, "Interests"),
+            (self.model.volunteer, "Volunteering"),
             (self.model.projects, "Projects"),
+            (self.model.interests, "Interests"),
         ]:
             if container:
                 group = Group(
