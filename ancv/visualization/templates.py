@@ -348,8 +348,7 @@ class Sequential(Template):
         yield from horizontal_fill(
             Text.assemble(
                 (item.title or "", theme.emphasis[0]),
-                " awarded by " if item.awarder else "",
-                (item.awarder or "", theme.emphasis[1]),
+                (f" ({item.awarder})" if item.awarder else "", theme.emphasis[1]),
             ),
             item.date.strftime(theme.datefmt) if item.date else "",
         )
@@ -364,8 +363,7 @@ class Sequential(Template):
         yield from horizontal_fill(
             Text.assemble(
                 (item.name or "", theme.emphasis[0]),
-                " issued by " if item.issuer else "",
-                (item.issuer or "", theme.emphasis[1]),
+                (f" ({item.issuer})" if item.issuer else "", theme.emphasis[1]),
             ),
             item.date.strftime(theme.datefmt) if item.date else "",
         )
@@ -380,8 +378,7 @@ class Sequential(Template):
         yield from horizontal_fill(
             Text.assemble(
                 (item.name or "", theme.emphasis[0]),
-                " ",
-                (item.publisher or "", theme.emphasis[1]),
+                (f" ({item.publisher})" if item.publisher else "", theme.emphasis[1]),
             ),
             item.releaseDate.strftime(theme.datefmt) if item.releaseDate else "",
         )
