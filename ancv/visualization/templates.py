@@ -408,12 +408,12 @@ class Sequential(Template):
     @format.register
     @staticmethod
     def _(item: Language, theme: Theme) -> RenderableGenerator:
-        if (language := item.language) is not None:
-            yield Text.assemble(
-                (language, theme.emphasis[0]),
-                " ",
-                (item.fluency or "", theme.emphasis[1]),
-            )
+        if language := item.language:
+            yield Text(language, style=theme.emphasis[0])
+            if fluency := item.fluency:
+                yield NewLine()
+                yield indent(Text(fluency, style=theme.emphasis[1]))
+            yield NewLine()
 
     @format.register
     @staticmethod
@@ -432,6 +432,7 @@ class Sequential(Template):
         if name := item.name:
             yield Text(name, style=theme.emphasis[0])
             if keywords := item.keywords:
+                yield NewLine()
                 yield indent(Text(", ".join(keywords), style=theme.emphasis[1]))
             yield NewLine()
 
