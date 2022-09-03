@@ -30,6 +30,7 @@ from ancv.data.models.resume import (
     ResumeItem,
     ResumeItemContainer,
     ResumeSchema,
+    TemplateConfig,
     VolunteerItem,
     WorkItem,
 )
@@ -92,30 +93,38 @@ class Template(ABC):
 
     @classmethod
     def from_model_config(cls, model: ResumeSchema) -> "Template":
-        try:
-            theme = THEMES[model.meta.config.theme]
-        except KeyError as e:
-            raise ResumeConfigError(f"Unknown theme: {model.meta.config.theme}") from e
+        if (config := model.meta.config) is None:
+            config = TemplateConfig()
 
+        if (theme_name := config.theme) is None:
+            theme_name = "basic"
         try:
-            translation = TRANSLATIONS[model.meta.config.translation]
+            theme = THEMES[theme_name]
         except KeyError as e:
-            raise ResumeConfigError(
-                f"Unknown translation: {model.meta.config.translation}"
-            ) from e
+            raise ResumeConfigError(f"Unknown theme: {theme_name}") from e
 
+        if (translation_name := config.translation) is None:
+            translation_name = "en"
         try:
-            template = cls.subclasses()[model.meta.config.template]
+            translation = TRANSLATIONS[translation_name]
         except KeyError as e:
-            raise ResumeConfigError(
-                f"Unknown template: {model.meta.config.template}"
-            ) from e
+            raise ResumeConfigError(f"Unknown translation: {translation_name}") from e
+
+        if (template_name := config.template) is None:
+            template_name = Sequential.__name__
+        try:
+            template = cls.subclasses()[template_name]
+        except KeyError as e:
+            raise ResumeConfigError(f"Unknown template: {template_name}") from e
+
+        if (ascii_only := config.ascii_only) is None:
+            ascii_only = False
 
         return template(
             model=model,
             theme=theme,
             translation=translation,
-            ascii_only=model.meta.config.ascii_only,
+            ascii_only=ascii_only,
         )
 
     @classmethod

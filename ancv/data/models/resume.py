@@ -115,10 +115,10 @@ class Reference(BaseModel):
 
 
 class TemplateConfig(BaseModel):
-    template: str = "Sequential"
-    theme: str = "basic"
-    translation: str = "en"
-    ascii_only: bool = False
+    template: Optional[str]
+    theme: Optional[str]
+    translation: Optional[str]
+    ascii_only: Optional[bool]
 
 
 class Meta(BaseModel):
@@ -134,8 +134,8 @@ class Meta(BaseModel):
     lastModified: Optional[datetime] = Field(
         None, description="Using ISO 8601 with YYYY-MM-DDThh:mm:ss"
     )
-    config: TemplateConfig = Field(
-        TemplateConfig(),
+    config: Optional[TemplateConfig] = Field(
+        None,
         alias="ancv",
         description="Template configuration to control display",
     )
