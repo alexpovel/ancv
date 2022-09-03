@@ -22,6 +22,7 @@ class Theme(BaseModel):
         fmt: str,
         sep: str = "-",
         ongoing: str = "present",
+        collapse: bool = True,
     ) -> str:
         if start is None:
             if end is None:
@@ -30,6 +31,10 @@ class Theme(BaseModel):
 
         if end is None:
             return f"{start.strftime(fmt)} {sep} {ongoing}"
+
+        collapsible = start.month == end.month and start.year == end.year
+        if collapsible and collapse:
+            return f"{end.strftime(fmt)}"
 
         return f"{start.strftime(fmt)} {sep} {end.strftime(fmt)}"
 

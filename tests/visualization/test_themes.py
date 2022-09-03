@@ -7,7 +7,7 @@ from ancv.visualization.themes import Theme
 
 
 @pytest.mark.parametrize(
-    ["start", "end", "fmt", "sep", "ongoing", "expected"],
+    ["start", "end", "fmt", "sep", "ongoing", "expected", "collapse"],
     [
         (
             None,
@@ -16,6 +16,7 @@ from ancv.visualization.themes import Theme
             "",
             "",
             "",
+            False,
         ),
         (
             None,
@@ -24,6 +25,7 @@ from ancv.visualization.themes import Theme
             "",
             "",
             "",
+            False,
         ),
         (
             None,
@@ -32,6 +34,7 @@ from ancv.visualization.themes import Theme
             "-",
             "",
             "",
+            False,
         ),
         (
             None,
@@ -40,6 +43,7 @@ from ancv.visualization.themes import Theme
             "-",
             "present",
             "",
+            False,
         ),
         (
             date(2020, 1, 1),
@@ -48,6 +52,7 @@ from ancv.visualization.themes import Theme
             "",
             "",
             "2020-01-01  ",
+            False,
         ),
         (
             date(2020, 1, 10),
@@ -56,6 +61,7 @@ from ancv.visualization.themes import Theme
             "",
             "",
             "2020-01-10  ",
+            False,
         ),
         (
             date(2020, 1, 1),
@@ -64,6 +70,7 @@ from ancv.visualization.themes import Theme
             "-",
             "",
             "2020-01-01 - ",
+            False,
         ),
         (
             date(2020, 1, 1),
@@ -72,6 +79,7 @@ from ancv.visualization.themes import Theme
             "-",
             "present",
             "2020-01-01 - present",
+            False,
         ),
         (
             date(2020, 1, 1),
@@ -80,6 +88,7 @@ from ancv.visualization.themes import Theme
             "...",
             "present",
             "2020-01-01 ... present",
+            False,
         ),
         (
             date(2020, 1, 1),
@@ -88,6 +97,7 @@ from ancv.visualization.themes import Theme
             "",
             "",
             "2020-01-01  2020-01-02",
+            False,
         ),
         (
             date(2020, 1, 1),
@@ -96,6 +106,7 @@ from ancv.visualization.themes import Theme
             "-",
             "",
             "2020-01-01 - 2020-01-02",
+            False,
         ),
         (
             None,
@@ -104,6 +115,7 @@ from ancv.visualization.themes import Theme
             "",
             "",
             " 2020-01-02",
+            False,
         ),
         (
             None,
@@ -112,6 +124,7 @@ from ancv.visualization.themes import Theme
             "-",
             "",
             "- 2020-01-02",
+            False,
         ),
         (
             None,
@@ -120,6 +133,61 @@ from ancv.visualization.themes import Theme
             "-",
             "present",
             "- 2020-01-02",
+            False,
+        ),
+        (
+            date(2020, 1, 1),
+            date(2020, 1, 2),
+            "%Y-%m",
+            "",
+            "",
+            "2020-01",
+            True,
+        ),
+        (
+            date(2020, 1, 1),
+            date(2020, 1, 2),
+            "%Y-%m",
+            "-",
+            "",
+            "2020-01",
+            True,
+        ),
+        (
+            date(2020, 1, 1),
+            date(2020, 1, 31),
+            "%Y-%m",
+            "-",
+            "",
+            "2020-01",
+            True,
+        ),
+        (
+            date(2020, 1, 1),
+            date(2020, 2, 1),
+            "%Y-%m",
+            "-",
+            "",
+            "2020-01 - 2020-02",
+            True,
+        ),
+        (
+            date(2020, 12, 1),
+            date(2020, 12, 31),
+            "%B %Y",
+            "-",
+            "",
+            "December 2020",
+            True,
+        ),
+        (
+            date(2020, 1, 1),
+            date(2020, 2, 1),
+            "%B %Y",
+            "-",
+            "",
+            "January 2020 - February 2020",
+            True,
         ),
     ],
 )
@@ -130,5 +198,6 @@ def test_default_date_range(
     sep: str,
     ongoing: str,
     expected: str,
+    collapse: bool,
 ) -> None:
-    assert Theme.date_range(start, end, fmt, sep, ongoing) == expected
+    assert Theme.date_range(start, end, fmt, sep, ongoing, collapse) == expected
