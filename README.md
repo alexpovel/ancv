@@ -35,6 +35,8 @@ Be warned though, for this is kinda useless and just for fun:
       curl -sL ancv.io/username | less
       ```
 
+      If that garbles the rendered output, try `less -r` aka [`--raw-control-chars`](https://man7.org/linux/man-pages/man1/less.1.html).
+
    - wget:
 
      ```bash
