@@ -104,6 +104,42 @@ Note that it's pretty heavy on the dependencies.
 ```bash
 pip install ancv
 ```
+
+## Self-hosting
+
+Self-hosting is a first-class citizen here.
+
+### Context: Cloud Hosting
+
+The <https://ancv.io> site is hosted on [Google Cloud Run](https://cloud.google.com/run) (serverless) and deployed there [automatically](https://github.com/alexpovel/ancv/runs/8172131447), such that the latest release you see here is also the code executing in that cloud environment.
+That's convenient to get started: simply create a `resume.json` gist and you're good to go within minutes.
+It can also be used for debugging and playing around; it's a playground of sorts.
+
+You're invited to use this service for as much and as long as you'd like.
+However, obviously, as an individual I cannot guarantee its availability in perpetuity.
+You might also feel uncomfortable uploading your CV onto GitHub, since it *has* to be public for this whole exercise to work.
+Lastly, you might also be suspicious of me inserting funny business into your CV before serving it out.
+If this is you, self-hosting is for you.
+
+### Setup
+
+For simplicity, using Docker Compose (with Docker's recent [Compose CLI plugin](https://docs.docker.com/compose/install/compose-plugin/)):
+
+1. Clone this repository onto your server (or fork it, make your edits and clone that)
+2. `cd self-hosting`
+3. Edit [Caddy's config file](./self-hosting/Caddyfile) ([more info](https://caddyserver.com/docs/caddyfile)) to contain your own domain name
+4. Place your `resume.json` into the directory
+5. Run `docker compose up`
+
+Caddy (chosen here for simplicity) will handle HTTPS automatically for you, but will of course require domain names to be set up correctly to answer ACME challenges.
+Handling DNS is up to you; for dynamic DNS, I can recommend [`qmcgaw/ddns-updater`](https://github.com/qdm12/ddns-updater).
+
+If you self-host in the cloud, the server infrastructure might be taken care of for you by your provider already (as is the case for Google Cloud Run).
+In these cases, a dedicated proxy is unnecessary and a single [Dockerfile](./Dockerfile) might suffice (adjusted to your needs).
+True [serverless](https://www.serverless.com/) is also a possibility and an excellent fit here.
+For example, one could use [Digital Ocean's *Functions*](https://docs.digitalocean.com/products/functions/).
+If you go that route and succeed, please let me know! (I had given up with how depressingly hard dependency management was, as opposed to tried-and-tested container images.)
+
 ---
 
 <p align="center">
