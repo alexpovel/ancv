@@ -67,7 +67,6 @@ These components may be controlled using the `ancv` field in your `resume.json`:
 {
    "basics": {},
    "education": [],
-   ...,
    "meta": {
      "ancv": {
         "template": "Sequential",
