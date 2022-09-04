@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.0](https://github.com/alexpovel/ancv/compare/v0.15.2...v0.16.0) (2022-09-04)
+
+
+### Features
+
+* **build:** Halve the Docker image size ([4d9fa53](https://github.com/alexpovel/ancv/commit/4d9fa5357c733a720a10a7f3c1575bdb237b296e))
+
 ## [0.15.2](https://github.com/alexpovel/ancv/compare/v0.15.1...v0.15.2) (2022-09-04)
 
 
