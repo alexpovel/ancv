@@ -212,13 +212,11 @@ class Sequential(Template):
             yield NewLine()
 
     @singledispatchmethod
-    @staticmethod
-    def format(item: ResumeItem, theme: Theme) -> RenderableGenerator:
+    def format(self, item: ResumeItem, theme: Theme) -> RenderableGenerator:
         return NotImplemented
 
     @format.register
-    @staticmethod
-    def _(item: Basics, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Basics, theme: Theme) -> RenderableGenerator:
         if name := item.name:
             yield Rule(
                 Text(name, style=theme.headlines[0]),
@@ -237,8 +235,7 @@ class Sequential(Template):
             yield NewLine()
 
     @format.register
-    @staticmethod
-    def _(item: Location, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Location, theme: Theme) -> RenderableGenerator:
         if address := item.address:
             lines = address.split("\n")
             for line in lines:
@@ -252,15 +249,13 @@ class Sequential(Template):
         yield Align.center(Text(", ".join(country_line)))
 
     @format.register
-    @staticmethod
-    def _(item: Profile, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Profile, theme: Theme) -> RenderableGenerator:
         yield item.network or ""
         yield item.username or ""
         yield f"({item.url})" if item.url else ""
 
     @format.register
-    @staticmethod
-    def _(item: WorkItem, theme: Theme) -> RenderableGenerator:
+    def _(self, item: WorkItem, theme: Theme) -> RenderableGenerator:
         tagline = Text.assemble(
             (item.name or "", theme.emphasis[0]),
             " ",
@@ -297,8 +292,7 @@ class Sequential(Template):
             )
 
     @format.register
-    @staticmethod
-    def _(item: Skill, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Skill, theme: Theme) -> RenderableGenerator:
         if name := item.name:
             yield Text.assemble(
                 (name, theme.emphasis[0]),
@@ -310,8 +304,7 @@ class Sequential(Template):
             yield NewLine()
 
     @format.register
-    @staticmethod
-    def _(item: VolunteerItem, theme: Theme) -> RenderableGenerator:
+    def _(self, item: VolunteerItem, theme: Theme) -> RenderableGenerator:
         yield from horizontal_fill(
             Text(item.organization or "", style=theme.emphasis[0]),
             theme.date_range(item.startDate, item.endDate, theme.datefmt),
@@ -335,8 +328,7 @@ class Sequential(Template):
             yield indent(Text(url, theme.emphasis[1]))
 
     @format.register
-    @staticmethod
-    def _(item: EducationItem, theme: Theme) -> RenderableGenerator:
+    def _(self, item: EducationItem, theme: Theme) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
                 (item.institution or "", theme.emphasis[0]),
@@ -349,7 +341,7 @@ class Sequential(Template):
 
         if score := item.score:
             yield NewLine()
-            yield indent(Text(f"Score: {score}"))
+            yield indent(Text(f"{self.translation.score}: {score}"))
 
         if courses := item.courses:
             yield NewLine()
@@ -361,8 +353,7 @@ class Sequential(Template):
             yield indent(Text(url, theme.emphasis[1]))
 
     @format.register
-    @staticmethod
-    def _(item: Award, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Award, theme: Theme) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
                 (item.title or "", theme.emphasis[0]),
@@ -376,8 +367,7 @@ class Sequential(Template):
             yield indent(Text(summary))
 
     @format.register
-    @staticmethod
-    def _(item: Certificate, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Certificate, theme: Theme) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
                 (item.name or "", theme.emphasis[0]),
@@ -391,8 +381,7 @@ class Sequential(Template):
             yield indent(Text(url, style=theme.emphasis[1]))
 
     @format.register
-    @staticmethod
-    def _(item: Publication, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Publication, theme: Theme) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
                 (item.name or "", theme.emphasis[0]),
@@ -410,8 +399,7 @@ class Sequential(Template):
             yield indent(Text(url, style=theme.emphasis[1]))
 
     @format.register
-    @staticmethod
-    def _(item: Language, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Language, theme: Theme) -> RenderableGenerator:
         if language := item.language:
             yield NewLine()
             yield Text(language, style=theme.emphasis[0])
@@ -420,8 +408,7 @@ class Sequential(Template):
                 yield indent(Text(fluency, style=theme.emphasis[1]))
 
     @format.register
-    @staticmethod
-    def _(item: Reference, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Reference, theme: Theme) -> RenderableGenerator:
         if reference := item.reference:
             yield NewLine()
             yield indent(Text(reference, style=theme.emphasis[1]))
@@ -431,8 +418,7 @@ class Sequential(Template):
                 yield indent(Text(f" - {name}", style=theme.emphasis[0]))
 
     @format.register
-    @staticmethod
-    def _(item: Interest, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Interest, theme: Theme) -> RenderableGenerator:
         if name := item.name:
             yield Text(name, style=theme.emphasis[0])
             if keywords := item.keywords:
@@ -441,8 +427,7 @@ class Sequential(Template):
             yield NewLine()
 
     @format.register
-    @staticmethod
-    def _(item: Project, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Project, theme: Theme) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
                 (item.name or "", theme.emphasis[0]),
@@ -461,7 +446,7 @@ class Sequential(Template):
             yield NewLine()
 
         if roles := item.roles:
-            yield indent(Text("Roles:"))
+            yield indent(Text(f"{self.translation.roles}:"))
             yield NewLine()
             for role in roles:
                 yield indent(
@@ -504,18 +489,20 @@ class Sequential(Template):
 
         container: ResumeItemContainer
         title: str
+        m = self.model
+        t = self.translation
         for container, title in [
-            (self.model.work, "Experience"),
-            (self.model.education, "Education"),
-            (self.model.skills, "Skills"),
-            (self.model.awards, "Awards"),
-            (self.model.certificates, "Certificates"),
-            (self.model.publications, "Publications"),
-            (self.model.languages, "Languages"),
-            (self.model.references, "References"),
-            (self.model.volunteer, "Volunteering"),
-            (self.model.projects, "Projects"),
-            (self.model.interests, "Interests"),
+            (m.work, t.work),
+            (m.education, t.education),
+            (m.skills, t.skills),
+            (m.awards, t.awards),
+            (m.certificates, t.certificates),
+            (m.publications, t.publications),
+            (m.languages, t.languages),
+            (m.references, t.references),
+            (m.volunteer, t.volunteer),
+            (m.projects, t.projects),
+            (m.interests, t.interests),
         ]:
             if container:
                 group = Group(
