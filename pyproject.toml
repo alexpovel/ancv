@@ -47,6 +47,7 @@ cachetools = "^5.2.0"
 humanize = "^4.1.0"
 rich = "^12.4.4"
 typer = "^0.6.1"
+Babel = "^2.10.3"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.3.0"
@@ -60,6 +61,7 @@ pytest-cov = "^3.0.0"
 pytest-aiohttp = "^1.0.4"
 pytest-rerunfailures = "^10.2"
 requests = "^2.28.1"
+types-babel = "^2.10.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
