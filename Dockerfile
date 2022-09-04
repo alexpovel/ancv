@@ -22,4 +22,5 @@ COPY ancv/ ./ancv/
 RUN poetry config virtualenvs.create false && poetry install --only main
 
 EXPOSE 8080
-CMD [ "python", "-m", "ancv", "serve", "api", "--port", "8080" ]
+ENTRYPOINT [ "ancv" ]
+CMD [ "serve", "api", "--port", "8080" ]
