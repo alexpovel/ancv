@@ -10,10 +10,10 @@ Be warned though, for this is kinda useless and just for fun:
 
 1. Create a resume according to the [JSON Resume Schema](https://jsonresume.org/schema/) (see also the [schema specification](https://github.com/jsonresume/resume-schema/blob/master/schema.json)) either:
 
-   - manually,
+   - manually (see [this sample](./tests/test_data/resumes/full.json) for a possible starting point),
    - exporting from [LinkedIn](https://www.linkedin.com/) using [Joshua Tzucker's LinkedIn exporter](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/) ([repo](https://github.com/joshuatz/linkedin-to-jsonresume)), or
    - exporting from one of the platforms advertised as offering [JSON resume integration](https://jsonresume.org/schema/).
-2. [Create a gist](https://gist.github.com/) named `resume.json` with those resume contents.
+2. [Create a **public** gist](https://gist.github.com/) named `resume.json` with those resume contents.
    See [here](https://gist.github.com/alexpovel/4a94aaccdc6ed8d214d0f8a73e50a536) for a working example from the author.
 3. Try it out, using...
    - curl:
@@ -22,7 +22,7 @@ Be warned though, for this is kinda useless and just for fun:
       curl -L ancv.io/username
       ```
 
-      `-L` is shorthand for [`--location`](https://curl.se/docs/manpage.html), allowing you to follow the redirect from `http://ancv.io` through to `https://ancv.io`.
+      with `-L` being shorthand for [`--location`](https://curl.se/docs/manpage.html), allowing you to follow the redirect from `http://ancv.io` through to `https://ancv.io`.
       It's shorter than its also perfectly viable alternative:
 
       ```bash
@@ -79,9 +79,9 @@ These components may be controlled using the `ancv` field in your `resume.json`:
 ```
 
 The shown values are the default ones.
-All fields, including the `ancv` one itself, are optional, and those defaults will be set if they are omitted.
-This means a [valid JSON resume](https://github.com/jsonresume/resume-schema/blob/master/schema.json) (without an `ancv` section) is also valid for use here.
-The currently available components can be printed out:
+All fields, including the `ancv` one itself, are optional, and the above defaults will be set for omitted fields.
+This means **a [valid JSON resume](https://github.com/jsonresume/resume-schema/blob/master/schema.json) (without an `ancv` section) is also valid here**.
+The currently available options can be printed out:
 
 ```bash
 $ pip install ancv >> /dev/null && ancv list
@@ -96,6 +96,14 @@ Components
     └── de
 ```
 
+## Installation as a library
+
+For local use, install the package as usual.
+Note that it's pretty heavy on the dependencies.
+
+```bash
+pip install ancv
+```
 ---
 
 <p align="center">
