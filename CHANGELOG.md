@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.2](https://github.com/alexpovel/ancv/compare/v0.15.1...v0.15.2) (2022-09-04)
+
+
+### Bug Fixes
+
+* **build:** Use `release-please` output as tag value input for Docker tagging ([4b05181](https://github.com/alexpovel/ancv/commit/4b05181303274d4034a2c10c75a174fa07b6f2d6))
+
 ## [0.15.1](https://github.com/alexpovel/ancv/compare/v0.15.0...v0.15.1) (2022-09-04)
 
 
