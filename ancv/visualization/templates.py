@@ -1,11 +1,14 @@
 import json
 from abc import ABC, abstractmethod
 from contextlib import redirect_stdout
-from functools import singledispatchmethod
+from datetime import date
+from functools import lru_cache, singledispatchmethod
 from pathlib import Path
 from tempfile import SpooledTemporaryFile
 from typing import MutableSequence, NamedTuple, Optional
 
+from babel.core import Locale
+from babel.dates import format_date
 from rich.align import Align
 from rich.console import Console, ConsoleOptions, Group, NewLine, RenderableType, group
 from rich.padding import Padding
@@ -48,11 +51,13 @@ class Template(ABC):
         model: ResumeSchema,
         theme: Theme,
         translation: Translation,
+        locale: Locale,
         ascii_only: bool,
     ) -> None:
         self.model = model
         self.theme = theme
         self.translation = translation
+        self.locale = locale
         self.ascii_only = ascii_only
 
     # This is behavior:
@@ -86,6 +91,32 @@ class Template(ABC):
                 console.print(self)
         return capture.get().strip()
 
+    @lru_cache(maxsize=1_000)
+    def format_date(self, date: date) -> str:
+        return format_date(date, format=self.theme.datefmt, locale=self.locale)
+
+    @lru_cache(maxsize=1_000)
+    def date_range(
+        self,
+        start: Optional[date],
+        end: Optional[date],
+        sep: str = "-",
+        collapse: bool = True,
+    ) -> str:
+        if start is None:
+            if end is None:
+                return ""
+            return f"{sep} {self.format_date(end)}"
+
+        if end is None:
+            return f"{self.format_date(start)} {sep} {self.translation.present}"
+
+        collapsible = start.month == end.month and start.year == end.year
+        if collapsible and collapse:
+            return self.format_date(end)
+
+        return f"{self.format_date(start)} {sep} {self.format_date(end)}"
+
     @classmethod
     # A property would be nicer but it's not supported from Python 3.11 on:
     # https://docs.python.org/3.11/library/functions.html#classmethod
@@ -104,12 +135,12 @@ class Template(ABC):
         except KeyError as e:
             raise ResumeConfigError(f"Unknown theme: {theme_name}") from e
 
-        if (translation_name := config.language) is None:
-            translation_name = "en"
+        if (language := config.language) is None:
+            language = "en"
         try:
-            translation = TRANSLATIONS[translation_name]
+            translation = TRANSLATIONS[language]
         except KeyError as e:
-            raise ResumeConfigError(f"Unknown translation: {translation_name}") from e
+            raise ResumeConfigError(f"Unknown language: {language}") from e
 
         if (template_name := config.template) is None:
             template_name = Sequential.__name__
@@ -125,6 +156,7 @@ class Template(ABC):
             model=model,
             theme=theme,
             translation=translation,
+            locale=Locale(language),
             ascii_only=ascii_only,
         )
 
@@ -263,7 +295,7 @@ class Sequential(Template):
         )
 
         yield from horizontal_fill(
-            tagline, theme.date_range(item.startDate, item.endDate, theme.datefmt)
+            tagline, self.date_range(item.startDate, item.endDate)
         )
 
         if position := item.position:
@@ -307,7 +339,7 @@ class Sequential(Template):
     def _(self, item: VolunteerItem, theme: Theme) -> RenderableGenerator:
         yield from horizontal_fill(
             Text(item.organization or "", style=theme.emphasis[0]),
-            theme.date_range(item.startDate, item.endDate, theme.datefmt),
+            self.date_range(item.startDate, item.endDate),
         )
 
         if position := item.position:
@@ -336,7 +368,7 @@ class Sequential(Template):
                 (item.area or "", theme.emphasis[1]),
                 f" ({item.studyType})" if item.studyType else "",
             ),
-            theme.date_range(item.startDate, item.endDate, theme.datefmt),
+            self.date_range(item.startDate, item.endDate),
         )
 
         if score := item.score:
@@ -359,7 +391,7 @@ class Sequential(Template):
                 (item.title or "", theme.emphasis[0]),
                 (f" ({item.awarder})" if item.awarder else "", theme.emphasis[1]),
             ),
-            item.date.strftime(theme.datefmt) if item.date else "",
+            self.format_date(item.date) if item.date else "",
         )
 
         if summary := item.summary:
@@ -373,7 +405,7 @@ class Sequential(Template):
                 (item.name or "", theme.emphasis[0]),
                 (f" ({item.issuer})" if item.issuer else "", theme.emphasis[1]),
             ),
-            item.date.strftime(theme.datefmt) if item.date else "",
+            self.format_date(item.date) if item.date else "",
         )
 
         if url := item.url:
@@ -387,7 +419,7 @@ class Sequential(Template):
                 (item.name or "", theme.emphasis[0]),
                 (f" ({item.publisher})" if item.publisher else "", theme.emphasis[1]),
             ),
-            item.releaseDate.strftime(theme.datefmt) if item.releaseDate else "",
+            self.format_date(item.releaseDate) if item.releaseDate else "",
         )
 
         if summary := item.summary:
@@ -433,7 +465,7 @@ class Sequential(Template):
                 (item.name or "", theme.emphasis[0]),
                 (f" - {item.type}" if item.type else "", theme.emphasis[1]),
             ),
-            theme.date_range(item.startDate, item.endDate, theme.datefmt),
+            self.date_range(item.startDate, item.endDate),
         )
 
         if description := item.description:

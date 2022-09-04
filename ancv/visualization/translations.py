@@ -17,6 +17,7 @@ class Translation(BaseModel):
     references: str
     interests: str
     projects: str
+    present: str
 
 
 TRANSLATIONS = {
@@ -36,6 +37,7 @@ TRANSLATIONS = {
         references="References",
         interests="Interests",
         projects="Projects",
+        present="present",
     ),
     "de": Translation(
         score="Note",
@@ -53,5 +55,6 @@ TRANSLATIONS = {
         references="Referenzen",
         interests="Interessen",
         projects="Projekte",
+        present="heute",
     ),
 }

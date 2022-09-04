@@ -1,6 +1,3 @@
-from datetime import date
-from typing import Optional
-
 from pydantic import BaseModel
 from rich.style import Style
 
@@ -15,29 +12,6 @@ class Theme(BaseModel):
     class Config:
         arbitrary_types_allowed = True  # No validator for `Style` available
 
-    @staticmethod
-    def date_range(
-        start: Optional[date],
-        end: Optional[date],
-        fmt: str,
-        sep: str = "-",
-        ongoing: str = "present",
-        collapse: bool = True,
-    ) -> str:
-        if start is None:
-            if end is None:
-                return ""
-            return f"{sep} {end.strftime(fmt)}"
-
-        if end is None:
-            return f"{start.strftime(fmt)} {sep} {ongoing}"
-
-        collapsible = start.month == end.month and start.year == end.year
-        if collapsible and collapse:
-            return f"{end.strftime(fmt)}"
-
-        return f"{start.strftime(fmt)} {sep} {end.strftime(fmt)}"
-
 
 THEMES = {
     "plain": Theme(
@@ -45,7 +19,7 @@ THEMES = {
         headlines=[Style(), Style(), Style(), Style()],
         bullet="*",
         rulechar="─",
-        datefmt="%Y-%m",
+        datefmt="yyyy-MM",
     ),
     "basic": Theme(
         emphasis=[
@@ -62,6 +36,6 @@ THEMES = {
         ],
         bullet="*",
         rulechar="─",
-        datefmt="%B %Y",
+        datefmt="MMMM yyyy",
     ),
 }
