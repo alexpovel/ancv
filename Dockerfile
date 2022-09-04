@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.10-slim
 
 ENV POETRY_HOME="/opt/poetry"
 ENV PATH="$POETRY_HOME/bin:$PATH"
@@ -9,6 +9,11 @@ ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
 WORKDIR /app
+
+RUN apt-get update && apt-get install --yes --no-install-recommends \
+    curl \
+    gcc \
+    g++
 
 RUN curl -sSL https://install.python-poetry.org | python -
 
