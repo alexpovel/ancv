@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.15.0](https://github.com/alexpovel/ancv/compare/v0.14.1...v0.15.0) (2022-09-04)
+
+
+### Features
+
+* **build:** Enable Docker image versioning ([8a34b35](https://github.com/alexpovel/ancv/commit/8a34b35de83f8ad8b51325c6152a2aeee83b12c5)), closes [#23](https://github.com/alexpovel/ancv/issues/23)
+* **self-hosting:** Add self-hosting instructions and files ([140bbcc](https://github.com/alexpovel/ancv/commit/140bbcc078cfcf6b12eb501dfca654aec5b17560))
+
 ## [0.14.1](https://github.com/alexpovel/ancv/compare/v0.14.0...v0.14.1) (2022-09-04)
 
 
