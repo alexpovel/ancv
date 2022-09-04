@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ancv"
-version = "0.14.1"
+version = "0.15.0"
 description = "Render 'JSON Resume' sources to ANSI-enriched output for terminal clients (cURL, wget, ...) to consume."
 authors = ["Alex Povel <python@alexpovel.de>"]
 readme = "README.md"
