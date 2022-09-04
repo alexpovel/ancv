@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.14.1](https://github.com/alexpovel/ancv/compare/v0.14.0...v0.14.1) (2022-09-04)
+
+
+### Bug Fixes
+
+* **app:** Adjust field name, `language` being much more intuitive ([fd25c0a](https://github.com/alexpovel/ancv/commit/fd25c0a79f80866e62d43b596d004003f605ee28))
+
+
+### Documentation
+
+* Expand docs, provide flow chart for core functionality ([12346bc](https://github.com/alexpovel/ancv/commit/12346bc3803df883eb4da0211583138f3f6e4752))
+* Expand section on creating components ([c0457e4](https://github.com/alexpovel/ancv/commit/c0457e4833f895583bd194ad6e8141bb17ccb86b))
+* Polish README, vastly expand the construction flowchart ([56cdc66](https://github.com/alexpovel/ancv/commit/56cdc6676f5222eadcdaf6a02d130f638f61043b))
+* Remove illegal JSON ([1729b51](https://github.com/alexpovel/ancv/commit/1729b5169629601023692bc17f4b33571f9076bd))
+
 ## [0.14.0](https://github.com/alexpovel/ancv/compare/v0.13.0...v0.14.0) (2022-09-03)
 
 
