@@ -15,7 +15,7 @@ services:
       - 443:443
     restart: unless-stopped
   ancv:
-    image: ghcr.io/alexpovel/ancv:main
+    image: ghcr.io/alexpovel/ancv:1
     volumes:
       - ./resume.json:/resume.json:ro
     ports:
