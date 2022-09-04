@@ -84,7 +84,7 @@
         },
         {
             "name": "Poogle",
-            "location": "Loo",
+            "location": "???",
             "description": "A search engine for the unspeakable",
             "startDate": null,
             "endDate": null,
@@ -157,7 +157,7 @@
             ]
         },
         {
-            "organization": "Brown Cross",
+            "organization": "Colored Cross",
             "summary": "We did some things."
         }
     ],
@@ -202,7 +202,7 @@
         },
         {
             "institution": "Acting school",
-            "area": "Crying in front of a mirror",
+            "area": "Method acting",
             "startDate": "2008-03-01",
             "score": "1337"
         }
@@ -422,7 +422,7 @@
         },
         {
             "name": "Manuela Trouchot",
-            "reference": "Qu'est-ce que tu viens de dire sur moi, petite fille ? Je vous ferai savoir que j'ai été diplômé premier de ma classe dans les Navy Seals, et j'ai été impliqué dans de nombreux raids secrets sur Al-Quaeda, et j'ai plus de 300 meurtres confirmés. Je suis formé à la guerre des gorilles et je suis le meilleur tireur d'élite de toutes les forces armées américaines. Tu n'es rien pour moi mais juste une autre cible. Je vais vous anéantir avec une précision sans précédent sur cette Terre, notez mes paroles. Tu penses pouvoir t'en sortir en me disant ce genre de choses sur Internet ? Détrompez-vous, idiot. Comme nous"
+            "reference": "Le 20 juin 1789, alors qu'elle ne comprend encore que le Tiers et une partie du Clergé, l'Assemblée nationale prend l'arrêté auquel l'histoire donne le nom de Serment du Jeu de paume. Elle s'y déclare « appelée à fixer la constitution du royaume, opérer la régénération de l'ordre public et maintenir les vrais principes de la monarchie » et s'y engage à « ne jamais se séparer, et [à] se rassembler partout où les circonstances l'exigeront, jusqu'à ce que la constitution du royaume soit établie sur des fondements solides »."
         },
         {
             "name": "Boaty McBoatface"
@@ -486,8 +486,8 @@
             "type": "Application"
         },
         {
-            "name": "iPhone 14",
-            "description": "Always needing the latest and greatest, I got sick of waiting and built my own next-gen iPhone. It's a great phone, but it's not the best phone. I am also looking for a lawyer now.",
+            "name": "iPhone 34",
+            "description": "Always needing the latest and greatest, I got sick of waiting and built my own next-next-next-next-nextgen iPhone. It's a great phone, but it's not the best phone. I am also looking for a lawyer now.",
             "highlights": [
                 "Bricked",
                 "Woops"
@@ -499,7 +499,7 @@
             ],
             "startDate": "2020-04-01",
             "endDate": "2020-04-01",
-            "url": "https://iphone14.com",
+            "url": "https://iphone34.com",
             "roles": [
                 "Boss",
                 "Defendant"
@@ -509,11 +509,11 @@
         },
         {
             "name": "Sniffing Dog",
-            "description": "A dog that can sniff out drugs. It's a good dog."
+            "description": "A dog that can sniff out and distinguish different types of inkjet printers. It's a good dog, albeit a bit useless"
         },
         {
             "name": "youPhone 1",
-            "description": "A phone that can do everything. It's a good phone. My personal competitor to Apple.",
+            "description": "A phone that can do everything. It's a good phone. My personal competitor to Pear.",
             "highlights": [
                 "Also bricked",
                 "Goshdarnit"
@@ -527,6 +527,12 @@
     ],
     "meta": {
         "version": "v1.0.0",
-        "canonical": "https://github.com/jsonresume/resume-schema/blob/v1.0.0/schema.json"
+        "canonical": "https://github.com/jsonresume/resume-schema/blob/v1.0.0/schema.json",
+        "ancv": {
+            "template": "Sequential",
+            "theme": "basic",
+            "ascii_only": false,
+            "language": "en"
+        }
     }
 }
