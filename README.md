@@ -96,13 +96,38 @@ Components
     └── de
 ```
 
-## Installation as a library
+## Installation
 
-For local use, install the package as usual.
-Note that it's pretty heavy on the dependencies.
+### As a library
+
+Install the package as usual:
 
 ```bash
 pip install ancv
+```
+
+This also allows you to import whatever you could want or need from the package, if anything.
+Note that it's pretty heavy on the dependencies.
+
+### As a container
+
+See also the available [packages aka images](https://github.com/alexpovel/ancv/pkgs/container/ancv):
+
+```bash
+docker pull ghcr.io/alexpovel/ancv
+```
+
+Versioned tags (so you can pin a major) are available.
+
+### Local usage
+
+Once installed, you could for example check whether your `resume.json` is valid at all (`validate`) or get a glimpse at the final product (`render`):
+
+```bash
+# pip route:
+$ ancv render resume.json
+# container route:
+$ docker run -v $(pwd)/resume.json:/app/resume.json ghcr.io/alexpovel/ancv render
 ```
 
 ## Self-hosting
