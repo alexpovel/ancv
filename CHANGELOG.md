@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.1](https://github.com/alexpovel/ancv/compare/v0.15.0...v0.15.1) (2022-09-04)
+
+
+### Bug Fixes
+
+* **build:** Run publish pipeline on tags ([a171597](https://github.com/alexpovel/ancv/commit/a1715970707c754dfabcad7b26e35b2605a18795))
+
 ## [0.15.0](https://github.com/alexpovel/ancv/compare/v0.14.1...v0.15.0) (2022-09-04)
 
 
