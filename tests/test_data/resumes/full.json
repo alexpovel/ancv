@@ -303,6 +303,14 @@
             ]
         },
         {
+            "level": "Master of None",
+            "keywords": [
+                "No",
+                "Name",
+                "Given"
+            ]
+        },
+        {
             "name": "Compression",
             "level": "Novice",
             "keywords": [
@@ -345,6 +353,9 @@
             "fluency": "Native Speaker"
         },
         {
+            "fluency": "No language given"
+        },
+        {
             "language": "English",
             "fluency": "Professional Proficiency"
         },
@@ -366,6 +377,15 @@
             "keywords": [
                 "Ferrets",
                 "Unicorns"
+            ]
+        },
+        {
+            "keywords": [
+                "An",
+                "interest",
+                "without",
+                "a",
+                "name"
             ]
         },
         {
@@ -421,6 +441,9 @@
         },
         {
             "name": "Boaty McBoatface"
+        },
+        {
+            "reference": "A ghostly reference without an author..."
         },
         {
             "name": "Boaty McBoatface",
