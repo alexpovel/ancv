@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.17.0](https://github.com/alexpovel/ancv/compare/v0.16.0...v0.17.0) (2022-09-04)
+
+
+### Features
+
+* **i18n:** Employ `babel`, add proper internationalization to dates ([492ee55](https://github.com/alexpovel/ancv/commit/492ee5579d0475eca20fbe747b39994e53996ff6))
+
+
+### Bug Fixes
+
+* **app:** Get rid of last remaining hard-coded strings ([ad58a6e](https://github.com/alexpovel/ancv/commit/ad58a6ed001a142aff82b8b16cc0bc323b4f34b5))
+* **test:** Remove explicit `null` fields ([823d932](https://github.com/alexpovel/ancv/commit/823d932551fcc408d19728008a2deaad58b354be))
+
+
+### Documentation
+
+* Add `less` usage hint ([0bd5ca3](https://github.com/alexpovel/ancv/commit/0bd5ca32c9915d3a58506c3d9b4dee2f9ae61fc1))
+* Add local usage examples ([e66a9b1](https://github.com/alexpovel/ancv/commit/e66a9b193ff1b84f3726512f66eb8e5460a0387f))
+* Fix arrowheads (draw them manually) ([8a1dce3](https://github.com/alexpovel/ancv/commit/8a1dce396caf8347dabb050452a32bb2b74a4c36))
+
 ## [0.16.0](https://github.com/alexpovel/ancv/compare/v0.15.2...v0.16.0) (2022-09-04)
 
 
