@@ -6,7 +6,8 @@ from babel.core import Locale
 from rich.console import NewLine, RenderableType
 from rich.style import Style
 
-from ancv.data.models.resume import ResumeSchema
+from ancv.data.models.resume import Meta, ResumeSchema, TemplateConfig
+from ancv.exceptions import ResumeConfigError
 from ancv.visualization.templates import (
     Sequential,
     Template,
@@ -464,3 +465,25 @@ def test_default_date_range(
     expected: str,
 ) -> None:
     assert template.date_range(start, end, sep, collapse) == expected
+
+
+@pytest.mark.parametrize(
+    ["model", "expectation"],
+    [
+        (
+            ResumeSchema(meta=Meta(ancv=TemplateConfig(template="DOESNT_EXIST"))),
+            pytest.raises(ResumeConfigError, match="^Unknown template: DOESNT_EXIST$"),
+        ),
+        (
+            ResumeSchema(meta=Meta(ancv=TemplateConfig(theme="DOESNT_EXIST"))),
+            pytest.raises(ResumeConfigError, match="^Unknown theme: DOESNT_EXIST$"),
+        ),
+        (
+            ResumeSchema(meta=Meta(ancv=TemplateConfig(language="zz"))),
+            pytest.raises(ResumeConfigError, match="^Unknown language: zz$"),
+        ),
+    ],
+)
+def test_rejects_unknown_configs(model, expectation) -> None:
+    with expectation:
+        Template.from_model_config(model)
