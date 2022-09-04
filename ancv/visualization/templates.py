@@ -104,7 +104,7 @@ class Template(ABC):
         except KeyError as e:
             raise ResumeConfigError(f"Unknown theme: {theme_name}") from e
 
-        if (translation_name := config.translation) is None:
+        if (translation_name := config.language) is None:
             translation_name = "en"
         try:
             translation = TRANSLATIONS[translation_name]

@@ -117,7 +117,7 @@ class Reference(BaseModel):
 class TemplateConfig(BaseModel):
     template: Optional[str]
     theme: Optional[str]
-    translation: Optional[str]
+    language: Optional[str]
     ascii_only: Optional[bool]
 
 
