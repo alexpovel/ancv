@@ -5,7 +5,7 @@ from datetime import date
 from functools import lru_cache, singledispatchmethod
 from pathlib import Path
 from tempfile import SpooledTemporaryFile
-from typing import MutableSequence, NamedTuple, Optional
+from typing import Literal, MutableSequence, NamedTuple, Optional
 
 from babel.core import Locale
 from babel.dates import format_date
@@ -100,22 +100,23 @@ class Template(ABC):
         self,
         start: Optional[date],
         end: Optional[date],
-        sep: str = "-",
         collapse: bool = True,
     ) -> str:
         if start is None:
             if end is None:
                 return ""
-            return f"{sep} {self.format_date(end)}"
+            return f"{self.theme.range_sep} {self.format_date(end)}"
 
         if end is None:
-            return f"{self.format_date(start)} {sep} {self.translation.present}"
+            return f"{self.format_date(start)} {self.theme.range_sep} {self.translation.present}"
 
         collapsible = start.month == end.month and start.year == end.year
         if collapsible and collapse:
             return self.format_date(end)
 
-        return f"{self.format_date(start)} {sep} {self.format_date(end)}"
+        return (
+            f"{self.format_date(start)} {self.theme.range_sep} {self.format_date(end)}"
+        )
 
     @classmethod
     # A property would be nicer but it's not supported from Python 3.11 on:
@@ -181,7 +182,7 @@ def indent(renderable: RenderableType, level: int = 4) -> Padding:
     return Padding.indent(renderable, level=level)
 
 
-def join(*pairs: tuple[Optional[str], Style], separator: str = " - ") -> Optional[Text]:
+def join(*pairs: tuple[Optional[str], Style], separator: str) -> Optional[Text]:
     out = Text()
     for content, style in pairs:
         if content:
@@ -223,12 +224,15 @@ def ensure_single_trailing_newline(sequence: MutableSequence[RenderableType]) ->
 
 
 class Sequential(Template):
-    def section(self, title: str) -> RenderableGenerator:
+    def section(
+        self, title: str, align: Literal["left", "center", "right"] = "center"
+    ) -> RenderableGenerator:
         yield NewLine()
         yield Rule(
-            Text(title, style=self.theme.headlines[1]),
-            align="left",
+            Text(title, style=self.theme.emphasis.maximum),
+            align=align,
             characters=self.theme.rulechar,
+            style=self.theme.emphasis.maximum,
         )
         yield NewLine()
 
@@ -240,7 +244,7 @@ class Sequential(Template):
         if container is None:
             return
         for item in container:
-            yield from self.format(item, self.theme)
+            yield from self.format(item)
             yield NewLine()
 
     @singledispatchmethod
@@ -248,68 +252,85 @@ class Sequential(Template):
         return NotImplemented
 
     @format.register
-    def _(self, item: Basics, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Basics) -> RenderableGenerator:
         if name := item.name:
-            yield Rule(
-                Text(name, style=theme.headlines[0]),
-                characters=theme.rulechar,
+            yield from self.section(name)
+
+        if label := item.label:
+            yield Align.center(Text(label, style=self.theme.emphasis.strong))
+            yield NewLine()
+
+        contact_items = [item for item in (item.email, item.phone, item.url) if item]
+        if contact_items:
+            yield Align.center(
+                Text(
+                    f" {self.theme.sep} ".join(contact_items),
+                    style=self.theme.emphasis.weak,
+                )
             )
             yield NewLine()
 
-        if label := item.label:
-            yield Align.center(Text(label, style=theme.emphasis[2]))
-            yield NewLine()
-        contact_items = [item for item in (item.email, item.phone, item.url) if item]
-        yield Align.center(Text("  ".join(contact_items)))
-        yield NewLine()
         if summary := item.summary:
-            yield Text(summary)
+            yield Text(summary, style=self.theme.emphasis.medium)
             yield NewLine()
 
     @format.register
-    def _(self, item: Location, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Location) -> RenderableGenerator:
         if address := item.address:
             lines = address.split("\n")
             for line in lines:
-                yield Align.center(Text(line))
+                yield Align.center(Text(line, style=self.theme.emphasis.weak))
 
         country_line = [
             item
             for item in (item.postalCode, item.city, item.region, item.countryCode)
             if item
         ]
-        yield Align.center(Text(", ".join(country_line)))
+        yield Align.center(
+            Text(", ".join(country_line), style=self.theme.emphasis.weak)
+        )
 
     @format.register
-    def _(self, item: Profile, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Profile) -> RenderableGenerator:
         yield item.network or ""
         yield item.username or ""
         yield f"({item.url})" if item.url else ""
 
     @format.register
-    def _(self, item: WorkItem, theme: Theme) -> RenderableGenerator:
+    def _(self, item: WorkItem) -> RenderableGenerator:
         tagline = Text.assemble(
-            (item.name or "", theme.emphasis[0]),
+            (item.name or "", self.theme.emphasis.maximum),
             " ",
-            (item.description or "", theme.emphasis[1]),
+            (item.description or "", self.theme.emphasis.weak),
         )
 
         yield from horizontal_fill(
-            tagline, self.date_range(item.startDate, item.endDate)
+            tagline,
+            Text(
+                self.date_range(item.startDate, item.endDate),
+                style=self.theme.emphasis.weak,
+            ),
         )
 
         if position := item.position:
             yield NewLine()
-            yield indent(Text(position))
+            yield indent(Text(position, style=self.theme.emphasis.strong))
 
         if summary := item.summary:
             yield NewLine()
-            yield indent(Text(summary))
+            yield indent(Text(summary, style=self.theme.emphasis.medium))
 
         if highlights := item.highlights:
             yield NewLine()
             for highlight in highlights:
-                yield indent(indent(Text(f"{theme.bullet} {highlight}")))
+                yield indent(
+                    indent(
+                        Text(
+                            f"{self.theme.bullet} {highlight}",
+                            style=self.theme.emphasis.medium,
+                        )
+                    )
+                )
 
         location = item.location
         url = item.url
@@ -317,181 +338,262 @@ class Sequential(Template):
             yield NewLine()
             yield indent(
                 Text.assemble(
-                    location or "",
-                    " - " if (location and url) else "",
-                    (url or "", theme.emphasis[1]),
+                    (location or "", self.theme.emphasis.weak),
+                    (
+                        f" {self.theme.sep} " if (location and url) else "",
+                        self.theme.emphasis.weak,
+                    ),
+                    (url or "", self.theme.emphasis.weak),
                 )
             )
 
     @format.register
-    def _(self, item: Skill, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Skill) -> RenderableGenerator:
         if name := item.name:
             yield Text.assemble(
-                (name, theme.emphasis[0]),
-                (f" - {item.level}" if item.level else "", theme.emphasis[0]),
+                (name, self.theme.emphasis.maximum),
+                (" " if item.level else ""),
+                (self.theme.sep if item.level else "", self.theme.emphasis.maximum),
+                (" " if item.level else ""),
+                (f"{item.level}" if item.level else "", self.theme.emphasis.strong),
             )
             if keywords := item.keywords:
                 yield NewLine()
-                yield indent(Text(", ".join(keywords), style=theme.emphasis[1]))
+                yield indent(
+                    Text(", ".join(keywords), style=self.theme.emphasis.medium)
+                )
             yield NewLine()
 
     @format.register
-    def _(self, item: VolunteerItem, theme: Theme) -> RenderableGenerator:
+    def _(self, item: VolunteerItem) -> RenderableGenerator:
         yield from horizontal_fill(
-            Text(item.organization or "", style=theme.emphasis[0]),
-            self.date_range(item.startDate, item.endDate),
+            Text(item.organization or "", style=self.theme.emphasis.maximum),
+            Text(
+                self.date_range(item.startDate, item.endDate),
+                style=self.theme.emphasis.weak,
+            ),
         )
 
         if position := item.position:
             yield NewLine()
-            yield indent(Text(position))
+            yield indent(Text(position, style=self.theme.emphasis.strong))
 
         if summary := item.summary:
             yield NewLine()
-            yield indent(Text(summary))
+            yield indent(Text(summary, style=self.theme.emphasis.medium))
 
         if highlights := item.highlights:
             yield NewLine()
             for highlight in highlights:
-                yield indent(indent(Text(f"{theme.bullet} {highlight}")))
+                yield indent(
+                    indent(
+                        Text(
+                            f"{self.theme.bullet} {highlight}",
+                            style=self.theme.emphasis.medium,
+                        )
+                    )
+                )
 
         if url := item.url:
             yield NewLine()
-            yield indent(Text(url, theme.emphasis[1]))
+            yield indent(Text(url, self.theme.emphasis.weak))
 
     @format.register
-    def _(self, item: EducationItem, theme: Theme) -> RenderableGenerator:
+    def _(self, item: EducationItem) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
-                (item.institution or "", theme.emphasis[0]),
-                ": " if item.area else "",
-                (item.area or "", theme.emphasis[1]),
-                f" ({item.studyType})" if item.studyType else "",
+                (item.institution or "", self.theme.emphasis.maximum),
+                (":" if item.area else "", self.theme.emphasis.maximum),
+                " " if item.area else "",
+                (item.area or "", self.theme.emphasis.strong),
+                " " if item.studyType else "",
+                (
+                    f"({item.studyType})" if item.studyType else "",
+                    self.theme.emphasis.medium,
+                ),
             ),
-            self.date_range(item.startDate, item.endDate),
+            Text(
+                self.date_range(item.startDate, item.endDate),
+                style=self.theme.emphasis.weak,
+            ),
         )
 
         if score := item.score:
             yield NewLine()
-            yield indent(Text(f"{self.translation.score}: {score}"))
+            yield indent(
+                Text(
+                    f"{self.translation.score}: {score}",
+                    style=self.theme.emphasis.medium,
+                )
+            )
 
         if courses := item.courses:
             yield NewLine()
             for course in courses:
-                yield indent(indent(Text(f"{theme.bullet} {course}")))
+                yield indent(
+                    indent(
+                        Text(
+                            f"{self.theme.bullet} {course}",
+                            style=self.theme.emphasis.weak,
+                        )
+                    )
+                )
 
         if url := item.url:
             yield NewLine()
-            yield indent(Text(url, theme.emphasis[1]))
+            yield indent(Text(url, style=self.theme.emphasis.weak))
 
     @format.register
-    def _(self, item: Award, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Award) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
-                (item.title or "", theme.emphasis[0]),
-                (f" ({item.awarder})" if item.awarder else "", theme.emphasis[1]),
+                (item.title or "", self.theme.emphasis.maximum),
+                " " if item.awarder else "",
+                (f"({item.awarder})" if item.awarder else "", self.theme.emphasis.weak),
             ),
-            self.format_date(item.date) if item.date else "",
+            Text(
+                self.format_date(item.date) if item.date else "",
+                style=self.theme.emphasis.weak,
+            ),
         )
 
         if summary := item.summary:
             yield NewLine()
-            yield indent(Text(summary))
+            yield indent(Text(summary, style=self.theme.emphasis.medium))
 
     @format.register
-    def _(self, item: Certificate, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Certificate) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
-                (item.name or "", theme.emphasis[0]),
-                (f" ({item.issuer})" if item.issuer else "", theme.emphasis[1]),
+                (item.name or "", self.theme.emphasis.maximum),
+                " " if item.issuer else "",
+                (f"({item.issuer})" if item.issuer else "", self.theme.emphasis.weak),
             ),
-            self.format_date(item.date) if item.date else "",
+            Text(
+                self.format_date(item.date) if item.date else "",
+                style=self.theme.emphasis.weak,
+            ),
         )
 
         if url := item.url:
             yield NewLine()
-            yield indent(Text(url, style=theme.emphasis[1]))
+            yield indent(Text(url, style=self.theme.emphasis.weak))
 
     @format.register
-    def _(self, item: Publication, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Publication) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
-                (item.name or "", theme.emphasis[0]),
-                (f" ({item.publisher})" if item.publisher else "", theme.emphasis[1]),
+                (item.name or "", self.theme.emphasis.maximum),
+                (" " if item.publisher else ""),
+                (
+                    f"({item.publisher})" if item.publisher else "",
+                    self.theme.emphasis.weak,
+                ),
             ),
-            self.format_date(item.releaseDate) if item.releaseDate else "",
+            Text(
+                self.format_date(item.releaseDate) if item.releaseDate else "",
+                style=self.theme.emphasis.weak,
+            ),
         )
 
         if summary := item.summary:
             yield NewLine()
-            yield indent(Text(summary))
+            yield indent(Text(summary, style=self.theme.emphasis.medium))
 
         if url := item.url:
             yield NewLine()
-            yield indent(Text(url, style=theme.emphasis[1]))
+            yield indent(Text(url, style=self.theme.emphasis.weak))
 
     @format.register
-    def _(self, item: Language, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Language) -> RenderableGenerator:
         if language := item.language:
             yield NewLine()
-            yield Text(language, style=theme.emphasis[0])
+            yield Text(language, style=self.theme.emphasis.maximum)
             if fluency := item.fluency:
                 yield NewLine()
-                yield indent(Text(fluency, style=theme.emphasis[1]))
+                yield indent(Text(fluency, style=self.theme.emphasis.strong))
 
     @format.register
-    def _(self, item: Reference, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Reference) -> RenderableGenerator:
         if reference := item.reference:
             yield NewLine()
-            yield indent(Text(reference, style=theme.emphasis[1]))
+            yield indent(Text(reference, style=self.theme.emphasis.strong))
 
             if name := item.name:
                 yield NewLine()
-                yield indent(Text(f" - {name}", style=theme.emphasis[0]))
+                yield indent(
+                    Text(f" {self.theme.bullet} {name}", style=self.theme.emphasis.weak)
+                )
 
     @format.register
-    def _(self, item: Interest, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Interest) -> RenderableGenerator:
         if name := item.name:
-            yield Text(name, style=theme.emphasis[0])
+            yield Text(name, style=self.theme.emphasis.maximum)
             if keywords := item.keywords:
                 yield NewLine()
-                yield indent(Text(", ".join(keywords), style=theme.emphasis[1]))
+                yield indent(
+                    Text(", ".join(keywords), style=self.theme.emphasis.strong)
+                )
             yield NewLine()
 
     @format.register
-    def _(self, item: Project, theme: Theme) -> RenderableGenerator:
+    def _(self, item: Project) -> RenderableGenerator:
         yield from horizontal_fill(
             Text.assemble(
-                (item.name or "", theme.emphasis[0]),
-                (f" - {item.type}" if item.type else "", theme.emphasis[1]),
+                (item.name or "", self.theme.emphasis.maximum),
+                (" " if item.type else ""),
+                (self.theme.sep if item.type else "", self.theme.emphasis.maximum),
+                (" " if item.type else ""),
+                (item.type if item.type else "", self.theme.emphasis.weak),
             ),
-            self.date_range(item.startDate, item.endDate),
+            Text(
+                self.date_range(item.startDate, item.endDate),
+                style=self.theme.emphasis.weak,
+            ),
         )
 
         if description := item.description:
-            yield indent(Text(description, theme.emphasis[1]))
+            yield NewLine()
+            yield indent(Text(description, self.theme.emphasis.strong))
             yield NewLine()
 
         if highlights := item.highlights:
             for highlight in highlights:
-                yield indent(indent(Text(f"{theme.bullet} {highlight}")))
+                yield indent(
+                    indent(
+                        Text(
+                            f"{self.theme.bullet} {highlight}",
+                            style=self.theme.emphasis.medium,
+                        )
+                    )
+                )
             yield NewLine()
 
         if roles := item.roles:
-            yield indent(Text(f"{self.translation.roles}:"))
+            yield indent(
+                Text(f"{self.translation.roles}:", style=self.theme.emphasis.strong)
+            )
             yield NewLine()
             for role in roles:
                 yield indent(
-                    indent(Text(f"{theme.bullet} {role}", style=theme.emphasis[1]))
+                    indent(
+                        Text(
+                            f"{self.theme.bullet} {role}",
+                            style=self.theme.emphasis.medium,
+                        )
+                    )
                 )
             yield NewLine()
 
         if keywords := item.keywords:
-            yield indent(Text(", ".join(keywords), style=theme.emphasis[1]))
+            yield indent(Text(", ".join(keywords), style=self.theme.emphasis.medium))
             yield NewLine()
 
-        footer = join((item.url, theme.emphasis[1]), (item.entity, theme.emphasis[0]))
+        footer = join(
+            (item.url, Style()), (item.entity, Style()), separator=self.theme.sep
+        )
         if footer:
+            footer.style = self.theme.emphasis.weak
             yield indent(footer)
             yield NewLine()
 
@@ -499,23 +601,23 @@ class Sequential(Template):
         self, console: Console, options: ConsoleOptions
     ) -> RenderableGenerator:
         if basics := self.model.basics:
-            yield from self.format(basics, self.theme)
+            yield from self.format(basics)
 
             if profiles := basics.profiles:
                 table = Table.grid(
-                    Column("network", style=self.theme.emphasis[0]),
-                    Column("username", style=self.theme.emphasis[1]),
-                    Column("url"),
+                    Column("network", style=self.theme.emphasis.strong),
+                    Column("username", style=self.theme.emphasis.medium),
+                    Column("url", style=self.theme.emphasis.weak),
                     padding=PaddingLevels(top=0, right=1, bottom=0, left=1),
                 )
                 for profile in profiles:
-                    formatted = self.format(profile, self.theme)
+                    formatted = self.format(profile)
                     table.add_row(*formatted)
                 yield Align.center(table)
 
             if location := basics.location:
                 yield NewLine()
-                yield from self.format(location, self.theme)
+                yield from self.format(location)
 
             yield NewLine()
 

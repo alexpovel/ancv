@@ -13,7 +13,7 @@ from ancv.visualization.templates import (
     Template,
     ensure_single_trailing_newline,
 )
-from ancv.visualization.themes import Theme
+from ancv.visualization.themes import Emphasis, Theme
 from ancv.visualization.translations import TRANSLATIONS, Translation
 
 
@@ -42,10 +42,16 @@ def test_ensure_single_trailing_newline(
 
 
 TRANSLATION = TRANSLATIONS["en"]
+EMPHASIS = Emphasis(
+    maximum=Style(),
+    strong=Style(),
+    medium=Style(),
+    weak=Style(),
+)
 
 
 @pytest.mark.parametrize(
-    ["start", "end", "template", "sep", "collapse", "expected"],
+    ["start", "end", "template", "collapse", "expected"],
     [
         (
             None,
@@ -54,8 +60,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="-",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -80,7 +87,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "_",
             False,
             "",
         ),
@@ -91,8 +97,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="-",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -117,7 +124,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "-",
             False,
             "- March 2900",
         ),
@@ -128,8 +134,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="-",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -154,7 +161,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "-",
             False,
             "December 0163 - present",
         ),
@@ -165,8 +171,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="-",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -191,7 +198,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "-",
             False,
             "January 2021 - today",
         ),
@@ -202,8 +208,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="-",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -228,7 +235,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "-",
             False,
             "January 2021 - February 2021",
         ),
@@ -239,8 +245,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="-",
                     rulechar=".",
                     datefmt="yyyy-MM",
                 ),
@@ -265,7 +272,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "-",
             False,
             "1999-04 - 2018-09",
         ),
@@ -276,8 +282,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="***",
                     rulechar=".",
                     datefmt="yyyy-MM",
                 ),
@@ -302,7 +309,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "***",
             False,
             "1999-04 *** 2018-09",
         ),
@@ -313,8 +319,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="***",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -339,7 +346,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("de"),
                 ascii_only=False,
             ),
-            "***",
             False,
             "März 1999 *** Oktober 2018",
         ),
@@ -350,8 +356,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="***",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -376,7 +383,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("es"),
                 ascii_only=False,
             ),
-            "***",
             False,
             "marzo 1999 *** octubre 2018",
         ),
@@ -387,8 +393,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="***",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -413,7 +420,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "***",
             True,
             "March 2018 *** April 2018",
         ),
@@ -424,8 +430,9 @@ TRANSLATION = TRANSLATIONS["en"]
                 ResumeSchema(),
                 Theme(
                     bullet=".",
-                    emphasis=[Style()],
-                    headlines=[Style()],
+                    emphasis=EMPHASIS,
+                    sep=".",
+                    range_sep="***",
                     rulechar=".",
                     datefmt="MMMM yyyy",
                 ),
@@ -450,7 +457,6 @@ TRANSLATION = TRANSLATIONS["en"]
                 Locale("en"),
                 ascii_only=False,
             ),
-            "***",
             True,
             "April 2018",
         ),
@@ -460,11 +466,10 @@ def test_default_date_range(
     start: Optional[date],
     end: Optional[date],
     template: Template,
-    sep: str,
     collapse: bool,
     expected: str,
 ) -> None:
-    assert template.date_range(start, end, sep, collapse) == expected
+    assert template.date_range(start, end, collapse) == expected
 
 
 @pytest.mark.parametrize(

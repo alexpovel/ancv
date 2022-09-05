@@ -202,7 +202,7 @@
         "canonical": "https://github.com/jsonresume/resume-schema/blob/v1.0.0/schema.json",
         "ancv": {
             "template": "Sequential",
-            "theme": "basic",
+            "theme": "lollipop",
             "ascii_only": false,
             "language": "en"
         }
