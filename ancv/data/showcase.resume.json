@@ -2,7 +2,7 @@
     "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
     "basics": {
         "name": "Jane A. Cooper",
-        "label": "Fullstack Developer",
+        "label": "👋 Fullstack Developer",
         "image": "http://example.com/jane.jpg",
         "email": "janecooper@example.com",
         "phone": "+44 113 496 4389",
@@ -17,17 +17,17 @@
         },
         "profiles": [
             {
-                "network": "Twitter",
+                "network": "🐤 Twitter",
                 "username": "janethecoopest",
                 "url": "https://twitter.com/janethecoopest"
             },
             {
-                "network": "LinkedIn",
+                "network": "💼 LinkedIn",
                 "username": "jane-a-cooper",
                 "url": "https://linkedin.com/jane-a-cooper"
             },
             {
-                "network": "GitHub",
+                "network": "🐱 GitHub",
                 "username": "janec",
                 "url": "https://github.com/janec"
             }
@@ -41,7 +41,7 @@
             "position": "Software Engineer III",
             "url": "https://google.com",
             "startDate": "2016-03-30",
-            "summary": "Work included Borg (Google's internal cluster management system), Google's internal build system, and Google's internal continuous integration system.",
+            "summary": "Work included Borg (Google's internal cluster management system), Google's internal build system, and Google's internal continuous integration system.\n\nIn a pilot project, I also worked on reimagining Google's internal documentation management.",
             "highlights": [
                 "Wrote a new build system for Google's internal continuous integration system.",
                 "Improved performance of Google's internal Borg deployment by 18%."
