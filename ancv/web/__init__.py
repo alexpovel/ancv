@@ -1,10 +1,11 @@
 def is_terminal_client(user_agent: str) -> bool:
-    user_agent = user_agent.lower()
-    return any(
-        client in user_agent
-        for client in [
-            "curl",
-            "wget",
-            "powershell",
-        ]
-    )
+    terminal_clients = [
+        "curl",
+        "wget",
+        "powershell",
+    ]
+
+    for client in terminal_clients:
+        if client.lower() in user_agent.lower():
+            return True
+    return False
