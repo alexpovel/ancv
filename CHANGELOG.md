@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/alexpovel/ancv/compare/v0.17.0...v0.18.0) (2022-09-05)
+
+
+### Features
+
+* **app:** Add special `heyho` endpoint for showcasing ([79f20b8](https://github.com/alexpovel/ancv/commit/79f20b8b622108a626996989e3243c583357805b))
+
 ## [0.17.0](https://github.com/alexpovel/ancv/compare/v0.16.0...v0.17.0) (2022-09-04)
 
 
