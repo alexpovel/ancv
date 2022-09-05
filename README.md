@@ -1,6 +1,6 @@
 # [ancv](https://github.com/alexpovel/ancv)
 
-Getting you [an CV](https://www.youtube.com/watch?v=mJUtMEJdvqM) (*[ANSI](https://en.wikipedia.org/wiki/ANSI_escape_code)-v* 🤡) straight to your and anyone else's terminals.
+Getting you [an CV](https://youtu.be/mJUtMEJdvqM?t=16) (*[ANSI](https://en.wikipedia.org/wiki/ANSI_escape_code)-v* 🤡) straight to your and anyone else's terminals.
 
 Be warned though, for this is kinda useless and just for fun:
 
@@ -8,15 +8,17 @@ Be warned though, for this is kinda useless and just for fun:
 
 ## Getting started
 
-1. Create a resume according to the [JSON Resume Schema](https://jsonresume.org/schema/) (see also the [schema specification](https://github.com/jsonresume/resume-schema/blob/master/schema.json)) either:
+1. Create your resume according to the [JSON Resume Schema](https://jsonresume.org/schema/) (see also the [schema specification](https://github.com/jsonresume/resume-schema/blob/master/schema.json)) either:
 
    - manually (see [the `heyho` sample](./ancv/data/showcase.resume.json) for a possible starting point),
    - exporting from [LinkedIn](https://www.linkedin.com/) using [Joshua Tzucker's LinkedIn exporter](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/) ([repo](https://github.com/joshuatz/linkedin-to-jsonresume)), or
    - exporting from one of the platforms advertised as offering [JSON resume integration](https://jsonresume.org/schema/).
-2. [Create a **public** gist](https://gist.github.com/) named `resume.json` with those resume contents.
-3. Try it out!
+2. [Create a **public** gist](https://gist.github.com/) named `resume.json` with your resume contents.
+3. You're now the proud owner of an ancv.
+   Time to try it out.
+
    The following examples work out-of-the-box.
-   **Replace `heyho` with your GitHub username** when you're ready.
+   **Replace `heyho` with your GitHub username** once you're all set up.
 
    - curl:
 
