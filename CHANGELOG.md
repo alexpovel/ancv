@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://github.com/alexpovel/ancv/compare/v0.18.0...v0.19.0) (2022-09-05)
+
+
+### Features
+
+* **app:** Refactor and improve theming ([e35b703](https://github.com/alexpovel/ancv/commit/e35b703283f1e58e97a7856dfbfaef52699a3854))
+
 ## [0.18.0](https://github.com/alexpovel/ancv/compare/v0.17.0...v0.18.0) (2022-09-05)
 
 
