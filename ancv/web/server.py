@@ -15,7 +15,6 @@ from ancv.data.validation import is_valid_github_username
 from ancv.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.timing import Stopwatch
 from ancv.visualization.templates import Template
-from ancv.web import is_terminal_client
 from ancv.web.client import get_resume
 
 LOGGER = get_logger()
@@ -25,6 +24,19 @@ _SHOWCASE_RESUME = Template.from_file(
 ).render()
 
 _SHOWCASE_USERNAME = "heyho"
+
+
+def is_terminal_client(user_agent: str) -> bool:
+    terminal_clients = [
+        "curl",
+        "wget",
+        "powershell",
+    ]
+
+    for client in terminal_clients:
+        if client.lower() in user_agent.lower():
+            return True
+    return False
 
 
 @dataclass
