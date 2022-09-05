@@ -1,0 +1,210 @@
+{
+    "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+    "basics": {
+        "name": "Jane A. Cooper",
+        "label": "Fullstack Developer",
+        "image": "http://example.com/jane.jpg",
+        "email": "janecooper@example.com",
+        "phone": "+44 113 496 4389",
+        "url": "https://cooper.example.dev",
+        "summary": "Passionate and creative fullstack developer with over 7 years of experience in building and maintaining web applications. I have a strong background in JavaScript and PHP, and I am proficient in a variety of frameworks and libraries. I am also experienced in building and maintaining RESTful APIs.",
+        "location": {
+            "address": "1995 Little Acres Lane",
+            "postalCode": "CA 94115",
+            "city": "Carrollton",
+            "countryCode": "US",
+            "region": "Texas"
+        },
+        "profiles": [
+            {
+                "network": "Twitter",
+                "username": "janethecoopest",
+                "url": "https://twitter.com/janethecoopest"
+            },
+            {
+                "network": "LinkedIn",
+                "username": "jane-a-cooper",
+                "url": "https://linkedin.com/jane-a-cooper"
+            },
+            {
+                "network": "GitHub",
+                "username": "janec",
+                "url": "https://github.com/janec"
+            }
+        ]
+    },
+    "work": [
+        {
+            "name": "Google Inc.",
+            "location": "San Francisco, CA",
+            "description": "Internal tools and services.",
+            "position": "Software Engineer III",
+            "url": "https://google.com",
+            "startDate": "2016-03-30",
+            "summary": "Work included Borg (Google's internal cluster management system), Google's internal build system, and Google's internal continuous integration system.",
+            "highlights": [
+                "Wrote a new build system for Google's internal continuous integration system.",
+                "Improved performance of Google's internal Borg deployment by 18%."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "institution": "Massachusets Institute of Technology",
+            "url": "https://www.mit.edu/",
+            "area": "Computer Science (Distributed Systems)",
+            "studyType": "Bachelor of Science",
+            "startDate": "2012-10-01",
+            "endDate": "2016-01-01",
+            "score": "3.91",
+            "courses": [
+                "6.1600: Foundations of Computer Security",
+                "6.1810: Operating System Engineering",
+                "6.1820: Mobile and Sensor Computing",
+                "6.5831: Database Systems"
+            ]
+        }
+    ],
+    "certificates": [
+        {
+            "name": "Google Certified Professional Cloud Architect",
+            "issuer": "Google",
+            "date": "2019-02-01",
+            "url": "https://cloud.google.com/certification/cloud-architect",
+            "summary": "Demonstrated proficiency in designing, developing, managing, and monitoring cloud-based applications and infrastructure."
+        }
+    ],
+    "awards": [
+        {
+            "title": "Google Code-in Finalist 🏆",
+            "date": "2011-12-01",
+            "awarder": "Google",
+            "summary": "Finalist for Google Code-in, a global contest for pre-university students to introduce them to open source software development."
+        }
+    ],
+    "interests": [
+        {
+            "name": "Open Source",
+            "keywords": [
+                "Software Development",
+                "Linux",
+                "Maintenance"
+            ]
+        },
+        {
+            "name": "Music",
+            "keywords": [
+                "Guitar",
+                "Folk Rock"
+            ]
+        }
+    ],
+    "languages": [
+        {
+            "language": "English",
+            "fluency": "Native speaker"
+        },
+        {
+            "language": "Spanish",
+            "fluency": "Professional working proficiency"
+        }
+    ],
+    "projects": [
+        {
+            "name": "AWS Benchmarking Tool",
+            "description": "A tool for benchmarking the performance of various AWS services, including EC2, S3, and Lambda. Written in Python.",
+            "url": "https://github.com/janec/aws-benchmarking-tool",
+            "highlights": [
+                "100% code coverage and fully typed",
+                "Can run as a CLI or as a web service, with OpenAPI documentation",
+                "Full support for parallel execution"
+            ],
+            "keywords": [
+                "AWS",
+                "Benchmarking",
+                "Python",
+                "Infrastructure"
+            ],
+            "startDate": "2015-11-30"
+        }
+    ],
+    "publications": [
+        {
+            "name": "Modern Approaches to Distributed Systems",
+            "publisher": "MIT Press",
+            "releaseDate": "2015-12-01",
+            "url": "https://mitpress.mit.edu/books/new-approach-distributed-systems",
+            "summary": "A comprehensive literature overview to distributed systems, with a focus on the practical aspects of building and maintenance."
+        }
+    ],
+    "references": [
+        {
+            "name": "Tom T. Baker",
+            "reference": "Jane is a very talented developer and lovely teammate. They are a pleasure to work with, and I would recommend them to any company."
+        }
+    ],
+    "skills": [
+        {
+            "name": "Web Development",
+            "level": "Expert",
+            "keywords": [
+                "HTML",
+                "CSS",
+                "JavaScript (ES6+)",
+                "PHP"
+            ]
+        },
+        {
+            "name": "Python",
+            "level": "Proficient",
+            "keywords": [
+                "Django",
+                "Flask",
+                "Pyramid"
+            ]
+        },
+        {
+            "name": "Databases",
+            "level": "Intermediate",
+            "keywords": [
+                "PostgreSQL",
+                "MySQL",
+                "MongoDB"
+            ]
+        },
+        {
+            "name": "Cloud",
+            "level": "Expert",
+            "keywords": [
+                "AWS",
+                "Google Cloud",
+                "Azure"
+            ]
+        }
+    ],
+    "volunteer": [
+        {
+            "organization": "Shelter for Homeless Cats",
+            "position": "Volunteer",
+            "url": "https://example.com/catshelter",
+            "startDate": "2009-07-01",
+            "endDate": "2019-06-01",
+            "summary": "Provided food and shelter for homeless cats.",
+            "highlights": [
+                "Cared for 20 cats",
+                "Raised $3400 for food and supplies",
+                "Organized adoption events"
+            ]
+        }
+    ],
+    "meta": {
+        "version": "v1.0.0",
+        "canonical": "https://github.com/jsonresume/resume-schema/blob/v1.0.0/schema.json",
+        "ancv": {
+            "template": "Sequential",
+            "theme": "basic",
+            "ascii_only": false,
+            "language": "en"
+        }
+    }
+}

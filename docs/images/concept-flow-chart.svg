@@ -24,9 +24,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="20.70196"
-     inkscape:cx="391.70205"
-     inkscape:cy="222.44271"
+     inkscape:zoom="5.17549"
+     inkscape:cx="930.92635"
+     inkscape:cy="120.95473"
      inkscape:window-width="3840"
      inkscape:window-height="2066"
      inkscape:window-x="-11"
@@ -547,7 +547,7 @@
          id="tspan40647"
          style="font-size:4.93889px;text-align:start;text-anchor:start;stroke-width:0.264583"
          x="339.39386"
-         y="-71.387077">$ curl -L ancv.io/user</tspan></text>
+         y="-71.387077">$ curl -L ancv.io/heyho</tspan></text>
     <path
        style="fill:none;stroke:#e6f4f8;stroke-width:8.22229;stroke-linecap:round;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
        d="m 350.61631,-55.565273 19.44406,-0.141374"

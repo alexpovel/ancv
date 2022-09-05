@@ -10,6 +10,7 @@ from cachetools import TTLCache
 from gidgethub.aiohttp import GitHubAPI
 from structlog import get_logger
 
+from ancv import PROJECT_ROOT
 from ancv.data.validation import is_valid_github_username
 from ancv.exceptions import ResumeConfigError, ResumeLookupError
 from ancv.timing import Stopwatch
@@ -18,6 +19,12 @@ from ancv.web import is_terminal_client
 from ancv.web.client import get_resume
 
 LOGGER = get_logger()
+
+_SHOWCASE_RESUME = Template.from_file(
+    PROJECT_ROOT / "data" / "showcase.resume.json"
+).render()
+
+_SHOWCASE_USERNAME = "heyho"
 
 
 @dataclass
@@ -123,6 +130,9 @@ class APIHandler(Runnable):
         log.info(request.message.headers)
 
         user = request.match_info["username"]
+
+        if user == _SHOWCASE_USERNAME:
+            return web.Response(text=_SHOWCASE_RESUME)
 
         if not is_valid_github_username(user):
             raise web.HTTPBadRequest(reason=f"Invalid username: {user}")

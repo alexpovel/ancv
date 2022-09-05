@@ -7,7 +7,7 @@ import pytest
 from aiohttp.client import ClientResponse
 from aiohttp.web import Application
 
-from ancv.web.server import server_timing_header
+from ancv.web.server import _SHOWCASE_RESUME, _SHOWCASE_USERNAME, server_timing_header
 from tests import gh_rate_limited
 
 
@@ -102,6 +102,18 @@ class TestApiHandler:
 
         if expected_error_message is not None:
             assert await resp.text() == expected_error_message
+
+    async def test_showcase_endpoint(
+        self,
+        aiohttp_client: Any,
+        api_client_app: Application,
+        event_loop: Any,
+    ) -> None:
+        client = await aiohttp_client(api_client_app)
+
+        resp: ClientResponse = await client.get(f"/{_SHOWCASE_USERNAME}")
+        assert resp.status == HTTPStatus.OK
+        assert await resp.text() == _SHOWCASE_RESUME
 
     @pytest.mark.parametrize(
         ["username", "expected_contained_text"],

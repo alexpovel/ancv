@@ -10,29 +10,31 @@ Be warned though, for this is kinda useless and just for fun:
 
 1. Create a resume according to the [JSON Resume Schema](https://jsonresume.org/schema/) (see also the [schema specification](https://github.com/jsonresume/resume-schema/blob/master/schema.json)) either:
 
-   - manually (see [this sample](./tests/test_data/resumes/full.json) for a possible starting point),
+   - manually (see [the `heyho` sample](./ancv/data/showcase.resume.json) for a possible starting point),
    - exporting from [LinkedIn](https://www.linkedin.com/) using [Joshua Tzucker's LinkedIn exporter](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/) ([repo](https://github.com/joshuatz/linkedin-to-jsonresume)), or
    - exporting from one of the platforms advertised as offering [JSON resume integration](https://jsonresume.org/schema/).
 2. [Create a **public** gist](https://gist.github.com/) named `resume.json` with those resume contents.
-   See [here](https://gist.github.com/alexpovel/4a94aaccdc6ed8d214d0f8a73e50a536) for a working example from the author.
-3. Try it out, using...
+3. Try it out!
+   The following examples work out-of-the-box.
+   **Replace `heyho` with your GitHub username** when you're ready.
+
    - curl:
 
       ```bash
-      curl -L ancv.io/username
+      curl -L ancv.io/heyho
       ```
 
       with `-L` being shorthand for [`--location`](https://curl.se/docs/manpage.html), allowing you to follow the redirect from `http://ancv.io` through to `https://ancv.io`.
       It's shorter than its also perfectly viable alternative:
 
       ```bash
-      curl https://ancv.io/username
+      curl https://ancv.io/heyho
       ```
 
       Lastly, you might want to page the output for easiest reading, top-to-bottom:
 
       ```bash
-      curl -sL ancv.io/username | less
+      curl -sL ancv.io/heyho | less
       ```
 
       If that garbles the rendered output, try `less -r` aka [`--raw-control-chars`](https://man7.org/linux/man-pages/man1/less.1.html).
@@ -40,7 +42,7 @@ Be warned though, for this is kinda useless and just for fun:
    - wget:
 
      ```bash
-     wget -O - --quiet ancv.io/username
+     wget -O - --quiet ancv.io/heyho
      ```
 
      where `-O` is short for [`--output-document`](https://linux.die.net/man/1/wget), used here to redirect to stdout.
@@ -48,12 +50,10 @@ Be warned though, for this is kinda useless and just for fun:
    - PowerShell (5 and 7):
 
      ```powershell
-     (iwr ancv.io/username).Content
+     (iwr ancv.io/heyho).Content
      ```
 
      where `iwr` is an alias for [`Invoke-Webrequest`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-7.2), returning an object.
-
-   **For a quick, working example replace `username` with `alexpovel`.**
 
 ## Configuration
 
