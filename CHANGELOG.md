@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.19.1](https://github.com/alexpovel/ancv/compare/v0.19.0...v0.19.1) (2022-09-06)
+
+
+### Documentation
+
+* Give `rich` a shout-out ([3ad55ca](https://github.com/alexpovel/ancv/commit/3ad55ca87bbd6a4a9aa18b1bb9d9d4db3fbad8a5))
+* Improve README, add YouTube timestamp ([615d883](https://github.com/alexpovel/ancv/commit/615d88306bfb4ebce2b527f0ae6caca8571e0522))
+* Specify `-UseBasicParsing` for PowerShell 5 ([38566d1](https://github.com/alexpovel/ancv/commit/38566d122e39b6e13f699b215a746bdfefa89196))
+
 ## [0.19.0](https://github.com/alexpovel/ancv/compare/v0.18.0...v0.19.0) (2022-09-05)
 
 
