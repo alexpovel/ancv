@@ -7,6 +7,7 @@ This document is less about software architecture per-se, but rather about techn
 ## Features
 
 - fully async using [`aiohttp`](https://docs.aiohttp.org/en/stable/) and [gidgethub](https://gidgethub.readthedocs.io/en/latest/index.html)
+- based around the fantastic [`rich`](https://github.com/Textualize/rich) library for terminal output
 - [structural pattern matching](https://peps.python.org/pep-0634/), introduced in Python 3.10:
   - initially used for fun, but not because any use cases were substantially easier using it,
   - then dropped on 2022-07-16 since Python 3.10 is [unsupported by AWS lambda](https://github.com/aws/aws-lambda-base-images/issues/31),
