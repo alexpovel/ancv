@@ -79,16 +79,38 @@ The CV is constructed as follows:
 
 ![conceptual flow chart](docs/images/concept-flow-chart.svg)
 
-These components may be controlled using the `ancv` field in your `resume.json`:
+In summary:
+
+- you control:
+  - the base layout using a *template*: order of items, indentations, text alignment, position of dates and much more.
+    Templates are like layouts/skeletons.
+  - colors, italics, boldface, underlining, blinking (yes, really) and more using a *theme*. A couple exist but you can easily add your own one.
+  - almost all text, save for strings like *Education*, names of months etc. These are governed by *translations*, of which there are a couple available already.
+  - text content like emojis and newlines to control paragraph breaks.
+
+    Emojis are user-controlled: if you want them, use them in your `resume.json`; in the future, there might be *templates* with emojis baked in, but you'd have to actively opt into using one.
+  - lastly, there's a toggle for ASCII-only output.
+
+    It only concerns the *template* and controls the drawing of boxes and such (e.g., [`-`](https://unicode-table.com/en/002D/) versus [`─`](https://unicode-table.com/en/2500/) : only the latter will produce gapless rules).
+    If you yourself use non-ASCII characters in your texts, use a *language* containing non-ASCII characters (Spanish, French, ...) or a *theme* with non-ASCII characters (e.g., a theme might use the `•` character to print bullet points), non-ASCII Unicode will still occur.
+    As such, this toggle currently isn't very powerful, but with some care it *does* ultimately allow you to be ASCII-only.
+
+  If you come up with new templates, themes or translations, a PR would be highly appreciated.
+- you *do not* control:
+  - anything about a viewer's terminal!
+
+    Any recent terminal will support a baseline of features (e.g., colors), but large parts of the functionalities depend on the *font* used: proper Unicode support is needed for pretty output (see `ascii_only`), and ideally emojis if you're into that (although it's easy to pick an emoji-free template).
+    Many themes leverage Unicode characters as well.
+  - access to your CV: like the gist itself, it will be publicly available on GitHub.
+
+The components may be controlled using the `ancv` field in your `resume.json`:
 
 ```json
 {
-   "basics": {},
-   "education": [],
    "meta": {
      "ancv": {
         "template": "Sequential",
-        "theme": "basic",
+        "theme": "lollipop",
         "ascii_only": false,
         "language": "en"
      }
@@ -98,8 +120,9 @@ These components may be controlled using the `ancv` field in your `resume.json`:
 
 The shown values are the default ones.
 All fields, including the `ancv` one itself, are optional, and the above defaults will be set for omitted fields.
-This means **a [valid JSON resume](https://github.com/jsonresume/resume-schema/blob/master/schema.json) (without an `ancv` section) is also valid here**.
-The currently available options can be printed out:
+This means **a [valid JSON resume](https://github.com/jsonresume/resume-schema/blob/master/schema.json) (without an `ancv` section) is valid already**.
+
+The currently available options are:
 
 ```bash
 $ pip install ancv >> /dev/null && ancv list
