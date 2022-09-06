@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.0](https://github.com/alexpovel/ancv/compare/v0.20.0...v1.0.0) (2022-09-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Trigger initial major bump aka release
+
+### Documentation
+
+* Explain all the different components ([6baf1d2](https://github.com/alexpovel/ancv/commit/6baf1d28b1f01c134bce9bbee3dae0bdc1edbe22))
+
+
+### bump
+
+* Trigger initial major bump aka release ([543f5e7](https://github.com/alexpovel/ancv/commit/543f5e7bff09046bf3a7a8193f09174c0b4deed4))
+
 ## [0.20.0](https://github.com/alexpovel/ancv/compare/v0.19.1...v0.20.0) (2022-09-06)
 
 
