@@ -1,10 +1,16 @@
 # [ancv](https://github.com/alexpovel/ancv)
 
-Getting you [an CV](https://youtu.be/mJUtMEJdvqM?t=16) (*[ANSI](https://en.wikipedia.org/wiki/ANSI_escape_code)-v* 🤡) straight to your and anyone else's terminals.
+Getting your resume aka [an CV](https://youtu.be/mJUtMEJdvqM?t=16) (*[ANSI](https://en.wikipedia.org/wiki/ANSI_escape_code)-v* 🤡) straight to your and anyone else's terminals:
+
+![showcase cv terminal output](docs/images/showcase.svg)
+
+---
 
 Be warned though, for this is kinda useless and just for fun:
 
-![Users Venn diagram](docs/images/users-venn.svg)
+<p align="center">
+   <img src="docs/images/users-venn.svg" alt="users venn diagram">
+</p>
 
 ## Getting started
 
