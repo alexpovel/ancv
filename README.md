@@ -49,13 +49,21 @@ Be warned though, for this is kinda useless and just for fun:
 
      where `-O` is short for [`--output-document`](https://linux.die.net/man/1/wget), used here to redirect to stdout.
 
-   - PowerShell (5 and 7):
+   - PowerShell 7:
 
      ```powershell
      (iwr ancv.io/heyho).Content
      ```
 
-     where `iwr` is an alias for [`Invoke-Webrequest`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-7.2), returning an object.
+     where `iwr` is an alias for [`Invoke-Webrequest`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-7.2), returning an object whose `Content` we access.
+   - PowerShell 5:
+
+     ```powershell
+     (iwr -UseBasicParsing ancv.io/heyho).Content
+     ```
+
+     where `-UseBasicParsing` is *only* required if you haven't set up Internet Explorer yet ([yes, really](https://stackoverflow.com/q/38005341/11477374)).
+     If you have, then it works as PowerShell 7 (where that flag is deprecated and the default anyway).
 
 ## Configuration
 
