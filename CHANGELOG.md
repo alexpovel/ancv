@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.20.0](https://github.com/alexpovel/ancv/compare/v0.19.1...v0.20.0) (2022-09-06)
+
+
+### Features
+
+* **i18n:** Add Spanish and French translations ([df98c24](https://github.com/alexpovel/ancv/commit/df98c2413d40180fef5029499543f6121e85fe74))
+
+
+### Documentation
+
+* Add showcase 'hero image' ([2e8de72](https://github.com/alexpovel/ancv/commit/2e8de72a7dc43e1fc0147b07fefb0bd757233205))
+* Update available components ([76c83a0](https://github.com/alexpovel/ancv/commit/76c83a0182b0d9c286017528dca17e7d3e8668a6))
+
 ## [0.19.1](https://github.com/alexpovel/ancv/compare/v0.19.0...v0.19.1) (2022-09-06)
 
 
