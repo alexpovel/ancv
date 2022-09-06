@@ -108,10 +108,15 @@ Components
 │   └── Sequential
 ├── Themes
 │   ├── plain
-│   └── basic
+│   ├── grayscale
+│   ├── basic
+│   ├── lollipop
+│   └── hendrix
 └── Translations
     ├── en
-    └── de
+    ├── de
+    ├── es
+    └── fr
 ```
 
 ## Installation
