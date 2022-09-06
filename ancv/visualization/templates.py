@@ -130,7 +130,7 @@ class Template(ABC):
             config = TemplateConfig()
 
         if (theme_name := config.theme) is None:
-            theme_name = "basic"
+            theme_name = "lollipop"
         try:
             theme = THEMES[theme_name]
         except KeyError as e:
