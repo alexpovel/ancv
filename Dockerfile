@@ -1,31 +1,36 @@
-FROM python:3.10-slim
+# Global ARG, available to all stages (if renewed)
+ARG WORKDIR="/app"
 
-ENV POETRY_HOME="/opt/poetry"
-ENV PATH="$POETRY_HOME/bin:$PATH"
+FROM python:3.10 AS builder
+
+# Renew (https://stackoverflow.com/a/53682110):
+ARG WORKDIR
 
 # Don't buffer `stdout`:
 ENV PYTHONUNBUFFERED=1
 # Don't create `.pyc` files:
 ENV PYTHONDONTWRITEBYTECODE=1
 
-WORKDIR /app
+RUN pip install poetry && poetry config virtualenvs.in-project true
 
-RUN apt-get update && apt-get install --yes --no-install-recommends \
-    curl \
-    gcc \
-    g++
+WORKDIR ${WORKDIR}
+COPY . .
 
-RUN curl -sSL https://install.python-poetry.org | python -
+RUN poetry install --only main
 
-# README.md is junk but poetry requests it and fails otherwise.
-COPY pyproject.toml poetry.lock README.md ./
-COPY ancv/ ./ancv/
+FROM python:3.10-alpine
 
-# Since this is an isolated image *just* for this project, we can install everything
-# globally, killing one virtual environment a time... See also:
-# https://python-poetry.org/docs/configuration/#virtualenvscreate .
-RUN poetry config virtualenvs.create false && poetry install --only main
+ARG WORKDIR
 
+WORKDIR ${WORKDIR}
+
+COPY --from=builder ${WORKDIR} .
+
+# For options, see https://boxmatrix.info/wiki/Property:adduser
+RUN adduser app -DHh ${WORKDIR} -u 1000
+USER 1000
+
+# App-specific settings:
 EXPOSE 8080
-ENTRYPOINT [ "ancv" ]
+ENTRYPOINT [ "./.venv/bin/python", "-m", "ancv" ]
 CMD [ "serve", "api", "--port", "8080" ]
