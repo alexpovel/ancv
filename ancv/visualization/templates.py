@@ -248,7 +248,7 @@ class Sequential(Template):
             yield NewLine()
 
     @singledispatchmethod
-    def format(self, item: ResumeItem, theme: Theme) -> RenderableGenerator:
+    def format(self, item: ResumeItem) -> RenderableGenerator:
         return NotImplemented
 
     @format.register
