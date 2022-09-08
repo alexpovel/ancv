@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class Translation(BaseModel):
-    score: str
+    grade: str
     awarded_by: str
     issued_by: str
     roles: str
@@ -22,7 +22,7 @@ class Translation(BaseModel):
 
 TRANSLATIONS = {
     "en": Translation(
-        score="Score",
+        grade="Grade",
         awarded_by="awarded by",
         issued_by="issued by",
         roles="Roles",
@@ -40,7 +40,7 @@ TRANSLATIONS = {
         present="present",
     ),
     "de": Translation(
-        score="Note",
+        grade="Note",
         awarded_by="verliehen von",
         issued_by="ausgestellt von",
         roles="Rollen",
@@ -58,7 +58,7 @@ TRANSLATIONS = {
         present="heute",
     ),
     "es": Translation(
-        score="Nota",
+        grade="Nota",
         awarded_by="otorgado por",
         issued_by="emitido por",
         roles="Funciones",
@@ -76,7 +76,7 @@ TRANSLATIONS = {
         present="actualidad",
     ),
     "fr": Translation(
-        score="Note",
+        grade="Note",
         awarded_by="décerné par",
         issued_by="délivré par",
         roles="Rôles",

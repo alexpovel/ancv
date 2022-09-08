@@ -422,7 +422,7 @@ class Sequential(Template):
             yield NewLine()
             yield indent(
                 Text(
-                    f"{self.translation.score}: {score}",
+                    f"{self.translation.grade}: {score}",
                     style=self.theme.emphasis.medium,
                 )
             )

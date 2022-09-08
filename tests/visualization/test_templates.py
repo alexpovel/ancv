@@ -67,7 +67,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -104,7 +104,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -141,7 +141,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -178,7 +178,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -215,7 +215,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -252,7 +252,7 @@ EMPHASIS = Emphasis(
                     datefmt="yyyy-MM",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -289,7 +289,7 @@ EMPHASIS = Emphasis(
                     datefmt="yyyy-MM",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -326,7 +326,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -363,7 +363,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -400,7 +400,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
@@ -437,7 +437,7 @@ EMPHASIS = Emphasis(
                     datefmt="MMMM yyyy",
                 ),
                 Translation(
-                    score=".",
+                    grade=".",
                     awarded_by=".",
                     issued_by=".",
                     roles=".",
