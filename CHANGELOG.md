@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/alexpovel/ancv/compare/v1.0.0...v1.0.1) (2022-09-08)
+
+
+### Bug Fixes
+
+* **i18n:** `score` -> `grade` ([17389b6](https://github.com/alexpovel/ancv/commit/17389b6c462914d2b6d9f24f2d13d99c0cf6ed62))
+
 ## [1.0.0](https://github.com/alexpovel/ancv/compare/v0.20.0...v1.0.0) (2022-09-06)
 
 
