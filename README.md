@@ -17,7 +17,7 @@ Be warned though, for this is kinda useless and just for fun:
 1. Create your resume according to the [JSON Resume Schema](https://jsonresume.org/schema/) (see also the [schema specification](https://github.com/jsonresume/resume-schema/blob/master/schema.json)) either:
 
    - manually (see [the `heyho` sample](./ancv/data/showcase.resume.json) for a possible starting point),
-   - exporting from [LinkedIn](https://www.linkedin.com/) using [Joshua Tzucker's LinkedIn exporter](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/) ([repo](https://github.com/joshuatz/linkedin-to-jsonresume)), or
+   - exporting from [LinkedIn](https://www.linkedin.com/) using [Joshua Tzucker's LinkedIn exporter](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/) ([repo](https://github.com/joshuatz/linkedin-to-jsonresume))[^1], or
    - exporting from one of the platforms advertised as offering [JSON resume integration](https://jsonresume.org/schema/).
 2. [Create a **public** gist](https://gist.github.com/) named `resume.json` with your resume contents.
 3. You're now the proud owner of an ancv.
@@ -218,3 +218,11 @@ If you go that route and succeed, please let me know! (I had given up with how d
      <img src="https://github.githubassets.com/images/modules/site/icons/footer/github-mark.svg" alt="github logo">
    </a>
 </p>
+
+[^1]: The exporter has a couple caveats.
+  You will probably not be able to paste its result into a gist and have it work out of the box.
+  It is recommended to paste the export into an editor capable of helping you find errors against the contained `$schema`, like VS Code.
+  Alternatively, a local `ancv render your-file.json` will print `pydantic` validation errors, which might be helpful in debugging.  
+  For example, the exporter might leave `$.basics.url` an empty string, which isn't a valid URI and therefore fails the schema and, by extension, `ancv`.
+  Similarly, `endDate` keys might get empty string values.
+  **Remove these entries** entirely to stay conformant to the JSON Resume Schema (to which `ancv` stays conformant).
