@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/alexpovel/ancv/compare/v1.0.1...v1.0.2) (2022-09-11)
+
+
+### Documentation
+
+* Add caveats concerning the LinkedIn Exporter approach ([87db22d](https://github.com/alexpovel/ancv/commit/87db22d447ac0be9ce21cec44c6feb6728240dbb))
+
 ## [1.0.1](https://github.com/alexpovel/ancv/compare/v1.0.0...v1.0.1) (2022-09-08)
 
 
