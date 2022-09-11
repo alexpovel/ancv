@@ -71,7 +71,9 @@ class APIHandler(Runnable):
         LOGGER.debug("Adding routes.")
         self.app.add_routes(
             [
+                # Order matters, see also https://www.grandmetric.com/2020/07/08/routing-order-in-aiohttp-library-in-python/
                 web.get("/", self.root),
+                web.get(f"/{_SHOWCASE_USERNAME}", self.showcase),
                 web.get("/{username}", self.username),
             ]
         )
@@ -134,6 +136,9 @@ class APIHandler(Runnable):
 
         raise web.HTTPFound(self.landing_page)  # Redirect
 
+    async def showcase(self, request: web.Request) -> web.Response:
+        return web.Response(text=_SHOWCASE_RESUME)
+
     async def username(self, request: web.Request) -> web.Response:
         stopwatch = Stopwatch()
         stopwatch(segment="Initialize Request")
@@ -142,9 +147,6 @@ class APIHandler(Runnable):
         log.info(request.message.headers)
 
         user = request.match_info["username"]
-
-        if user == _SHOWCASE_USERNAME:
-            return web.Response(text=_SHOWCASE_RESUME)
 
         if not is_valid_github_username(user):
             raise web.HTTPBadRequest(reason=f"Invalid username: {user}")
