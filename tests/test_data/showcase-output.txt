@@ -1,0 +1,159 @@
+[1;38;5;215m──────────────────────────────────────────────────── [0m[1;38;5;215mJane A. Cooper[0m[1;38;5;215m ────────────────────────────────────────────────────[0m
+
+                                                 [3;38;5;114m👋 Fullstack Developer[0m                                                 
+
+                         [38;5;182mjanecooper@example.com • +44 113 496 4389 • https://cooper.example.dev[0m                         
+
+[38;5;117mPassionate and creative fullstack developer with over 7 years of experience in building and maintaining web [0m
+[38;5;117mapplications. I have a strong background in JavaScript and PHP, and I am proficient in a variety of frameworks and [0m
+[38;5;117mlibraries. I am also experienced in building and maintaining RESTful APIs.[0m
+
+                            [3;38;5;114m🐤 Twitter [0m[3;38;5;114m [0m[38;5;117mjanethecoopest[0m[38;5;117m [0m[38;5;182m(https://twitter.com/janethecoopest)[0m                             
+                            [3;38;5;114m💼 LinkedIn[0m[3;38;5;114m [0m[38;5;117mjane-a-cooper [0m[38;5;117m [0m[38;5;182m(https://linkedin.com/jane-a-cooper)[0m                             
+                            [3;38;5;114m🐱 GitHub  [0m[3;38;5;114m [0m[38;5;117mjanec         [0m[38;5;117m [0m[38;5;182m(https://github.com/janec)          [0m                             
+
+                                                 [38;5;182m1995 Little Acres Lane[0m                                                 
+                                            [38;5;182mCA 94115, Carrollton, Texas, US[0m                                             
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mExperience[0m[1;38;5;215m ──────────────────────────────────────────────────────[0m
+
+[1;38;5;215mGoogle Inc.[0m [38;5;182mInternal tools and services.[0m                                        [38;5;182m                    March 2016 ➔ present[0m
+
+    [3;38;5;114mSoftware Engineer III[0m
+
+    [38;5;117mWork included Borg (Google's internal cluster management system), Google's internal build system, and Google's [0m     
+    [38;5;117minternal continuous integration system.[0m                                                                             
+                                                                                                                        
+    [38;5;117mIn a pilot project, I also worked on reimagining Google's internal documentation management.[0m                        
+
+        [38;5;117m➔ Wrote a new build system for Google's internal continuous integration system.[0m
+        [38;5;117m➔ Improved performance of Google's internal Borg deployment by 18%.[0m
+
+    [38;5;182mSan Francisco, CA[0m[38;5;182m • [0m[38;5;182mhttps://google.com[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mEducation[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+[1;38;5;215mMassachusets Institute of Technology[0m[1;38;5;215m:[0m [3;38;5;114mComputer Science (Distributed Systems)[0m [38;5;117m(Bachelor of [0m   [38;5;182mOctober 2012 ➔ January 2016[0m
+[38;5;117mScience)[0m                                                                                                                
+
+    [38;5;117mGrade: 3.91[0m
+
+        [38;5;182m➔ 6.1600: Foundations of Computer Security[0m
+        [38;5;182m➔ 6.1810: Operating System Engineering[0m
+        [38;5;182m➔ 6.1820: Mobile and Sensor Computing[0m
+        [38;5;182m➔ 6.5831: Database Systems[0m
+
+    [38;5;182mhttps://www.mit.edu/[0m
+
+
+[1;38;5;215m──────────────────────────────────────────────────────── [0m[1;38;5;215mSkills[0m[1;38;5;215m ────────────────────────────────────────────────────────[0m
+
+[1;38;5;215mWeb Development[0m [1;38;5;215m•[0m [3;38;5;114mExpert[0m
+
+    [38;5;117mHTML, CSS, JavaScript (ES6+), PHP[0m
+
+
+[1;38;5;215mPython[0m [1;38;5;215m•[0m [3;38;5;114mProficient[0m
+
+    [38;5;117mDjango, Flask, Pyramid[0m
+
+
+[1;38;5;215mDatabases[0m [1;38;5;215m•[0m [3;38;5;114mIntermediate[0m
+
+    [38;5;117mPostgreSQL, MySQL, MongoDB[0m
+
+
+[1;38;5;215mCloud[0m [1;38;5;215m•[0m [3;38;5;114mExpert[0m
+
+    [38;5;117mAWS, Google Cloud, Azure[0m
+
+
+[1;38;5;215m──────────────────────────────────────────────────────── [0m[1;38;5;215mAwards[0m[1;38;5;215m ────────────────────────────────────────────────────────[0m
+
+[1;38;5;215mGoogle Code-in Finalist 🏆[0m [38;5;182m(Google)[0m                                                     [38;5;182m                   December 2011[0m
+
+    [38;5;117mFinalist for Google Code-in, a global contest for pre-university students to introduce them to open source software [0m
+    [38;5;117mdevelopment.[0m                                                                                                        
+
+
+[1;38;5;215m───────────────────────────────────────────────────── [0m[1;38;5;215mCertificates[0m[1;38;5;215m ─────────────────────────────────────────────────────[0m
+
+[1;38;5;215mGoogle Certified Professional Cloud Architect[0m [38;5;182m(Google)[0m                                           [38;5;182m          February 2019[0m
+
+    [38;5;182mhttps://cloud.google.com/certification/cloud-architect[0m
+
+
+[1;38;5;215m───────────────────────────────────────────────────── [0m[1;38;5;215mPublications[0m[1;38;5;215m ─────────────────────────────────────────────────────[0m
+
+[1;38;5;215mModern Approaches to Distributed Systems[0m [38;5;182m(MIT Press)[0m                                            [38;5;182m           December 2015[0m
+
+    [38;5;117mA comprehensive literature overview to distributed systems, with a focus on the practical aspects of building and [0m  
+    [38;5;117mmaintenance.[0m                                                                                                        
+
+    [38;5;182mhttps://mitpress.mit.edu/books/new-approach-distributed-systems[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mLanguages[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+
+[1;38;5;215mEnglish[0m
+
+    [3;38;5;114mNative speaker[0m
+
+
+[1;38;5;215mSpanish[0m
+
+    [3;38;5;114mProfessional working proficiency[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mReferences[0m[1;38;5;215m ──────────────────────────────────────────────────────[0m
+
+
+    [3;38;5;114mJane is a very talented developer and lovely teammate. They are a pleasure to work with, and I would recommend them [0m
+    [3;38;5;114mto any company.[0m                                                                                                     
+
+    [38;5;182m ➔ Tom T. Baker[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mVolunteer[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+[1;38;5;215mShelter for Homeless Cats                                         [0m[38;5;182m                                 July 2009 ➔ June 2019[0m
+
+    [3;38;5;114mVolunteer[0m
+
+    [38;5;117mProvided food and shelter for homeless cats.[0m
+
+        [38;5;117m➔ Cared for 20 cats[0m
+        [38;5;117m➔ Raised $3400 for food and supplies[0m
+        [38;5;117m➔ Organized adoption events[0m
+
+    [38;5;182mhttps://example.com/catshelter[0m
+
+
+[1;38;5;215m─────────────────────────────────────────────────────── [0m[1;38;5;215mProjects[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+[1;38;5;215mAWS Benchmarking Tool[0m                                     [38;5;182m                                       November 2015 ➔ present[0m
+
+    [3;38;5;114mA tool for benchmarking the performance of various AWS services, including EC2, S3, and Lambda. Written in Python.[0m
+
+        [38;5;117m➔ 100% code coverage and fully typed[0m
+        [38;5;117m➔ Can run as a CLI or as a web service, with OpenAPI documentation[0m
+        [38;5;117m➔ Full support for parallel execution[0m
+
+    [38;5;117mAWS, Benchmarking, Python, Infrastructure[0m
+
+    [38;5;182mhttps://github.com/janec/aws-benchmarking-tool[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mInterests[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+[1;38;5;215mOpen Source[0m
+
+    [3;38;5;114mSoftware Development, Linux, Maintenance[0m
+
+
+[1;38;5;215mMusic[0m
+
+    [3;38;5;114mGuitar, Folk Rock[0m

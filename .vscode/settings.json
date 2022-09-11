@@ -4,4 +4,8 @@
     ],
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
+    "[plaintext]": {
+        "files.trimTrailingWhitespace": false,
+        "files.insertFinalNewline": false
+    }
 }

@@ -290,3 +290,7 @@ def test_server_timing_header(
 ) -> None:
     with expectation:
         assert server_timing_header(timings) == expected
+
+
+def test_exact_showcase_output(showcase_output: str) -> None:
+    assert (_SHOWCASE_RESUME == showcase_output)
