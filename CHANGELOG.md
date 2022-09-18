@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/alexpovel/ancv/compare/v1.0.2...v1.1.0) (2022-09-18)
+
+
+### Features
+
+* Add toggle to display 'Dec. 31st' dates as year-only ([26d46cb](https://github.com/alexpovel/ancv/commit/26d46cb94eb45ae5df526bf785a7eb299008e201)), closes [#65](https://github.com/alexpovel/ancv/issues/65)
+
+
+### Bug Fixes
+
+* Please the Windows overlords ([fb58c58](https://github.com/alexpovel/ancv/commit/fb58c583234dd8fb77e1a96ab8371033a15e3cc7))
+
 ## [1.0.2](https://github.com/alexpovel/ancv/compare/v1.0.1...v1.0.2) (2022-09-11)
 
 
