@@ -96,7 +96,7 @@ class Template(ABC):
         return format_date(date, format=self.theme.datefmt, locale=self.locale)
 
     @lru_cache(maxsize=1_000)
-    def date_range(
+    def format_date_range(
         self,
         start: Optional[date],
         end: Optional[date],
@@ -307,7 +307,7 @@ class Sequential(Template):
         yield from horizontal_fill(
             tagline,
             Text(
-                self.date_range(item.startDate, item.endDate),
+                self.format_date_range(item.startDate, item.endDate),
                 style=self.theme.emphasis.weak,
             ),
         )
@@ -369,7 +369,7 @@ class Sequential(Template):
         yield from horizontal_fill(
             Text(item.organization or "", style=self.theme.emphasis.maximum),
             Text(
-                self.date_range(item.startDate, item.endDate),
+                self.format_date_range(item.startDate, item.endDate),
                 style=self.theme.emphasis.weak,
             ),
         )
@@ -413,7 +413,7 @@ class Sequential(Template):
                 ),
             ),
             Text(
-                self.date_range(item.startDate, item.endDate),
+                self.format_date_range(item.startDate, item.endDate),
                 style=self.theme.emphasis.weak,
             ),
         )
@@ -547,7 +547,7 @@ class Sequential(Template):
                 (item.type if item.type else "", self.theme.emphasis.weak),
             ),
             Text(
-                self.date_range(item.startDate, item.endDate),
+                self.format_date_range(item.startDate, item.endDate),
                 style=self.theme.emphasis.weak,
             ),
         )

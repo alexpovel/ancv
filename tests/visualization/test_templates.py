@@ -469,7 +469,7 @@ def test_default_date_range(
     collapse: bool,
     expected: str,
 ) -> None:
-    assert template.date_range(start, end, collapse) == expected
+    assert template.format_date_range(start, end, collapse) == expected
 
 
 @pytest.mark.parametrize(
