@@ -89,6 +89,8 @@ In summary:
   - text content like emojis and newlines to control paragraph breaks.
 
     Emojis are user-controlled: if you want them, use them in your `resume.json`; in the future, there might be *templates* with emojis baked in, but you'd have to actively opt into using one.
+  - date formatting, in a limited fashion through the `dec31_as_year` toggle.
+    If that toggle is `true`, dates in the format `YYYY-12-31` will be displayed as `YYYY` only.
   - lastly, there's a toggle for ASCII-only output.
 
     It only concerns the *template* and controls the drawing of boxes and such (e.g., [`-`](https://unicode-table.com/en/002D/) versus [`─`](https://unicode-table.com/en/2500/) : only the latter will produce gapless rules).
@@ -112,7 +114,8 @@ The components may be controlled using the `ancv` field in your `resume.json`:
         "template": "Sequential",
         "theme": "lollipop",
         "ascii_only": false,
-        "language": "en"
+        "language": "en",
+        "dec31_as_year": false
      }
    }
 }

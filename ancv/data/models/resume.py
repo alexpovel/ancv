@@ -119,6 +119,7 @@ class TemplateConfig(BaseModel):
     theme: Optional[str]
     language: Optional[str]
     ascii_only: Optional[bool]
+    dec31_as_year: Optional[bool]
 
 
 class Meta(BaseModel):

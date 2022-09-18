@@ -41,7 +41,7 @@ THEMES = {
         sep="•",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(full="yyyy-MM", year_only="yyyy-MM"),
+        datefmt=DateFormat(full="yyyy-MM", year_only="yyyy"),
     ),
     "grayscale": Theme(
         emphasis=Emphasis(
@@ -54,7 +54,7 @@ THEMES = {
         sep="*",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(full="MMMM yyyy", year_only="MMMM yyyy"),
+        datefmt=DateFormat(full="MMMM yyyy", year_only="yyyy"),
     ),
     "basic": Theme(
         emphasis=Emphasis(
@@ -67,7 +67,7 @@ THEMES = {
         sep="•",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(full="MMMM yyyy", year_only="MMMM yyyy"),
+        datefmt=DateFormat(full="MMMM yyyy", year_only="yyyy"),
     ),
     "lollipop": Theme(
         emphasis=Emphasis(
@@ -80,7 +80,7 @@ THEMES = {
         sep="•",
         range_sep="➔",
         rulechar="─",
-        datefmt=DateFormat(full="MMMM yyyy", year_only="MMMM yyyy"),
+        datefmt=DateFormat(full="MMMM yyyy", year_only="yyyy"),
     ),
     "hendrix": Theme(
         emphasis=Emphasis(
@@ -93,6 +93,6 @@ THEMES = {
         sep="•",
         range_sep="➔",
         rulechar="─",
-        datefmt=DateFormat(full="MMMM yyyy", year_only="MMMM yyyy"),
+        datefmt=DateFormat(full="MMMM yyyy", year_only="yyyy"),
     ),
 }

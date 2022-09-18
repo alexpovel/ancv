@@ -53,12 +53,14 @@ class Template(ABC):
         translation: Translation,
         locale: Locale,
         ascii_only: bool,
+        dec31_as_year: bool,
     ) -> None:
         self.model = model
         self.theme = theme
         self.translation = translation
         self.locale = locale
         self.ascii_only = ascii_only
+        self.dec31_as_year = dec31_as_year
 
     # This is behavior:
     @abstractmethod
@@ -93,7 +95,13 @@ class Template(ABC):
 
     @lru_cache(maxsize=1_000)
     def format_date(self, date: date) -> str:
-        return format_date(date, format=self.theme.datefmt.full, locale=self.locale)
+        format = self.theme.datefmt.full
+
+        is_last_doy = date.month == date.max.month and date.day == date.max.day
+        if is_last_doy and self.dec31_as_year:
+            format = self.theme.datefmt.year_only
+
+        return format_date(date, format=format, locale=self.locale)
 
     @lru_cache(maxsize=1_000)
     def format_date_range(
@@ -153,12 +161,16 @@ class Template(ABC):
         if (ascii_only := config.ascii_only) is None:
             ascii_only = False
 
+        if (dec31_as_year := config.dec31_as_year) is None:
+            dec31_as_year = False
+
         return template(
             model=model,
             theme=theme,
             translation=translation,
             locale=Locale(language),
             ascii_only=ascii_only,
+            dec31_as_year=dec31_as_year,
         )
 
     @classmethod
