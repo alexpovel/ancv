@@ -93,7 +93,7 @@ class Template(ABC):
 
     @lru_cache(maxsize=1_000)
     def format_date(self, date: date) -> str:
-        return format_date(date, format=self.theme.datefmt, locale=self.locale)
+        return format_date(date, format=self.theme.datefmt.full, locale=self.locale)
 
     @lru_cache(maxsize=1_000)
     def format_date_range(

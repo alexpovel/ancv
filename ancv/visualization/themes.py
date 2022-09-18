@@ -12,13 +12,18 @@ class Emphasis(BaseModel):
         arbitrary_types_allowed = True  # No validator for `Style` available
 
 
+class DateFormat(BaseModel):
+    full: str
+    year_only: str
+
+
 class Theme(BaseModel):
     emphasis: Emphasis
     bullet: str
     rulechar: str
     sep: str
     range_sep: str
-    datefmt: str
+    datefmt: DateFormat
 
 
 # See here for available colors:
@@ -36,7 +41,7 @@ THEMES = {
         sep="•",
         range_sep="–",
         rulechar="─",
-        datefmt="yyyy-MM",
+        datefmt=DateFormat(full="yyyy-MM", year_only="yyyy-MM"),
     ),
     "grayscale": Theme(
         emphasis=Emphasis(
@@ -49,7 +54,7 @@ THEMES = {
         sep="*",
         range_sep="–",
         rulechar="─",
-        datefmt="MMMM yyyy",
+        datefmt=DateFormat(full="MMMM yyyy", year_only="MMMM yyyy"),
     ),
     "basic": Theme(
         emphasis=Emphasis(
@@ -62,7 +67,7 @@ THEMES = {
         sep="•",
         range_sep="–",
         rulechar="─",
-        datefmt="MMMM yyyy",
+        datefmt=DateFormat(full="MMMM yyyy", year_only="MMMM yyyy"),
     ),
     "lollipop": Theme(
         emphasis=Emphasis(
@@ -75,7 +80,7 @@ THEMES = {
         sep="•",
         range_sep="➔",
         rulechar="─",
-        datefmt="MMMM yyyy",
+        datefmt=DateFormat(full="MMMM yyyy", year_only="MMMM yyyy"),
     ),
     "hendrix": Theme(
         emphasis=Emphasis(
@@ -88,6 +93,6 @@ THEMES = {
         sep="•",
         range_sep="➔",
         rulechar="─",
-        datefmt="MMMM yyyy",
+        datefmt=DateFormat(full="MMMM yyyy", year_only="MMMM yyyy"),
     ),
 }

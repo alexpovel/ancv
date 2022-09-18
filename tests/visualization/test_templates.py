@@ -13,7 +13,7 @@ from ancv.visualization.templates import (
     Template,
     ensure_single_trailing_newline,
 )
-from ancv.visualization.themes import Emphasis, Theme
+from ancv.visualization.themes import DateFormat, Emphasis, Theme
 from ancv.visualization.translations import Translation
 
 
@@ -56,7 +56,7 @@ def test_ensure_single_trailing_newline(
         (
             None,
             None,
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("en"),
             "-",
             "present",
@@ -66,7 +66,7 @@ def test_ensure_single_trailing_newline(
         (
             None,
             date(2900, 3, 1),
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("en"),
             "-",
             "present",
@@ -76,7 +76,7 @@ def test_ensure_single_trailing_newline(
         (
             date(163, 12, 1),
             None,
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("en"),
             "-",
             "present",
@@ -86,7 +86,7 @@ def test_ensure_single_trailing_newline(
         (
             date(2021, 1, 1),
             None,
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("en"),
             "-",
             "today",
@@ -96,7 +96,7 @@ def test_ensure_single_trailing_newline(
         (
             date(2021, 1, 1),
             date(2021, 2, 1),
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("en"),
             "-",
             "present",
@@ -106,7 +106,7 @@ def test_ensure_single_trailing_newline(
         (
             date(1999, 4, 1),
             date(2018, 9, 1),
-            "yyyy-MM",
+            DateFormat(full="yyyy-MM", year_only="yyyy"),
             Locale("en"),
             "-",
             "present",
@@ -116,7 +116,7 @@ def test_ensure_single_trailing_newline(
         (
             date(1999, 4, 1),
             date(2018, 9, 1),
-            "yyyy-MM",
+            DateFormat(full="yyyy-MM", year_only="yyyy"),
             Locale("en"),
             "***",
             "present",
@@ -126,7 +126,7 @@ def test_ensure_single_trailing_newline(
         (
             date(1999, 3, 1),
             date(2018, 10, 1),
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("de"),
             "***",
             "heute",
@@ -136,7 +136,7 @@ def test_ensure_single_trailing_newline(
         (
             date(1999, 3, 1),
             date(2018, 10, 1),
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("es"),
             "***",
             "heute",
@@ -146,7 +146,7 @@ def test_ensure_single_trailing_newline(
         (
             date(2018, 3, 1),
             date(2018, 4, 1),
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("en"),
             "***",
             "present",
@@ -156,7 +156,7 @@ def test_ensure_single_trailing_newline(
         (
             date(2018, 4, 1),
             date(2018, 4, 1),
-            "MMMM yyyy",
+            DateFormat(full="MMMM yyyy", year_only="yyyy"),
             Locale("en"),
             "***",
             "present",
@@ -168,7 +168,7 @@ def test_ensure_single_trailing_newline(
 def test_default_date_range(
     start: Optional[date],
     end: Optional[date],
-    datefmt: str,
+    datefmt: DateFormat,
     locale: Locale,
     range_sep: str,
     present: str,
