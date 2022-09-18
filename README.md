@@ -222,7 +222,7 @@ If you go that route and succeed, please let me know! (I had given up with how d
 [^1]: The exporter has a couple caveats.
   You will probably not be able to paste its result into a gist and have it work out of the box.
   It is recommended to paste the export into an editor capable of helping you find errors against the contained `$schema`, like VS Code.
-  Alternatively, a local `ancv render your-file.json` will print `pydantic` validation errors, which might be helpful in debugging.  
+  Alternatively, a local `ancv render your-file.json` will print `pydantic` validation errors, which might be helpful in debugging.
   For example, the exporter might leave `$.basics.url` an empty string, which isn't a valid URI and therefore fails the schema and, by extension, `ancv`.
   Similarly, `endDate` keys might get empty string values.
   **Remove these entries** entirely to stay conformant to the JSON Resume Schema (to which `ancv` stays conformant).
