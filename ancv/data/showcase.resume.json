@@ -63,6 +63,20 @@
                 "6.1820: Mobile and Sensor Computing",
                 "6.5831: Database Systems"
             ]
+        },
+        {
+            "institution": "Fairwarden High School",
+            "url": "https://www.fairwardenhs.org/",
+            "area": "Maths and Computer Science Track",
+            "studyType": "High School Diploma",
+            "startDate": "2007-12-31",
+            "endDate": "2011-12-01",
+            "score": "3.64",
+            "courses": [
+                "AP Computer Science",
+                "AP Calculus",
+                "AP Statistics"
+            ]
         }
     ],
     "certificates": [
@@ -204,7 +218,8 @@
             "template": "Sequential",
             "theme": "lollipop",
             "ascii_only": false,
-            "language": "en"
+            "language": "en",
+            "dec31_as_year": true
         }
     }
 }
