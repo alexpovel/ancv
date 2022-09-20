@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 from typer.testing import CliRunner
 
+from ancv import PROJECT_ROOT
 from ancv.__main__ import app
 from tests import RESUMES
 
@@ -42,6 +43,14 @@ def test_list_exists() -> None:
 def test_generate_schema_exists() -> None:
     result = RUNNER.invoke(app, ["generate-schema"])
     assert result.exit_code == 0
+
+
+def test_generate_schema_is_current() -> None:
+    result = RUNNER.invoke(app, ["generate-schema"])
+    assert result.exit_code == 0
+    assert result.stdout == Path(PROJECT_ROOT, "..", "schema.json").read_text(
+        encoding="utf-8"
+    )
 
 
 @pytest.mark.parametrize("filename", RESUMES.values())
