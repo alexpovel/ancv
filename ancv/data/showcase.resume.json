@@ -1,5 +1,5 @@
 {
-    "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+    "$schema": "https://raw.githubusercontent.com/alexpovel/ancv/v1.2.0/schema.json",
     "basics": {
         "name": "Jane A. Cooper",
         "label": "👋 Fullstack Developer",
