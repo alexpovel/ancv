@@ -4,24 +4,10 @@ Comes with a server serving either an API or a single file, and a CLI to render 
 locally.
 """
 
-import logging
-import os
 from pathlib import Path
 from typing import Optional
 
-import structlog
 import typer
-from pydantic import ValidationError
-from rich import print as rprint
-from rich.tree import Tree
-from structlog.processors import JSONRenderer, TimeStamper, add_log_level
-
-from ancv.exceptions import ResumeConfigError
-from ancv.reflection import METADATA
-from ancv.visualization.templates import Template
-from ancv.visualization.themes import THEMES
-from ancv.visualization.translations import TRANSLATIONS
-from ancv.web.server import APIHandler, FileHandler, ServerContext
 
 app = typer.Typer(no_args_is_help=True, help=__doc__)
 server_app = typer.Typer(no_args_is_help=True, help="Interacts with the web server.")
@@ -38,6 +24,11 @@ def api(
     ),
 ) -> None:
     """Starts the web server and serves the API."""
+
+    import os
+
+    from ancv.reflection import METADATA
+    from ancv.web.server import APIHandler, ServerContext
 
     context = ServerContext(host=host, port=port, path=path)
     api = APIHandler(
@@ -69,6 +60,8 @@ def file(
 ) -> None:
     """Starts the web server and serves a single, rendered resume file."""
 
+    from ancv.web.server import FileHandler, ServerContext
+
     context = ServerContext(host=host, port=port, path=path)
     FileHandler(file).run(context)
 
@@ -81,6 +74,8 @@ def render(
     )
 ) -> None:
     """Locally renders the JSON resume at the given file path."""
+
+    from ancv.visualization.templates import Template
 
     template = Template.from_file(path)
     output = template.render()
@@ -97,6 +92,11 @@ def validate(
 ) -> None:
     """Checks the validity of the given JSON resume without rendering."""
 
+    from pydantic import ValidationError
+
+    from ancv.exceptions import ResumeConfigError
+    from ancv.visualization.templates import Template
+
     try:
         Template.from_file(path)
     except (ValidationError, ResumeConfigError) as e:
@@ -110,6 +110,8 @@ def validate(
 def version() -> None:
     """Prints the application version."""
 
+    from ancv.reflection import METADATA
+
     print(f"ancv {METADATA.version}")
 
 
@@ -118,6 +120,12 @@ def list() -> None:
     """Lists all available components (templates, themes and translations)."""
 
     # This is pretty raw, but it works. Could make it prettier using more of `rich`.
+    from rich import print
+    from rich.tree import Tree
+
+    from ancv.visualization.templates import Template
+    from ancv.visualization.themes import THEMES
+    from ancv.visualization.translations import TRANSLATIONS
 
     tree = Tree("Components")
 
@@ -136,7 +144,7 @@ def list() -> None:
         translation_tree.add(translation)
     tree.add(translation_tree)
 
-    rprint(tree)
+    print(tree)
 
 
 @app.callback()
@@ -149,6 +157,12 @@ def main(
 
     https://typer.tiangolo.com/tutorial/commands/callback/
     """
+
+    import logging
+    import os
+
+    import structlog
+    from structlog.processors import JSONRenderer, TimeStamper, add_log_level
 
     structlog.configure(  # This is global state
         processors=[  # https://www.structlog.org/en/stable/api.html#procs
