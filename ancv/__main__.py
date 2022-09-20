@@ -147,6 +147,78 @@ def list() -> None:
     print(tree)
 
 
+@app.command()
+def generate_schema() -> None:
+    """Generates and prints the current JSON schema.
+
+    ATTENTION: This schema is defined manually, independently of the actual models
+    contained within this package. As such, the two *might* end up out of sync. This
+    approach was chosen as a temporary solution, since syncing the JSON Schema and the
+    pydantic models is a lot of work with a lot of tiny blockers.
+    """
+
+    import json
+
+    from ancv.reflection import METADATA
+    from ancv.visualization.templates import Template
+    from ancv.visualization.themes import THEMES
+    from ancv.visualization.translations import TRANSLATIONS
+
+    schema = {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "allOf": [
+            {
+                "$ref": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "meta": {
+                        "allOf": [
+                            {
+                                "$ref": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json#/properties/meta"
+                            }
+                        ],
+                        "properties": {
+                            METADATA.name: {
+                                "type": "object",
+                                "description": f"{METADATA.name}-specific ({METADATA.home_page}) properties",
+                                "properties": {
+                                    "template": {
+                                        "type": "string",
+                                        "description": "The template (ordering, alignment, positioning, ...) to use",
+                                        "enum": sorted(Template.subclasses().keys()),
+                                    },
+                                    "theme": {
+                                        "type": "string",
+                                        "description": "The theme (colors, emphasis, ...) to use",
+                                        "enum": sorted(THEMES.keys()),
+                                    },
+                                    "language": {
+                                        "type": "string",
+                                        "description": "The language aka translation (for section titles like 'Education' etc.) to use",
+                                        "enum": sorted(TRANSLATIONS.keys()),
+                                    },
+                                    "ascii_only": {
+                                        "type": "boolean",
+                                        "description": "Whether to only use ASCII characters in the template (you are responsible for not using non-ASCII characters in your resume)",
+                                    },
+                                    "dec31_as_year": {
+                                        "type": "boolean",
+                                        "description": "Whether to display dates of 'December 31st of some year' as that year only, without month or day info",
+                                    },
+                                },
+                            }
+                        },
+                    }
+                },
+            },
+        ],
+    }
+
+    print(json.dumps(schema, indent=4))
+
+
 @app.callback()
 def main(
     verbose: bool = typer.Option(

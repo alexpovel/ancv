@@ -39,6 +39,11 @@ def test_list_exists() -> None:
     assert result.exit_code == 0
 
 
+def test_generate_schema_exists() -> None:
+    result = RUNNER.invoke(app, ["generate-schema"])
+    assert result.exit_code == 0
+
+
 @pytest.mark.parametrize("filename", RESUMES.values())
 # All resumes as a single fixture wouldn't be too bad either but doesn't work:
 # https://stackoverflow.com/q/56672179/11477374

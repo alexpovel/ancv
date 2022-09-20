@@ -1,0 +1,64 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "allOf": [
+        {
+            "$ref": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json"
+        },
+        {
+            "type": "object",
+            "properties": {
+                "meta": {
+                    "allOf": [
+                        {
+                            "$ref": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json#/properties/meta"
+                        }
+                    ],
+                    "properties": {
+                        "ancv": {
+                            "type": "object",
+                            "description": "ancv-specific (https://ancv.io) properties",
+                            "properties": {
+                                "template": {
+                                    "type": "string",
+                                    "description": "The template (ordering, alignment, positioning, ...) to use",
+                                    "enum": [
+                                        "Sequential"
+                                    ]
+                                },
+                                "theme": {
+                                    "type": "string",
+                                    "description": "The theme (colors, emphasis, ...) to use",
+                                    "enum": [
+                                        "basic",
+                                        "grayscale",
+                                        "hendrix",
+                                        "lollipop",
+                                        "plain"
+                                    ]
+                                },
+                                "language": {
+                                    "type": "string",
+                                    "description": "The language aka translation (for section titles like 'Education' etc.) to use",
+                                    "enum": [
+                                        "de",
+                                        "en",
+                                        "es",
+                                        "fr"
+                                    ]
+                                },
+                                "ascii_only": {
+                                    "type": "boolean",
+                                    "description": "Whether to only use ASCII characters in the template (you are responsible for not using non-ASCII characters in your resume)"
+                                },
+                                "dec31_as_year": {
+                                    "type": "boolean",
+                                    "description": "Whether to display dates of 'December 31st of some year' as that year only, without month or day info"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}
