@@ -82,14 +82,22 @@ The CV is constructed as follows:
 In summary:
 
 - you control:
-  - the base layout using a *template*: order of items, indentations, text alignment, position of dates and much more.
+  - the **template**.
+
+    Essentially the order of items, indentations, text alignment, position of dates and more.
     Templates are like layouts/skeletons.
-  - colors, italics, boldface, underlining, blinking (yes, really) and more using a *theme*. A couple exist but you can easily add your own one.
-  - almost all text, save for strings like *Education*, names of months etc. These are governed by *translations*, of which there are a couple available already.
+  - the **theme**.
+
+    This controls colors, italics, boldface, underlining, blinking (yes, really) and more.
+    A couple themes exist but you can easily add your own one.
+  - the **language** to use.
+
+    Pre-set strings like section titles (*Education*, ...), names of months etc. are governed by *translations*, of which there are a couple available already.
+    All other text is free-form.
   - text content like emojis and newlines to control paragraph breaks.
 
     Emojis are user-controlled: if you want them, use them in your `resume.json`; in the future, there might be *templates* with emojis baked in, but you'd have to actively opt into using one.
-  - date formatting, in a limited fashion through the `dec31_as_year` toggle.
+  - date formatting, in a limited fashion through a special `dec31_as_year` toggle.
     If that toggle is `true`, dates in the format `YYYY-12-31` will be displayed as `YYYY` only.
   - lastly, there's a toggle for ASCII-only output.
 
@@ -105,45 +113,15 @@ In summary:
     Many themes leverage Unicode characters as well.
   - access to your CV: like the gist itself, it will be publicly available on GitHub.
 
-The components may be controlled using the `ancv` field in your `resume.json`:
+### How to configure
 
-```json
-{
-   "meta": {
-     "ancv": {
-        "template": "Sequential",
-        "theme": "lollipop",
-        "ascii_only": false,
-        "language": "en",
-        "dec31_as_year": false
-     }
-   }
-}
-```
+Configuring `ancv` requires going beyond the vanilla JSON Resume schema.
+You will need to add an (entirely optional) `$.meta.ancv` field to your `resume.json`.
+The [provided schema](schema.json) will be of help here:
+an editor capable of providing auto-completion based on it, like [Visual Studio Code](https://code.visualstudio.com/docs/languages/json#_json-schemas-and-settings), will make filling out the additional configuration a breeze.
 
-The shown values are the default ones.
-All fields, including the `ancv` one itself, are optional, and the above defaults will be set for omitted fields.
-This means **a [valid JSON resume](https://github.com/jsonresume/resume-schema/blob/master/schema.json) (without an `ancv` section) is valid already**.
-
-The currently available options are:
-
-```bash
-$ pip install ancv >> /dev/null && ancv list
-Components
-├── Templates
-│   └── Sequential
-├── Themes
-│   ├── plain
-│   ├── grayscale
-│   ├── basic
-│   ├── lollipop
-│   └── hendrix
-└── Translations
-    ├── en
-    ├── de
-    ├── es
-    └── fr
-```
+The schema will further inform you of the default values (used for unspecified fields).
+Since everything is optional, a [valid JSON resume](https://github.com/jsonresume/resume-schema/blob/master/schema.json) (without an `ancv` section) is valid for `ancv` use as well.
 
 ## Installation
 
