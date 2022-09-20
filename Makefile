@@ -38,6 +38,9 @@ depgraph.svg:
 	@command -v dot > /dev/null || (echo "Please install graphviz for its 'dot' command." && exit 1)
 	@${RUN} pydeps --max-bacon=4 --cluster -T svg -o "$@" ${LIBRARY}
 
+schema.json:
+	${RUN} python -m ${LIBRARY} generate-schema > "$@"
+
 resume.py:
 	${RUN} datamodel-codegen \
 		--url "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json" \
