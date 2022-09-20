@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0](https://github.com/alexpovel/ancv/compare/v1.1.0...v1.2.0) (2022-09-20)
+
+
+### Features
+
+* Add command to generate JSON schema for the package ([ea26b22](https://github.com/alexpovel/ancv/commit/ea26b2286b78977c389fb79805a9d589c13ad16b))
+
+
+### Bug Fixes
+
+* Only run imports for actually used command ([432311a](https://github.com/alexpovel/ancv/commit/432311ac3c488218e4dcadc23fadc2ed3273c62b))
+* Use correct encoding when exporting Python models ([ab7ca67](https://github.com/alexpovel/ancv/commit/ab7ca6739e39afbdd9a6e70bde154fb79d7d482a))
+
+
+### Documentation
+
+* Update to reflect new JSON Schema provision ([2cc9e87](https://github.com/alexpovel/ancv/commit/2cc9e872fde4970ba6843bff1a1746d82c0d23b4))
+
 ## [1.1.0](https://github.com/alexpovel/ancv/compare/v1.0.2...v1.1.0) (2022-09-18)
 
 
