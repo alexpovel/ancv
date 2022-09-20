@@ -41,12 +41,14 @@ depgraph.svg:
 resume.py:
 	${RUN} datamodel-codegen \
 		--url "https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json" \
+		--encoding utf-8 \
 		--input-file-type jsonschema \
 		--output "$@"
 
 github.py:
 	${RUN} datamodel-codegen \
 		--url "https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/dereferenced/api.github.com.deref.json" \
+		--encoding utf-8 \
 		--input-file-type openapi \
 		--openapi-scopes paths \
 		--output "$@"
