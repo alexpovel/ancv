@@ -313,11 +313,11 @@ python-versions = "*"
 
 [[package]]
 name = "gidgethub"
-version = "5.2.0"
+version = "5.2.1"
 description = "An async GitHub API library"
 category = "main"
 optional = false
-python-versions = ">=3.6"
+python-versions = ">=3.7"
 
 [package.dependencies]
 PyJWT = {version = ">=2.4.0", extras = ["crypto"]}
@@ -1541,8 +1541,8 @@ genson = [
     {file = "genson-1.2.2.tar.gz", hash = "sha256:8caf69aa10af7aee0e1a1351d1d06801f4696e005f06cedef438635384346a16"},
 ]
 gidgethub = [
-    {file = "gidgethub-5.2.0-py3-none-any.whl", hash = "sha256:390caafb3e9c6125bb9c8c9865a78d09e028f19592352d5b88e0ed881b8dea18"},
-    {file = "gidgethub-5.2.0.tar.gz", hash = "sha256:c359b769194e72f984d2e328de0ee8eb81b702342b0a44dc5cebac92104ecf4b"},
+    {file = "gidgethub-5.2.1-py3-none-any.whl", hash = "sha256:8ac9cf5314aac0f3a33f46127d4a538d0ed1a7030027eb2fc4aa3b55c66abcef"},
+    {file = "gidgethub-5.2.1.tar.gz", hash = "sha256:a533f85a57955261433c250701476304cc374037c0ab66b0e5372b4846749d5c"},
 ]
 h11 = [
     {file = "h11-0.12.0-py3-none-any.whl", hash = "sha256:36a3cb8c0a032f56e2da7084577878a035d3b61d104230d4bd49c0c6b555a9c6"},
