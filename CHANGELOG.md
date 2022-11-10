@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/alexpovel/ancv/compare/v1.2.0...v1.2.1) (2022-11-10)
+
+
+### Bug Fixes
+
+* Incorporate updated dependencies into deployed version ([cac2373](https://github.com/alexpovel/ancv/commit/cac2373687a24163f9b2c65f42f5ef7112c21173))
+
 ## [1.2.0](https://github.com/alexpovel/ancv/compare/v1.1.0...v1.2.0) (2022-09-20)
 
 

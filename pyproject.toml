@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ancv"
-version = "1.2.0"
+version = "1.2.1"
 description = "Renders your (JSON) resume/CV for online & pretty terminal display"
 authors = ["Alex Povel <python@alexpovel.de>"]
 readme = "README.md"
