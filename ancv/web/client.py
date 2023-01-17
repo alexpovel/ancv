@@ -58,7 +58,7 @@ async def get_resume(
         obj = SimpleNamespace()  # Direct kwargs passing isn't mypy-friendly.
         obj.filename = filename
 
-        match gist:
+        match gist:  # noqa: E999
             case Gist(files={obj.filename: file}):
                 log.info("Gist matched.")
                 break

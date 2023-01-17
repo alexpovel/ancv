@@ -51,7 +51,6 @@ Babel = "^2.10.3"
 
 [tool.poetry.group.dev.dependencies]
 black = "^22.3.0"
-isort = "^5.10.1"
 pytest = "^7.1.2"
 datamodel-code-generator = {extras = ["http"], version = "^0.13.0"}
 mypy = "^0.960"
@@ -62,6 +61,7 @@ pytest-aiohttp = "^1.0.4"
 pytest-rerunfailures = "^10.2"
 requests = "^2.28.1"
 types-babel = "^2.10.0"
+ruff = "^0.0.224"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -73,15 +73,15 @@ ancv = "ancv.__main__:app"
 [tool.coverage.run]
 branch = true
 
+[tool.ruff]
+# `E501` is line length violation
+ignore = ["E501"]
+
 [tool.coverage.report]
 fail_under = 80.0
 
 [tool.datamodel-codegen]
 target-python-version = "3.10"
-
-[tool.isort]
-# https://pycqa.github.io/isort/docs/configuration/black_compatibility.html
-profile = "black"
 
 [tool.mypy]
 mypy_path = "stubs/"

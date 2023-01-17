@@ -48,6 +48,15 @@ jobs:
           poetry env use ${{ matrix.python-version }}
           poetry install
 
+      - name: Run linting
+        run: make lint
+
+      - name: Check code formatting
+        run: make formatcheck
+
+      - name: Run type checks
+        run: make typecheck
+
       - name: Run tests
         run: make test
 
@@ -67,15 +76,6 @@ jobs:
           # See also: https://github.com/alexpovel/ancv/runs/7733256776?check_suite_focus=true#step:7:37
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
-
-      - name: Run type checks
-        run: make typecheck
-
-      - name: Check code formatting
-        run: make formatcheck
-
-      - name: Check imports formatting
-        run: make isortcheck
 
   release-please:
     name: Execute release chores

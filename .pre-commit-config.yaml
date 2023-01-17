@@ -5,10 +5,10 @@ repos:
       - id: commitizen
   - repo: local
     hooks:
-      - id: check-import-sorting
-        name: Check import sorting
+      - id: lint
+        name: Run linting
         language: system
-        entry: make isortcheck
+        entry: make lint
         stages:
           - "commit"
           - "push"

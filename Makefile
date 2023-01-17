@@ -1,9 +1,9 @@
-.PHONY: tests test typecheck formatcheck isortcheck image
+.PHONY: tests test typecheck formatcheck lint image
 
 RUN = poetry run
 LIBRARY = ancv
 
-tests: test typecheck formatcheck isortcheck
+tests: test typecheck formatcheck lint
 
 # Ensure the Docker image also builds properly
 alltests: tests image
@@ -21,8 +21,8 @@ typecheck:
 formatcheck:
 	${RUN} black --check --diff ${LIBRARY}
 
-isortcheck:
-	${RUN} isort . --check --diff
+lint:
+	${RUN} ruff .
 
 image:
 	@docker build --progress=plain --tag ${LIBRARY}/${LIBRARY} .

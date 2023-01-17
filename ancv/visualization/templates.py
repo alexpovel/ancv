@@ -223,7 +223,7 @@ def ensure_single_trailing_newline(sequence: MutableSequence[RenderableType]) ->
     read-only property. It can be modified in-place, but not assigned to again.
     """
     while True:
-        match sequence:
+        match sequence:  # noqa: E999
             case [*_, NewLine(), NewLine()]:
                 sequence.pop()
             case [*_, last] if not isinstance(last, NewLine):
