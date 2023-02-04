@@ -59,6 +59,10 @@ jobs:
 
       - name: Run tests
         run: make test
+        env:
+          # Unit tests actually run against the GH API for 'real integration testing',
+          # and providing a token will increase the otherwise too-low rate limit.
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
