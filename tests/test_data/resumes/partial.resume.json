@@ -1,0 +1,64 @@
+{
+    "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+    "basics": {
+        "name": "John Doe",
+        "label": "Programmer",
+        "image": "http://example.com/image.jpg",
+        "email": "john@gmail.com",
+        "phone": "(912) 555-4321",
+        "url": "https://johndoe.com",
+        "summary": "A summary of John Doe that is more than 200 characters long so that it can be tested and verified to see if it works and how linebreaks are processed.",
+        "location": {
+            "address": "2712 Broadway St\nSecond Street, San Francisco, CA 94111",
+            "postalCode": "CA 94115",
+            "city": "San Francisco",
+            "countryCode": "US",
+            "region": "California"
+        },
+        "profiles": [
+            {
+                "network": "Reddit"
+            },
+            {
+                "network": "Instagram",
+                "url": "https://www.instagram.com/johndoe"
+            },
+            {
+                "network": "TikTok",
+                "username": "johndoe"
+            },
+            {
+                "network": "Twitter",
+                "username": "john",
+                "url": "https://twitter.com/john"
+            },
+            {
+                "network": "LinkedIn",
+                "username": "johndoe",
+                "url": "https://linkedin.com/johndoe"
+            },
+            {
+                "network": "Facebook",
+                "username": "john.doe",
+                "url": "https://facebook.com/john.doe"
+            },
+            {
+                "network": "GitHub",
+                "username": "johndoe",
+                "url": "https://github.com/johndoe"
+            }
+        ]
+    },
+    "work": [],
+    "meta": {
+        "version": "v1.0.0",
+        "canonical": "https://github.com/jsonresume/resume-schema/blob/v1.0.0/schema.json",
+        "ancv": {
+            "template": "Sequential",
+            "theme": "lollipop",
+            "ascii_only": false,
+            "language": "en",
+            "dec31_as_year": true
+        }
+    }
+}

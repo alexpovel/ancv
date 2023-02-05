@@ -1,0 +1,20 @@
+[1;38;5;215m─────────────────────────────────────────────────────── [0m[1;38;5;215mJohn Doe[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+                                                       [3;38;5;114mProgrammer[0m                                                       
+
+                                 [38;5;182mjohn@gmail.com • (912) 555-4321 • https://johndoe.com[0m                                  
+
+[38;5;117mA summary of John Doe that is more than 200 characters long so that it can be tested and verified to see if it works and[0m
+[38;5;117mhow linebreaks are processed.[0m
+
+                                 [3;38;5;114mReddit   [0m[3;38;5;114m [0m[38;5;117m        [0m[38;5;117m [0m[38;5;182m                                   [0m                                 
+                                 [3;38;5;114mInstagram[0m[3;38;5;114m [0m[38;5;117m        [0m[38;5;117m [0m[38;5;182m(https://www.instagram.com/johndoe)[0m                                 
+                                 [3;38;5;114mTikTok   [0m[3;38;5;114m [0m[38;5;117mjohndoe [0m[38;5;117m [0m[38;5;182m                                   [0m                                 
+                                 [3;38;5;114mTwitter  [0m[3;38;5;114m [0m[38;5;117mjohn    [0m[38;5;117m [0m[38;5;182m(https://twitter.com/john)         [0m                                 
+                                 [3;38;5;114mLinkedIn [0m[3;38;5;114m [0m[38;5;117mjohndoe [0m[38;5;117m [0m[38;5;182m(https://linkedin.com/johndoe)     [0m                                 
+                                 [3;38;5;114mFacebook [0m[3;38;5;114m [0m[38;5;117mjohn.doe[0m[38;5;117m [0m[38;5;182m(https://facebook.com/john.doe)    [0m                                 
+                                 [3;38;5;114mGitHub   [0m[3;38;5;114m [0m[38;5;117mjohndoe [0m[38;5;117m [0m[38;5;182m(https://github.com/johndoe)       [0m                                 
+
+                                                    [38;5;182m2712 Broadway St[0m                                                    
+                                         [38;5;182mSecond Street, San Francisco, CA 94111[0m                                         
+                                        [38;5;182mCA 94115, San Francisco, California, US[0m

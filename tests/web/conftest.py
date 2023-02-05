@@ -3,7 +3,7 @@ from aiohttp.web import Application
 
 from ancv.reflection import METADATA
 from ancv.web.server import APIHandler, FileHandler
-from tests import DATA_DIR, GH_TOKEN, RESUMES
+from tests import EXPECTED_OUTPUTS_DIR, GH_TOKEN, RESUMES
 
 
 @pytest.fixture(scope="function")
@@ -25,5 +25,7 @@ def file_handler_app() -> Application:
 
 @pytest.fixture(scope="function")
 def showcase_output() -> str:
-    with open(DATA_DIR / "showcase-output.txt", encoding="utf8") as f:
+    with open(
+        EXPECTED_OUTPUTS_DIR / "showcase.resume.output.txt", encoding="utf8"
+    ) as f:
         return f.read()

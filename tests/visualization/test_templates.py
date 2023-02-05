@@ -1,4 +1,5 @@
 from datetime import date
+from pathlib import Path
 from typing import Optional
 
 import pytest
@@ -16,6 +17,7 @@ from ancv.visualization.templates import (
 )
 from ancv.visualization.themes import DateFormat, Emphasis, Theme
 from ancv.visualization.translations import Translation
+from tests import EXPECTED_OUTPUTS_DIR, RESUMES_DIR
 
 
 @pytest.mark.parametrize(
@@ -372,3 +374,18 @@ def test_default_date_range(
 def test_rejects_unknown_configs(model, expectation) -> None:
     with expectation:
         Template.from_model_config(model)
+
+
+@pytest.mark.parametrize(
+    ["path"], [(file,) for file in Path(RESUMES_DIR).glob("*.resume.json")]
+)
+def test_expected_outputs(path: Path) -> None:
+    """For each resume, compare with expected rendered output in sibling directory."""
+    rendered_resume = Template.from_model_config(ResumeSchema.parse_file(path)).render()
+
+    while path.suffix:
+        path = path.with_suffix("")
+
+    expected_output = EXPECTED_OUTPUTS_DIR / f"{path.name}.resume.output.txt"
+
+    assert rendered_resume == expected_output.read_text(encoding="utf-8")

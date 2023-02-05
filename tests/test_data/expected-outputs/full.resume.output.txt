@@ -1,0 +1,424 @@
+[1;38;5;215m─────────────────────────────────────────────────────── [0m[1;38;5;215mJohn Doe[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+                                                       [3;38;5;114mProgrammer[0m                                                       
+
+                                 [38;5;182mjohn@gmail.com • (912) 555-4321 • https://johndoe.com[0m                                  
+
+[38;5;117mA summary of John Doe that is more than 200 characters long so that it can be tested and verified to see if it works and[0m
+[38;5;117mhow linebreaks are processed.[0m
+
+                                 [3;38;5;114mReddit   [0m[3;38;5;114m [0m[38;5;117m        [0m[38;5;117m [0m[38;5;182m                                   [0m                                 
+                                 [3;38;5;114mInstagram[0m[3;38;5;114m [0m[38;5;117m        [0m[38;5;117m [0m[38;5;182m(https://www.instagram.com/johndoe)[0m                                 
+                                 [3;38;5;114mTikTok   [0m[3;38;5;114m [0m[38;5;117mjohndoe [0m[38;5;117m [0m[38;5;182m                                   [0m                                 
+                                 [3;38;5;114mTwitter  [0m[3;38;5;114m [0m[38;5;117mjohn    [0m[38;5;117m [0m[38;5;182m(https://twitter.com/john)         [0m                                 
+                                 [3;38;5;114mLinkedIn [0m[3;38;5;114m [0m[38;5;117mjohndoe [0m[38;5;117m [0m[38;5;182m(https://linkedin.com/johndoe)     [0m                                 
+                                 [3;38;5;114mFacebook [0m[3;38;5;114m [0m[38;5;117mjohn.doe[0m[38;5;117m [0m[38;5;182m(https://facebook.com/john.doe)    [0m                                 
+                                 [3;38;5;114mGitHub   [0m[3;38;5;114m [0m[38;5;117mjohndoe [0m[38;5;117m [0m[38;5;182m(https://github.com/johndoe)       [0m                                 
+
+                                                    [38;5;182m2712 Broadway St[0m                                                    
+                                         [38;5;182mSecond Street, San Francisco, CA 94111[0m                                         
+                                        [38;5;182mCA 94115, San Francisco, California, US[0m                                         
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mExperience[0m[1;38;5;215m ──────────────────────────────────────────────────────[0m
+
+[1;38;5;215mFoogle[0m [38;5;182mA search engine for food[0m                                        [38;5;182m                           January 2016 ➔ present[0m
+
+    [3;38;5;114mClerk[0m
+
+    [38;5;117mDescription of the work that was done.[0m
+
+        [38;5;117m➔ Started the company[0m
+        [38;5;117m➔ Worked on the company's first product[0m
+        [38;5;117m➔ Worked on the company's second product[0m
+        [38;5;117m➔ Worked on the company's third product[0m
+
+    [38;5;182mSan Francisco, CA[0m[38;5;182m • [0m[38;5;182mhttps://example.com[0m
+
+[1;38;5;215mMoogle[0m [38;5;182mA search engine for motorcycles[0m                                    [38;5;182m                      September 2019 ➔ present[0m
+
+    [3;38;5;114mDeveloper[0m
+
+    [38;5;117mI don't even like motorcycles, what the heck.[0m
+
+        [38;5;117m➔ Started the company[0m
+        [38;5;117m➔ Worked on the company's first product[0m
+        [38;5;117m➔ Worked on the company's second product[0m
+        [38;5;117m➔ Worked on the company's third product, which was a motorcycle calender app that I was able to make in a week [0m 
+        [38;5;117musing blockchain technology.[0m                                                                                    
+
+    [38;5;182mSan Antonio, TX[0m[38;5;182m • [0m[38;5;182mhttps://example.com[0m
+
+[1;38;5;215mPoogle[0m [38;5;182mA search engine for the unspeakable[0m                                                                            [38;5;182m  [0m
+
+    [38;5;182m???[0m
+
+[1;38;5;215mTroogle[0m [38;5;182mA search engine for the truth[0m                                               [38;5;182m                    ➔ September 2019[0m
+
+    [3;38;5;114mOracle[0m
+
+    [38;5;117mI am the truth.[0m
+
+[1;38;5;215mYoogle[0m                  [38;5;182m                                                                   September 2045 ➔ October 2045[0m
+
+    [3;38;5;114mTester[0m
+
+    [38;5;182mhttps://example.com/yoghurt[0m
+
+[1;38;5;215mWoogle[0m                           [38;5;182m                                                                    January 1984 ➔ 1984[0m
+
+    [3;38;5;114mDesk Person #3092[0m
+
+    [38;5;182mAirstrip One, Oceania[0m
+
+[1;38;5;215mDroogle[0m                                            [38;5;182m                                                          2002 ➔ 2014[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mEducation[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+[1;38;5;215mMassachusets Institute of Harvard-Stanford[0m[1;38;5;215m:[0m [3;38;5;114mComputer Science[0m [38;5;117m(Bachelor)[0m                        [38;5;182m      1999 ➔ January 2013[0m
+
+    [38;5;117mGrade: 3.9[0m
+
+        [38;5;182m➔ DB1337 - Basic SQL[0m
+        [38;5;182m➔ DB1338 - Advanced SQL[0m
+        [38;5;182m➔ DB1339 - SQL for Data Analysis[0m
+
+    [38;5;182mhttps://example.com/[0m
+
+[1;38;5;215mHomeschooled[0m[1;38;5;215m:[0m [3;38;5;114mEverything[0m [38;5;117m(Master)[0m                                 [38;5;182m                           January 2013 ➔ January 2016[0m
+
+    [38;5;117mGrade: 2.1[0m
+
+        [38;5;182m➔ HH0001 - Washing the Dishes[0m
+        [38;5;182m➔ HH0002 - Cleaning the Laundry[0m
+        [38;5;182m➔ HH0003 - Making the Bed[0m
+        [38;5;182m➔ HH0004 - Cleaning the Bathroom[0m
+
+    [38;5;182mhttps://example.com/[0m
+
+[1;38;5;215mSpy school of espionage[0m                                                                                            [38;5;182m     [0m
+
+    [38;5;117mGrade: 0.2[0m
+
+        [38;5;182m➔ Spying 101[0m
+        [38;5;182m➔ Spying 102[0m
+
+    [38;5;182mhttps://example.com/what[0m
+
+[1;38;5;215mActing school[0m[1;38;5;215m:[0m [3;38;5;114mMethod acting[0m                                          [38;5;182m                              March 2008 ➔ present[0m
+
+    [38;5;117mGrade: 1337[0m
+
+
+[1;38;5;215m──────────────────────────────────────────────────────── [0m[1;38;5;215mSkills[0m[1;38;5;215m ────────────────────────────────────────────────────────[0m
+
+[1;38;5;215mWeb Development[0m [1;38;5;215m•[0m [3;38;5;114mMaster[0m
+
+    [38;5;117mHTML, CSS, JavaScript[0m
+
+
+
+[1;38;5;215mCompression[0m [1;38;5;215m•[0m [3;38;5;114mNovice[0m
+
+    [38;5;117mGZIP, BZIP2[0m
+
+
+[1;38;5;215mBackend Development[0m
+
+
+[1;38;5;215mFullstack Development[0m
+
+    [38;5;117mCOBOL, Fortran[0m
+
+
+[1;38;5;215mRelaxing[0m [1;38;5;215m•[0m [3;38;5;114mAmateur[0m
+
+    [38;5;117mCouching, Napping, Sleeping, Eating, Reading, Watching TV, Playing video games, Playing board games, Playing card [0m  
+    [38;5;117mgames, Watching the sky, Watching the clouds, Watching the stars[0m                                                    
+
+
+[1;38;5;215m──────────────────────────────────────────────────────── [0m[1;38;5;215mAwards[0m[1;38;5;215m ────────────────────────────────────────────────────────[0m
+
+[1;38;5;215mBiggest Volunteer of the Day[0m [38;5;182m(Self-Award)[0m                                                   [38;5;182m               November 2014[0m
+
+    [38;5;117mThere is probably greater honor.[0m
+
+[1;38;5;215mTop Gun Award[0m [38;5;182m(City of San Francisco)[0m                                                    [38;5;182m                  December 2010[0m
+
+    [38;5;117mAll I did was show up.[0m
+
+[1;38;5;215mGerman Television Award[0m [38;5;182m(ARD, ZDF, RTL, Sat.1)[0m                                                  [38;5;182m            October 2008[0m
+
+    [38;5;117mI did not accept this one.[0m
+
+[1;38;5;215mFrench Television Award[0m                                                                                            [38;5;182m     [0m
+
+    [38;5;117mI did accept this one.[0m
+
+[1;38;5;215mBest Actor Award[0m                                                     [38;5;182m                                       October 2008[0m
+
+[1;38;5;215mBad title[0m                                                                                                   [38;5;182m            [0m
+
+    [38;5;117mThis award doesn't have a good title.[0m
+
+[1;38;5;215mEighth-best Actor Award[0m                                                                                            [38;5;182m     [0m
+
+
+[1;38;5;215m───────────────────────────────────────────────────── [0m[1;38;5;215mCertificates[0m[1;38;5;215m ─────────────────────────────────────────────────────[0m
+
+[1;38;5;215mCertificate of Excellence[0m [38;5;182m(Legitimate Certificate Authority)[0m                                       [38;5;182m        November 2021[0m
+
+    [38;5;182mhttps://certificate.com[0m
+
+[1;38;5;215mCertificate of Merit[0m [38;5;182m(United States of America)[0m                                               [38;5;182m             November 2020[0m
+
+    [38;5;182mhttps://example.com[0m
+
+[1;38;5;215mCertificate of Existence[0m                                                                                            [38;5;182m    [0m
+
+[1;38;5;215mCertificate of Musical Talent[0m                                                                                       [38;5;182m    [0m
+
+    [38;5;182mhttps://www.youtube.com/watch?v=dQw4w9WgXcQ[0m
+
+[1;38;5;215mCertificate of Nothing[0m                                                      [38;5;182m                               November 2020[0m
+
+
+[1;38;5;215m───────────────────────────────────────────────────── [0m[1;38;5;215mPublications[0m[1;38;5;215m ─────────────────────────────────────────────────────[0m
+
+[1;38;5;215mA Publication[0m [38;5;182m(IEEE)[0m                                                       [38;5;182m                                 October 2014[0m
+
+    [38;5;117mThis paper is about how I did this and that, despite the fact that I did not write it.[0m
+    [38;5;117mCome to think of it, I probably committed a felony.[0m                                   
+
+    [38;5;182mhttps://publication.com[0m
+
+[1;38;5;215mHex-Quantum Fields of Becker-Mendel Swirls in the Presence of a Non-Abelian Group[0m [38;5;182m(Physics of the Literally [0m  [38;5;182mMarch 2009[0m
+[38;5;182mImpossible)[0m                                                                                                             
+
+    [38;5;117mNo one knows what this paper is about.[0m                                        
+    [38;5;117mAlmost every person thought it was about quantum mechanics, but I am not sure.[0m
+    [38;5;117mIn fact, they called it impossible. They were right.[0m                          
+
+    [38;5;182mhttps://publication.com[0m
+
+[1;38;5;215mCryptanalysis of the RSA Algorithm Using a Quantum Computer[0m                                                           [38;5;182m  [0m
+
+    [38;5;117mThis paper is extremely advanced not. It is about how to break RSA using a quantum computer.[0m
+
+    [38;5;182mhttps://example.com/rsa[0m
+
+[1;38;5;215mFerrum-Quantum Fields of Becker-Mendel Swirls[0m                                                 [38;5;182m             February 2002[0m
+
+    [38;5;182mhttps://example.com/ferrum[0m
+
+[1;38;5;215mAcidic toxins in the context of quantum mechanics[0m                                                                     [38;5;182m  [0m
+
+    [38;5;117mWhat is this even supposed to be[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mLanguages[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+
+[1;38;5;215mSpanish[0m
+
+    [3;38;5;114mNative Speaker[0m
+
+
+
+[1;38;5;215mEnglish[0m
+
+    [3;38;5;114mProfessional Proficiency[0m
+
+
+[1;38;5;215mFrench[0m
+
+    [3;38;5;114mBeginner[0m
+
+
+[1;38;5;215mGerman[0m
+
+    [3;38;5;114mBeginner[0m
+
+
+[1;38;5;215mPortuguese[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mReferences[0m[1;38;5;215m ──────────────────────────────────────────────────────[0m
+
+
+    [3;38;5;114mPlease hire this person, they are a great person. They absolutely never stop talking about the best burger in the [0m  
+    [3;38;5;114mworld, which you can get right across the street from our restaurant.[0m                                               
+    [3;38;5;114mThey are also a great person to have around, mostly.[0m                                                                
+
+    [38;5;182m ➔ Raphael from Burger World at the corner of Main Avenue and Market Street[0m
+
+
+    [3;38;5;114mLe 20 juin 1789, alors qu'elle ne comprend encore que le Tiers et une partie du Clergé, l'Assemblée nationale prend [0m
+    [3;38;5;114ml'arrêté auquel l'histoire donne le nom de Serment du Jeu de paume. Elle s'y déclare « appelée à fixer la [0m          
+    [3;38;5;114mconstitution du royaume, opérer la régénération de l'ordre public et maintenir les vrais principes de la monarchie »[0m
+    [3;38;5;114met s'y engage à « ne jamais se séparer, et [à] se rassembler partout où les circonstances l'exigeront, jusqu'à ce [0m  
+    [3;38;5;114mque la constitution du royaume soit établie sur des fondements solides ».[0m                                           
+
+    [38;5;182m ➔ Manuela Trouchot[0m
+
+
+
+    [3;38;5;114mA ghostly reference without an author...[0m
+
+
+    [3;38;5;114mBlubb.[0m
+
+    [38;5;182m ➔ Boaty McBoatface[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mVolunteer[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+[1;38;5;215mSomewhat Red Cross                              [0m[38;5;182m                                             January 2012 ➔ January 2013[0m
+
+    [3;38;5;114mVolunteer Organizer[0m
+
+    [38;5;117mDescription of the work that was done, and the impact it had on the organization (quite a bit of text here).[0m
+    [38;5;117mThere's more than one line here, so that we can test if linebreaks are processed correctly.[0m                 
+
+        [38;5;117m➔ Awarded 'Volunteer of the Month of February'[0m
+        [38;5;117m➔ Awarded 'Volunteer of the Month of March'[0m
+        [38;5;117m➔ Awarded 'Volunteer of the Month of April'[0m
+        [38;5;117m➔ Awarded 'Volunteer of the Year 2012'[0m
+
+    [38;5;182mhttps://example.com/[0m
+
+[1;38;5;215mAnimal Rescue League                                    [0m[38;5;182m                                         March 2002 ➔ March 2020[0m
+
+    [3;38;5;114mPet Officer[0m
+
+    [38;5;117mDescription of the work that was done, and the impact it had on the organization (quite a bit of text here).[0m
+    [38;5;117mThere's more than one line here, so that we can test if linebreaks are processed correctly.[0m                 
+
+        [38;5;117m➔ Awarded 'Goodest Boy of the Month of February'[0m
+        [38;5;117m➔ Awarded 'Goodest Boy of the Month of March'[0m
+        [38;5;117m➔ Awarded 'Goodest Boy of the Month of April'[0m
+        [38;5;117m➔ Awarded 'Goodest Boy of the Year 2010'[0m
+
+    [38;5;182mhttps://example.com/[0m
+
+[1;38;5;215mBeer Rescue League                                   [0m[38;5;182m                                            March 2123 ➔ March 2390[0m
+
+    [3;38;5;114mPrincipal Disposer[0m
+
+    [38;5;117mEnvironmentally conscious people got together to dispose of beer. I was the principal disposer.[0m
+
+[1;38;5;215mMonsters, Inc.                                 [0m[38;5;182m                                                   January 2002 ➔ present[0m
+
+        [38;5;117m➔ Scaring toddlers[0m
+
+[1;38;5;215mColored Cross                                                                                                   [0m[38;5;182m        [0m
+
+    [38;5;117mWe did some things.[0m
+
+
+[1;38;5;215m─────────────────────────────────────────────────────── [0m[1;38;5;215mProjects[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+[1;38;5;215mCalculater[0m [1;38;5;215m•[0m [38;5;182mApplication[0m                                    [38;5;182m                                    August 1998 ➔ April 2021[0m
+
+    [3;38;5;114mA calculator that can add, subtract, multiply, and divide but takes a long time to do so. It also has a lot of bugs.[0m
+
+        [38;5;117m➔ Won best project award (probably)[0m
+        [38;5;117m➔ Used Enterprise Java Beans technology[0m
+
+    [3;38;5;114mRoles:[0m
+
+        [38;5;117m➔ Team Lead[0m
+        [38;5;117m➔ Developer[0m
+        [38;5;117m➔ Tester[0m
+        [38;5;117m➔ Project Manager[0m
+        [38;5;117m➔ Scrum Master[0m
+        [38;5;117m➔ Product Owner[0m
+        [38;5;117m➔ CTO[0m
+        [38;5;117m➔ CFO[0m
+        [38;5;117m➔ CEO[0m
+
+    [38;5;117mHTML, Java, JavaScript[0m
+
+    [38;5;182mhttps://calculater.com/[0m[38;5;182m•[0m[38;5;182mCoders for Change[0m
+
+
+[1;38;5;215mBetter Cat Petter[0m [1;38;5;215m•[0m [38;5;182mApplication[0m                                                            [38;5;182m                   April 2019[0m
+
+    [3;38;5;114mAn app to visit friendly nextdoor cats to pet them. It is a good app. Neighborhood cats are happy this app finally [0m 
+    [3;38;5;114mlanded in the app store.[0m                                                                                            
+
+        [38;5;117m➔ Never miss a cat[0m
+        [38;5;117m➔ Solitude is a thing of the past now[0m
+        [38;5;117m➔ Don't be allergic to cats[0m
+
+    [3;38;5;114mRoles:[0m
+
+        [38;5;117m➔ Top Level Engineer[0m
+        [38;5;117m➔ Chief Cat Officer[0m
+
+    [38;5;117mCSS, JavaScript, x86 Assembly[0m
+
+    [38;5;182mhttps://betterpetcatter.com/[0m
+
+
+[1;38;5;215miPhone 34[0m [1;38;5;215m•[0m [38;5;182mDevice[0m                                                            [38;5;182m                                April 2020[0m
+
+    [3;38;5;114mAlways needing the latest and greatest, I got sick of waiting and built my own next-next-next-next-nextgen iPhone. [0m 
+    [3;38;5;114mIt's a great phone, but it's not the best phone. I am also looking for a lawyer now.[0m                                
+
+        [38;5;117m➔ Bricked[0m
+        [38;5;117m➔ Woops[0m
+
+    [3;38;5;114mRoles:[0m
+
+        [38;5;117m➔ Boss[0m
+        [38;5;117m➔ Defendant[0m
+
+    [38;5;117mHammer, Nails, Some cables[0m
+
+    [38;5;182mhttps://iphone34.com[0m[38;5;182m•[0m[38;5;182mSelf-Employed[0m
+
+
+[1;38;5;215mSniffing Dog[0m                                                                                                   [38;5;182m         [0m
+
+    [3;38;5;114mA dog that can sniff out and distinguish different types of inkjet printers. It's a good dog, albeit a bit useless[0m
+
+
+[1;38;5;215myouPhone 1[0m [1;38;5;215m•[0m [38;5;182mDevice[0m                                        [38;5;182m                                         April 1978 ➔ present[0m
+
+    [3;38;5;114mA phone that can do everything. It's a good phone. My personal competitor to Pear.[0m
+
+        [38;5;117m➔ Also bricked[0m
+        [38;5;117m➔ Goshdarnit[0m
+
+    [3;38;5;114mRoles:[0m
+
+        [38;5;117m➔ Big Boss[0m
+
+
+[1;38;5;215m────────────────────────────────────────────────────── [0m[1;38;5;215mInterests[0m[1;38;5;215m ───────────────────────────────────────────────────────[0m
+
+[1;38;5;215mWildlife[0m
+
+    [3;38;5;114mFerrets, Unicorns[0m
+
+
+
+[1;38;5;215mCars[0m
+
+    [3;38;5;114mBMW, Mercedes, Porsche[0m
+
+
+[1;38;5;215mComputers[0m
+
+    [3;38;5;114mMicrosoft, Apple, Linux[0m
+
+
+[1;38;5;215mChoir[0m
+
+
+[1;38;5;215mElectronics[0m
+
+    [3;38;5;114mSoldering, Programming, Circuit Design, PCB Design, PCB Fabrication, PCB Assembly, PCB Testing, PCB Repair, PCB [0m    
+    [3;38;5;114mReverse Engineering, PCB Inspection, C, C++, Rust, Python, IEEE 754, IEEE 69, IEEE 420[0m

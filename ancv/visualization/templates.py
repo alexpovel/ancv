@@ -872,8 +872,10 @@ class Sequential(Template):
             (m.projects, t.projects),
             (m.interests, t.interests),
         ]:
-            if items is None:
-                # Not specified by user in their resume, skip entirely.
+            # Key aka section might be missing entirely (`None`) *or* be empty (`[]`),
+            # the latter of which type checking cannot protect against. In either case,
+            # skip the section.
+            if not items:
                 continue
 
             group = Group(
