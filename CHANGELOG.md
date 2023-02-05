@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.3](https://github.com/alexpovel/ancv/compare/v1.2.2...v1.2.3) (2023-02-05)
+
+
+### Bug Fixes
+
+* Skip empty but specified (`[]`) sections ([ed5d20f](https://github.com/alexpovel/ancv/commit/ed5d20f9a0e68311e1266acbfccd5249df2131c5))
+
 ## [1.2.2](https://github.com/alexpovel/ancv/compare/v1.2.1...v1.2.2) (2023-02-05)
 
 
