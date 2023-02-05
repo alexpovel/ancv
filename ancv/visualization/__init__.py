@@ -4,4 +4,4 @@ from rich.console import RenderableType
 
 RenderableGenerator = Generator[RenderableType, None, None]
 
-WIDTH: Final = 120
+OUTPUT_COLUMN_WIDTH: Final = 120

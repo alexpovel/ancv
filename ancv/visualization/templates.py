@@ -39,7 +39,7 @@ from ancv.data.models.resume import (
     WorkItem,
 )
 from ancv.exceptions import ResumeConfigError
-from ancv.visualization import WIDTH, RenderableGenerator
+from ancv.visualization import OUTPUT_COLUMN_WIDTH, RenderableGenerator
 from ancv.visualization.themes import THEMES, Theme
 from ancv.visualization.translations import TRANSLATIONS, Translation
 
@@ -79,7 +79,7 @@ class Template(ABC):
             # of that to a fake, in-memory file with an artificial/controlled encoding
             # will fool `rich` into using its ASCII-only rendering.
             console = Console(
-                width=WIDTH,
+                width=OUTPUT_COLUMN_WIDTH,
                 color_system="256",
                 force_terminal=False,
                 force_jupyter=False,
