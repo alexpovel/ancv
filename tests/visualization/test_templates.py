@@ -314,7 +314,7 @@ def test_default_date_range(
         ascii_only=False,
         dec31_as_year=dec31_as_year,
     )
-    assert template.format_date_range(start, end, collapse) == expected
+    assert template._format_date_range(start, end, collapse) == expected
 
 
 @pytest.mark.parametrize(

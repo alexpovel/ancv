@@ -394,18 +394,3 @@ ResumeItem = Union[
     VolunteerItem,
     WorkItem,
 ]
-
-ResumeItemContainer = Union[
-    list[Award],
-    list[Certificate],
-    list[EducationItem],
-    list[Interest],
-    list[Language],
-    list[Project],
-    list[Publication],
-    list[Reference],
-    list[Skill],
-    list[VolunteerItem],
-    list[WorkItem],
-    None,
-]
