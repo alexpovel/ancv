@@ -2,6 +2,13 @@ from pydantic import BaseModel
 
 
 class Translation(BaseModel):
+    """Modelling a translation for a resume section or field.
+
+    These are simple, hard-coded translations. Special grammatical cases, singular vs.
+    plural, etc. are not handled and need to be handled identically across all languages
+    (which might end up not working...).
+    """
+
     grade: str
     awarded_by: str
     issued_by: str

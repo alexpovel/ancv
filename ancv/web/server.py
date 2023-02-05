@@ -27,6 +27,8 @@ _SHOWCASE_USERNAME = "heyho"
 
 
 def is_terminal_client(user_agent: str) -> bool:
+    """Determines if a user agent string indicates a terminal client."""
+
     terminal_clients = [
         "curl",
         "wget",
@@ -41,29 +43,51 @@ def is_terminal_client(user_agent: str) -> bool:
 
 @dataclass
 class ServerContext:
+    """Context for the server."""
+
     host: Optional[str]
     port: Optional[int]
     path: Optional[str]
 
 
 class Runnable(ABC):
+    """A server object that can be `run`, enabling different server implementations."""
+
     @abstractmethod
     def run(self, context: ServerContext) -> None:
         ...
 
 
 class APIHandler(Runnable):
+    """A runnable server for handling dynamic API requests.
+
+    This is the core application server powering the API. It is responsible for handling
+    requests for the resume of a given user, and returning the appropriate response. It
+    queries the live GitHub API.
+    """
+
     def __init__(
         self,
         requester: str,
         token: Optional[str],
-        homepage: str,
-        landing_page: str,
+        terminal_landing_page: str,
+        browser_landing_page: str,
     ) -> None:
+        """Initializes the handler.
+
+        Args:
+            requester: The user agent to use for the GitHub API requests.
+            token: The token to use for the GitHub API requests.
+            terminal_landing_page: URL to "redirect" to for requests to the root from a
+                *terminal* client.
+            browser_landing_page: URL to redirect to for requests to the root from a
+                *browser* client.
+        """
+
         self.requester = requester
         self.token = token
-        self.homepage = homepage
-        self.landing_page = landing_page
+        self.terminal_landing_page = terminal_landing_page
+        self.browser_landing_page = browser_landing_page
 
         LOGGER.debug("Instantiating web application.")
         self.app = web.Application()
@@ -129,17 +153,25 @@ class APIHandler(Runnable):
         log.info("App context teardown done.")
 
     async def root(self, request: web.Request) -> web.Response:
+        """The root endpoint, redirecting to the landing page."""
+
         user_agent = request.headers.get("User-Agent", "")
 
         if is_terminal_client(user_agent):
-            return web.Response(text=f"Visit {self.homepage} to get started.\n")
+            return web.Response(
+                text=f"Visit {self.terminal_landing_page} to get started.\n"
+            )
 
-        raise web.HTTPFound(self.landing_page)  # Redirect
+        raise web.HTTPFound(self.browser_landing_page)  # Redirect
 
     async def showcase(self, request: web.Request) -> web.Response:
+        """The showcase endpoint, returning a static resume."""
+
         return web.Response(text=_SHOWCASE_RESUME)
 
     async def username(self, request: web.Request) -> web.Response:
+        """The username endpoint, returning a dynamic resume from a user's gists."""
+
         stopwatch = Stopwatch()
         stopwatch(segment="Initialize Request")
 
@@ -187,7 +219,15 @@ class APIHandler(Runnable):
 
 
 class FileHandler(Runnable):
+    """A handler serving a rendered, static template loaded from a file at startup."""
+
     def __init__(self, file: Path) -> None:
+        """Initializes the handler.
+
+        Args:
+            file: The (JSON Resume) file to load the template from.
+        """
+
         self.template = Template.from_file(file)
         self.rendered = self.template.render()
 
@@ -202,12 +242,17 @@ class FileHandler(Runnable):
         web.run_app(self.app, host=context.host, port=context.port, path=context.path)
 
     async def root(self, request: web.Request) -> web.Response:
+        """The root and *only* endpoint, returning the rendered template."""
+
         LOGGER.debug("Serving rendered template.", request=request)
         return web.Response(text=self.rendered)
 
 
 def server_timing_header(timings: dict[str, timedelta]) -> str:
-    """https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing"""
+    """From a mapping of names to `timedelta`s, return a `Server-Timing` header value.
+
+    See also: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Server-Timing
+    """
 
     # For controlling `timedelta` conversion precision, see:
     # https://docs.python.org/3/library/datetime.html#datetime.timedelta.total_seconds

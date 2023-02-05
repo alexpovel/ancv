@@ -25,6 +25,7 @@ def sleep(seconds: float) -> None:
     while time.time() <= (now + seconds):
         time.sleep(0.001)
 
+
 @pytest.mark.flaky(reruns=3)
 def test_stopwatch_basics() -> None:
     stopwatch = Stopwatch()

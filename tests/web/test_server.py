@@ -293,4 +293,4 @@ def test_server_timing_header(
 
 
 def test_exact_showcase_output(showcase_output: str) -> None:
-    assert (_SHOWCASE_RESUME == showcase_output)
+    assert _SHOWCASE_RESUME == showcase_output

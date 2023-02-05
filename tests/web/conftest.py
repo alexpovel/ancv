@@ -11,8 +11,8 @@ def api_client_app() -> Application:
     return APIHandler(
         requester=f"{METADATA.name}-PYTEST-REQUESTER",
         token=GH_TOKEN,
-        homepage=f"{METADATA.name}-PYTEST-HOMEPAGE",
-        landing_page=f"{METADATA.name}-PYTEST-LANDING_PAGE",
+        terminal_landing_page=f"{METADATA.name}-PYTEST-HOMEPAGE",
+        browser_landing_page=f"{METADATA.name}-PYTEST-LANDING_PAGE",
     ).app
 
 

@@ -26,6 +26,36 @@ async def get_resume(
     filename: str = "resume.json",
     size_limit: int = 1 * SIPrefix.MEGA,
 ) -> ResumeSchema:
+    """Fetch a user's resume from their GitHub gists.
+
+    Searches through all of the user's gists for a file with a given name. Checks for
+    various bad states:
+
+    - User...
+        - doesn't exist.
+        - has no gists.
+        - has no gists with the given filename.
+    - File...
+        - is too large.
+        - is not valid JSON.
+        - is not valid against the resume schema.
+
+    There are others that are probably not covered (hard to test).
+
+    Sections of the code are timed for performance analysis.
+
+    Args:
+        user: The GitHub username to fetch the resume from.
+        session: The `aiohttp.ClientSession` to use for the request.
+        github: The API object to use for the request.
+        stopwatch: The `Stopwatch` to use for timing.
+        filename: The name of the file to look for in the user's gists.
+        size_limit: The maximum size of the file to look for in the user's gists.
+
+    Returns:
+        The parsed resume.
+    """
+
     log = LOGGER.bind(user=user, session=session)
 
     stopwatch("Fetching Gists")

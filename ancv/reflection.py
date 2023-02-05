@@ -7,7 +7,7 @@ from ancv import PACKAGE
 
 
 class Metadata(BaseModel):
-    """Python package metadata.
+    """Modeling Python package metadata.
 
     Modelled after the Python core metadata specification:
     https://packaging.python.org/en/latest/specifications/core-metadata/ .
