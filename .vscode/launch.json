@@ -31,7 +31,7 @@
             "args": [
                 "serve",
                 "file",
-                "tests/test_data/resumes/full.json",
+                "tests/test_data/resumes/full.resume.json",
                 "--port",
                 "8080"
             ],

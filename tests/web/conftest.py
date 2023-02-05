@@ -19,7 +19,7 @@ def api_client_app() -> Application:
 @pytest.fixture(scope="function")
 def file_handler_app() -> Application:
     return FileHandler(
-        file=RESUMES["full.json"],
+        file=RESUMES["full.resume.json"],
     ).app
 
 
