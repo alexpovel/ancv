@@ -62,7 +62,12 @@ jobs:
         env:
           # Unit tests actually run against the GH API for 'real integration testing',
           # and providing a token will increase the otherwise too-low rate limit.
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # The `GITHUB_TOKEN` failed (https://github.com/alexpovel/ancv/actions/runs/4093416643/jobs/7063406195):
+          #
+          # body = b'{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/reference/gists#list-gists-for-a-user"}'
+          #
+          # So use a personal token.
+          GH_TOKEN: ${{ secrets.GH_PERMISSIONLESS_FGAT }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
