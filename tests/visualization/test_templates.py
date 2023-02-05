@@ -3,6 +3,7 @@ from typing import Optional
 
 import pytest
 from babel.core import Locale
+from babel.dates import parse_pattern
 from rich.console import NewLine, RenderableType
 from rich.style import Style
 
@@ -57,7 +58,9 @@ def test_ensure_single_trailing_newline(
         (
             None,
             None,
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "-",
             "present",
@@ -68,7 +71,9 @@ def test_ensure_single_trailing_newline(
         (
             None,
             date(2900, 3, 1),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "-",
             "present",
@@ -79,7 +84,9 @@ def test_ensure_single_trailing_newline(
         (
             date(163, 12, 1),
             None,
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "-",
             "present",
@@ -90,7 +97,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2021, 1, 1),
             None,
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "-",
             "today",
@@ -101,7 +110,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2021, 1, 1),
             date(2021, 2, 1),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "-",
             "present",
@@ -112,7 +123,7 @@ def test_ensure_single_trailing_newline(
         (
             date(1999, 4, 1),
             date(2018, 9, 1),
-            DateFormat(full="yyyy-MM", year_only="yyyy"),
+            DateFormat(full=parse_pattern("yyyy-MM"), year_only=parse_pattern("yyyy")),
             Locale("en"),
             "-",
             "present",
@@ -123,7 +134,7 @@ def test_ensure_single_trailing_newline(
         (
             date(1999, 4, 1),
             date(2018, 9, 1),
-            DateFormat(full="yyyy-MM", year_only="yyyy"),
+            DateFormat(full=parse_pattern("yyyy-MM"), year_only=parse_pattern("yyyy")),
             Locale("en"),
             "***",
             "present",
@@ -134,7 +145,9 @@ def test_ensure_single_trailing_newline(
         (
             date(1999, 3, 1),
             date(2018, 10, 1),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("de"),
             "***",
             "heute",
@@ -145,7 +158,9 @@ def test_ensure_single_trailing_newline(
         (
             date(1999, 3, 1),
             date(2018, 10, 1),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("es"),
             "***",
             "heute",
@@ -156,7 +171,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2018, 3, 1),
             date(2018, 4, 1),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "***",
             "present",
@@ -167,7 +184,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2018, 4, 1),
             date(2018, 4, 1),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "***",
             "present",
@@ -178,7 +197,9 @@ def test_ensure_single_trailing_newline(
         (
             None,
             date(2000, 12, 31),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "---",
             "present",
@@ -189,7 +210,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2000, 12, 31),
             date(2000, 12, 31),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "---",
             "present",
@@ -200,7 +223,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2000, 12, 31),
             None,
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "---",
             "present",
@@ -211,7 +236,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2000, 12, 31),
             date(2002, 12, 31),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "---",
             "present",
@@ -222,7 +249,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2000, 12, 30),
             date(2002, 12, 30),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "---",
             "present",
@@ -233,7 +262,9 @@ def test_ensure_single_trailing_newline(
         (
             date(2000, 12, 31),
             date(2002, 12, 31),
-            DateFormat(full="MMMM yyyy", year_only="yyyy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+            ),
             Locale("en"),
             "---",
             "present",
@@ -244,7 +275,9 @@ def test_ensure_single_trailing_newline(
         (
             date(1995, 12, 31),
             date(1999, 12, 31),
-            DateFormat(full="MMMM yyyy", year_only="''yy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("''yy")
+            ),
             Locale("en"),
             "---",
             "present",
@@ -255,7 +288,9 @@ def test_ensure_single_trailing_newline(
         (
             date(1995, 12, 31),
             date(1999, 12, 31),
-            DateFormat(full="MMMM yyyy", year_only="'Anno' yy"),
+            DateFormat(
+                full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("'Anno' yy")
+            ),
             Locale("en"),
             "to",
             "present",

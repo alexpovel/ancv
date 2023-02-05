@@ -145,7 +145,15 @@ class Template(ABC):
         if is_last_doy and self.dec31_as_year:
             format = self.theme.datefmt.year_only
 
-        return format_date(date, format=format, locale=self.locale)
+        # Code-wise, `format_date` could accept `DateTimePattern` as its `format`
+        # directly (version 2.10.3):
+        # https://github.com/python-babel/babel/blob/25e436016970443226d0ec19cf74ac8476369b33/babel/dates.py#L683
+        # However, the type annotation is wrong/more restrictive, and it only accepts
+        # `str`. The original stringly-typed date pattern hides in the `pattern`
+        # attribute:
+        pattern = format.pattern
+
+        return format_date(date, format=pattern, locale=self.locale)
 
     @lru_cache(maxsize=1_000)
     def _format_date_range(

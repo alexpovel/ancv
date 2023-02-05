@@ -1,8 +1,14 @@
+from babel.dates import DateTimePattern, parse_pattern
 from pydantic import BaseModel
 from rich.style import Style
 
 
 class Emphasis(BaseModel):
+    """Emphasis styles for different levels of importance.
+
+    Using `rich.Style`, each can be styled arbitrarily.
+    """
+
     maximum: Style
     strong: Style
     medium: Style
@@ -13,17 +19,35 @@ class Emphasis(BaseModel):
 
 
 class DateFormat(BaseModel):
-    full: str
-    year_only: str
+    """Date formats for different levels of detail.
+
+    The `full` format is as detailed as possible, while `year_only` should only contain
+    the year. Formats may otherwise be in whatever format you desire (ISO8601,
+    localized, months spelled out etc.). For more context, see:
+    https://babel.pocoo.org/en/latest/dates.html
+
+    Using `babel.dates.DateTimePattern` and forcing it here over `str` allows for
+    considerably better type safety (`str` is the worst offender in terms of typing) and
+    fast failure: at application startup, when a theme is loaded but `parse_pattern` (or
+    similar) fails, the program won't launch altogether, instead of failing at runtime.
+    """
+
+    full: DateTimePattern
+    year_only: DateTimePattern
+
+    class Config:
+        arbitrary_types_allowed = True  # No validator for `DateTimePattern`
 
 
 class Theme(BaseModel):
-    emphasis: Emphasis
-    bullet: str
-    rulechar: str
-    sep: str
-    range_sep: str
-    datefmt: DateFormat
+    """A theme, containing styles and other formatting options."""
+
+    emphasis: Emphasis  # styles for different levels of importance
+    bullet: str  # bullet character to use in (unordered) lists
+    rulechar: str  # character for *horizontal* rules
+    sep: str  # separator character for joined-together strings (e.g. "•" for "foo•bar")
+    range_sep: str  # separator character for ranges (e.g. "..." for "2010...2020")
+    datefmt: DateFormat  # date formats in different levels of detail
 
 
 # See here for available colors:
@@ -41,7 +65,9 @@ THEMES = {
         sep="•",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(full="yyyy-MM", year_only="yyyy"),
+        datefmt=DateFormat(
+            full=parse_pattern("yyyy-MM"), year_only=parse_pattern("yyyy")
+        ),
     ),
     "grayscale": Theme(
         emphasis=Emphasis(
@@ -54,7 +80,9 @@ THEMES = {
         sep="*",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(full="MMMM yyyy", year_only="yyyy"),
+        datefmt=DateFormat(
+            full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+        ),
     ),
     "basic": Theme(
         emphasis=Emphasis(
@@ -67,7 +95,9 @@ THEMES = {
         sep="•",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(full="MMMM yyyy", year_only="yyyy"),
+        datefmt=DateFormat(
+            full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+        ),
     ),
     "lollipop": Theme(
         emphasis=Emphasis(
@@ -80,7 +110,9 @@ THEMES = {
         sep="•",
         range_sep="➔",
         rulechar="─",
-        datefmt=DateFormat(full="MMMM yyyy", year_only="yyyy"),
+        datefmt=DateFormat(
+            full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+        ),
     ),
     "hendrix": Theme(
         emphasis=Emphasis(
@@ -93,6 +125,8 @@ THEMES = {
         sep="•",
         range_sep="➔",
         rulechar="─",
-        datefmt=DateFormat(full="MMMM yyyy", year_only="yyyy"),
+        datefmt=DateFormat(
+            full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
+        ),
     ),
 }
