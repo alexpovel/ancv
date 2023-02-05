@@ -1,3 +1,5 @@
+"""This module contains models for the relevant parts of GitHub's API."""
+
 from datetime import datetime
 from typing import Mapping, Optional
 
@@ -5,6 +7,10 @@ from pydantic import BaseModel, Field, HttpUrl
 
 
 class File(BaseModel):
+    """Modelling a GitHub gist's file.
+
+    See: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#list-gists-for-the-authenticated-user, under the "files" key."""
+
     filename: Optional[str]
     type: Optional[str]
     language: Optional[str]
@@ -12,7 +18,11 @@ class File(BaseModel):
     size: Optional[int]
 
 
-class User(BaseModel):
+class GistUser(BaseModel):
+    """Modelling a GitHub gist's owner/user.
+
+    See: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#list-gists-for-the-authenticated-user"""
+
     name: Optional[str] = None
     email: Optional[str] = None
     login: str = Field(..., examples=["octocat"])
@@ -59,6 +69,10 @@ class User(BaseModel):
 
 
 class Gist(BaseModel):
+    """Modelling a GitHub gist.
+
+    See: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28"""
+
     url: HttpUrl
     forks_url: HttpUrl
     commits_url: HttpUrl
@@ -73,7 +87,7 @@ class Gist(BaseModel):
     updated_at: datetime
     description: Optional[str]
     comments: int
-    user: Optional[User]
+    user: Optional[GistUser]
     comments_url: HttpUrl
-    owner: Optional[User] = None
+    owner: Optional[GistUser] = None
     truncated: Optional[bool] = None
