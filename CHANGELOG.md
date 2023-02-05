@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.2.2](https://github.com/alexpovel/ancv/compare/v1.2.1...v1.2.2) (2023-02-05)
+
+
+### Documentation
+
+* Document and clear up templating code ([920a759](https://github.com/alexpovel/ancv/commit/920a75968cde31d97f38db01f50a328e4d50d76b))
+* Document and clear up theme code ([5229102](https://github.com/alexpovel/ancv/commit/5229102e7b818d617550b181ec3a2372c7d7a6bf))
+* Document and clear up web {client,server} and other code ([7690b08](https://github.com/alexpovel/ancv/commit/7690b089906746e6607bbe8bebed086aa7d3c9c9))
+* Document pydantic models and their original counterpart ([8365454](https://github.com/alexpovel/ancv/commit/836545490dcf3d82a90ca253a8be5ab07f30ba89))
+
 ## [1.2.1](https://github.com/alexpovel/ancv/compare/v1.2.0...v1.2.1) (2022-11-10)
 
 
