@@ -2093,14 +2093,14 @@ types-pytz = "*"
 
 [[package]]
 name = "types-cachetools"
-version = "5.3.0.0"
+version = "5.3.0.3"
 description = "Typing stubs for cachetools"
 category = "dev"
 optional = false
 python-versions = "*"
 files = [
-    {file = "types-cachetools-5.3.0.0.tar.gz", hash = "sha256:ed00554a55a66ae62a50f8c55f71b68d76c8f375d7b9c07480f629564b5c7fac"},
-    {file = "types_cachetools-5.3.0.0-py3-none-any.whl", hash = "sha256:cd20f3835b7bc008522e42c685ae02d708a34042f83a2638c0ab741b2b6c454f"},
+    {file = "types-cachetools-5.3.0.3.tar.gz", hash = "sha256:f8077c7de6810bb347e243a2d4fa08ef301dba9ce5f697892db58ecb5c304d10"},
+    {file = "types_cachetools-5.3.0.3-py3-none-any.whl", hash = "sha256:13bc10afc3d8038b0eeb7c684239ca5ec15329dc6a8571fce13448200049fbb7"},
 ]
 
 [[package]]
