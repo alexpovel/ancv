@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/alexpovel/ancv/compare/v1.2.3...v1.3.0) (2023-04-21)
+
+
+### Features
+
+* Harden PyPI deployment via OIDC ([9fec4ed](https://github.com/alexpovel/ancv/commit/9fec4edb75c39aba52a913b3e7d7b9f62c155022))
+
 ## [1.2.3](https://github.com/alexpovel/ancv/compare/v1.2.2...v1.2.3) (2023-02-05)
 
 
