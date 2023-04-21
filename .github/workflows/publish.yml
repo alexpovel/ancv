@@ -142,6 +142,8 @@ jobs:
     needs: release-please
     if: ${{ needs.release-please.outputs.created }}
 
+    environment: container-registry
+
     permissions:
       contents: read
       packages: write
