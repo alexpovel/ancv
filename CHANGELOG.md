@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/alexpovel/ancv/compare/v1.3.0...v1.3.1) (2023-04-21)
+
+
+### Bug Fixes
+
+* Protect container image release via environment ([aa93136](https://github.com/alexpovel/ancv/commit/aa93136fdf71683da2790312fa4f9577b8da09ee))
+
 ## [1.3.0](https://github.com/alexpovel/ancv/compare/v1.2.3...v1.3.0) (2023-04-21)
 
 
