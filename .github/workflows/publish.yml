@@ -108,6 +108,11 @@ jobs:
     needs: release-please
     if: ${{ needs.release-please.outputs.created }}
 
+    # https://blog.pypi.org/posts/2023-04-20-introducing-trusted-publishers/
+    environment: pypi
+    permissions:
+      id-token: write
+
     steps:
       - uses: actions/checkout@v3
 
@@ -129,9 +134,6 @@ jobs:
 
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@v1.8.4
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
 
   build-and-push-image:
     name: Build Docker image and push to GitHub Container Registry
