@@ -14,7 +14,8 @@ from pydantic import AnyUrl, BaseModel, EmailStr, Extra, Field
 class Location(BaseModel):
     """Modelling a JSON resume location item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L50-L73"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L50-L73
+    """
 
     class Config:
         extra = Extra.allow
@@ -37,7 +38,8 @@ class Location(BaseModel):
 class Profile(BaseModel):
     """Modelling a JSON resume profile item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L74-L99"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L74-L99
+    """
 
     class Config:
         extra = Extra.allow
@@ -52,7 +54,8 @@ class Profile(BaseModel):
 class Basics(BaseModel):
     """Modelling a JSON resume basics item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L17-L49"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L17-L49
+    """
 
     class Config:
         extra = Extra.allow
@@ -84,7 +87,8 @@ class Basics(BaseModel):
 class Certificate(BaseModel):
     """Modelling a JSON resume certificate item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L264-L292"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L264-L292
+    """
 
     class Config:
         extra = Extra.allow
@@ -100,7 +104,8 @@ class Certificate(BaseModel):
 class Skill(BaseModel):
     """Modelling a JSON resume skill item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L324-L351"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L324-L351
+    """
 
     class Config:
         extra = Extra.allow
@@ -115,7 +120,8 @@ class Skill(BaseModel):
 class Language(BaseModel):
     """Modelling a JSON resume language item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L352-L370"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L352-L370
+    """
 
     class Config:
         extra = Extra.allow
@@ -127,7 +133,8 @@ class Language(BaseModel):
 class Interest(BaseModel):
     """Modelling a JSON resume interest item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L371-L392"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L371-L392
+    """
 
     class Config:
         extra = Extra.allow
@@ -139,7 +146,8 @@ class Interest(BaseModel):
 class Reference(BaseModel):
     """Modelling a JSON resume reference item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L393-L411"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L393-L411
+    """
 
     class Config:
         extra = Extra.allow
@@ -168,7 +176,8 @@ class TemplateConfig(BaseModel):
 class Meta(BaseModel):
     """Modelling a JSON resume meta item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L477-L497"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L477-L497
+    """
 
     class Config:
         extra = Extra.allow
@@ -192,7 +201,8 @@ class Meta(BaseModel):
 class WorkItem(BaseModel):
     """Modelling a JSON resume work item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L100-L149"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L100-L149
+    """
 
     class Config:
         extra = Extra.allow
@@ -215,7 +225,8 @@ class WorkItem(BaseModel):
 class VolunteerItem(BaseModel):
     """Modelling a JSON resume volunteer item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L150-L191"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L150-L191
+    """
 
     class Config:
         extra = Extra.allow
@@ -236,7 +247,8 @@ class VolunteerItem(BaseModel):
 class EducationItem(BaseModel):
     """Modelling a JSON resume education item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L192-L237"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L192-L237
+    """
 
     class Config:
         extra = Extra.allow
@@ -258,7 +270,8 @@ class EducationItem(BaseModel):
 class Award(BaseModel):
     """Modelling a JSON resume award item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L238-L263"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L238-L263
+    """
 
     class Config:
         extra = Extra.allow
@@ -276,7 +289,8 @@ class Award(BaseModel):
 class Publication(BaseModel):
     """Modelling a JSON resume publication item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L293-L323"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L293-L323
+    """
 
     class Config:
         extra = Extra.allow
@@ -297,7 +311,8 @@ class Publication(BaseModel):
 class Project(BaseModel):
     """Modelling a JSON resume project item.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L412-L476"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L412-L476
+    """
 
     class Config:
         extra = Extra.allow
@@ -334,7 +349,8 @@ class Project(BaseModel):
 class ResumeSchema(BaseModel):
     """Modelling a complete JSON resume schema.
 
-    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json"""
+    See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json
+    """
 
     class Config:
         extra = Extra.forbid
