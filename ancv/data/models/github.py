@@ -9,7 +9,8 @@ from pydantic import BaseModel, Field, HttpUrl
 class File(BaseModel):
     """Modelling a GitHub gist's file.
 
-    See: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#list-gists-for-the-authenticated-user, under the "files" key."""
+    See: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#list-gists-for-the-authenticated-user, under the "files" key.
+    """
 
     filename: Optional[str]
     type: Optional[str]
@@ -21,7 +22,8 @@ class File(BaseModel):
 class GistUser(BaseModel):
     """Modelling a GitHub gist's owner/user.
 
-    See: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#list-gists-for-the-authenticated-user"""
+    See: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#list-gists-for-the-authenticated-user
+    """
 
     name: Optional[str] = None
     email: Optional[str] = None
