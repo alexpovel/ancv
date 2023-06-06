@@ -50,7 +50,7 @@ typer = ">=0.6.1,<0.8.0"
 Babel = "^2.10.3"
 
 [tool.poetry.group.dev.dependencies]
-black = "^22.3.0"
+black = ">=22.3,<24.0"
 pytest = "^7.1.2"
 datamodel-code-generator = {extras = ["http"], version = "^0.13.0"}
 mypy = "^0.960"
