@@ -1937,17 +1937,18 @@ test = ["black (>=22.3.0,<23.0.0)", "coverage (>=6.2,<7.0)", "isort (>=5.0.6,<6.
 
 [[package]]
 name = "types-babel"
-version = "2.11.0.12"
+version = "2.11.0.15"
 description = "Typing stubs for babel"
 optional = false
 python-versions = "*"
 files = [
-    {file = "types-babel-2.11.0.12.tar.gz", hash = "sha256:ab490b5e41714c90745bfe6a668ebbded22c22ba6ea9747768b4d4d4b194248f"},
-    {file = "types_babel-2.11.0.12-py3-none-any.whl", hash = "sha256:ce562b53ac3be1a32494e05031a565cab352625aefc38db392e236ff5eeb5f1b"},
+    {file = "types-babel-2.11.0.15.tar.gz", hash = "sha256:282c184c8c9d81e8269212c1b8fa0d39ee88fb8bc43be47980412781c9c85f7e"},
+    {file = "types_babel-2.11.0.15-py3-none-any.whl", hash = "sha256:d0579f2e8adeaef3fbe2eb63e5a2ecf01767fc018e5f3f36a3c9d8b723bd62c7"},
 ]
 
 [package.dependencies]
 types-pytz = "*"
+types-setuptools = "*"
 
 [[package]]
 name = "types-cachetools"
@@ -1969,6 +1970,17 @@ python-versions = "*"
 files = [
     {file = "types-pytz-2022.7.1.0.tar.gz", hash = "sha256:918f9c3e7a950ba7e7d6f84b18a7cacabc8886cb7125fb1927ff1c752b4b59de"},
     {file = "types_pytz-2022.7.1.0-py3-none-any.whl", hash = "sha256:10ec7d009a02340f1cecd654ac03f0c29b6088a03b63d164401fc52df45936b2"},
+]
+
+[[package]]
+name = "types-setuptools"
+version = "68.0.0.3"
+description = "Typing stubs for setuptools"
+optional = false
+python-versions = "*"
+files = [
+    {file = "types-setuptools-68.0.0.3.tar.gz", hash = "sha256:d57ae6076100b5704b3cc869fdefc671e1baf4c2cd6643f84265dfc0b955bf05"},
+    {file = "types_setuptools-68.0.0.3-py3-none-any.whl", hash = "sha256:fec09e5c18264c5c09351c00be01a34456fb7a88e457abe97401325f84ad9d36"},
 ]
 
 [[package]]
