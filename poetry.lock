@@ -1463,13 +1463,13 @@ email = ["email-validator (>=1.0.3)"]
 
 [[package]]
 name = "pydeps"
-version = "1.12.8"
+version = "1.12.13"
 description = "Display module dependencies"
 optional = false
 python-versions = "*"
 files = [
-    {file = "pydeps-1.12.8-py3-none-any.whl", hash = "sha256:9fb2bc708c96c7abab701aacf676c6ae7681c6b12dadd8e8f7000a4c5d4f58ba"},
-    {file = "pydeps-1.12.8.tar.gz", hash = "sha256:9e3064371c574177e288b17ea2ca96871e47add823c142920d3a4bd7c389a8bd"},
+    {file = "pydeps-1.12.13-py3-none-any.whl", hash = "sha256:423c6c5991d6310582e26ab84b39cca724b4c3593a2e60071654262bc93e67b6"},
+    {file = "pydeps-1.12.13.tar.gz", hash = "sha256:19284835d18d2160bec0edab1a374ba272265657bef3b97d3944f360fd048006"},
 ]
 
 [package.dependencies]
