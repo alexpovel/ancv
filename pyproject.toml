@@ -61,7 +61,7 @@ pytest-aiohttp = "^1.0.4"
 pytest-rerunfailures = ">=10.2,<13.0"
 requests = "^2.28.1"
 types-babel = "^2.10.0"
-ruff = ">=0.0.224,<0.0.264"
+ruff = ">=0.0.224,<0.0.282"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
