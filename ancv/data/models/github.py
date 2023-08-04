@@ -12,11 +12,11 @@ class File(BaseModel):
     See: https://docs.github.com/en/rest/gists/gists?apiVersion=2022-11-28#list-gists-for-the-authenticated-user, under the "files" key.
     """
 
-    filename: Optional[str]
-    type: Optional[str]
-    language: Optional[str]
-    raw_url: Optional[HttpUrl]
-    size: Optional[int]
+    filename: Optional[str] = None
+    type: Optional[str] = None
+    language: Optional[str] = None
+    raw_url: Optional[HttpUrl] = None
+    size: Optional[int] = None
 
 
 class GistUser(BaseModel):
@@ -34,7 +34,7 @@ class GistUser(BaseModel):
         ..., examples=["https://github.com/images/error/octocat_happy.gif"]
     )
     gravatar_id: Optional[str] = Field(
-        ..., examples=["41d064eb2195891e12d0413f63227ea7"]
+        None, examples=["41d064eb2195891e12d0413f63227ea7"]
     )
     url: HttpUrl = Field(..., examples=["https://api.github.com/users/octocat"])
     html_url: HttpUrl = Field(..., examples=["https://github.com/octocat"])
@@ -87,9 +87,9 @@ class Gist(BaseModel):
     public: bool
     created_at: datetime
     updated_at: datetime
-    description: Optional[str]
+    description: Optional[str] = None
     comments: int
-    user: Optional[GistUser]
+    user: Optional[GistUser] = None
     comments_url: HttpUrl
     owner: Optional[GistUser] = None
     truncated: Optional[bool] = None

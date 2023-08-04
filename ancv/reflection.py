@@ -1,7 +1,7 @@
 from importlib.metadata import metadata
 from typing import Optional
 
-from pydantic import AnyUrl, BaseModel, EmailStr, Field, validator
+from pydantic import field_validator, AnyUrl, BaseModel, EmailStr, Field
 
 from ancv import PACKAGE
 
@@ -24,12 +24,12 @@ class Metadata(BaseModel):
     )
     name: str = Field(
         description="Name of the package, e.g. 'ancv'",
-        regex=r"(?i)^([A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])$",
+        pattern=r"(?i)^([A-Z0-9]|[A-Z0-9][A-Z0-9._-]*[A-Z0-9])$",
     )
     version: str = Field(
         description="Version of the package, e.g. '0.1.0'",
         # https://peps.python.org/pep-0440/#appendix-b-parsing-version-strings-with-regular-expressions
-        regex=r"^([1-9][0-9]*!)?(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))*((a|b|rc)(0|[1-9][0-9]*))?(\.post(0|[1-9][0-9]*))?(\.dev(0|[1-9][0-9]*))?$",
+        pattern=r"^([1-9][0-9]*!)?(0|[1-9][0-9]*)(\.(0|[1-9][0-9]*))*((a|b|rc)(0|[1-9][0-9]*))?(\.post(0|[1-9][0-9]*))?(\.dev(0|[1-9][0-9]*))?$",
     )
     summary: Optional[str] = Field(
         description="One-line summary of the package, e.g. 'Ancv is a package for ...'",
@@ -64,7 +64,8 @@ class Metadata(BaseModel):
         description="Long description of the package, e.g. 'Ancv is a package for ...'",
     )
 
-    @validator("project_url")
+    @field_validator("project_url")
+    @classmethod
     def strip_prefix(cls, v: Optional[list[str]]) -> Optional[list[str]]:
         """Strips the prefixes 'Name, ' from the URLs.
 

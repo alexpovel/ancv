@@ -1,5 +1,5 @@
 from babel.dates import DateTimePattern, parse_pattern
-from pydantic import BaseModel
+from pydantic import ConfigDict, BaseModel
 from rich.style import Style
 
 
@@ -13,9 +13,7 @@ class Emphasis(BaseModel):
     strong: Style
     medium: Style
     weak: Style
-
-    class Config:
-        arbitrary_types_allowed = True  # No validator for `Style` available
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class DateFormat(BaseModel):
@@ -34,9 +32,7 @@ class DateFormat(BaseModel):
 
     full: DateTimePattern
     year_only: DateTimePattern
-
-    class Config:
-        arbitrary_types_allowed = True  # No validator for `DateTimePattern`
+    model_config = ConfigDict(arbitrary_types_allowed=True)
 
 
 class Theme(BaseModel):
