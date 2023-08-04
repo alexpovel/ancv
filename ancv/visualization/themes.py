@@ -1,5 +1,7 @@
+import typing as t
+
 from babel.dates import DateTimePattern, parse_pattern
-from pydantic import ConfigDict, BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 from rich.style import Style
 
 
@@ -38,12 +40,12 @@ class DateFormat(BaseModel):
 class Theme(BaseModel):
     """A theme, containing styles and other formatting options."""
 
-    emphasis: Emphasis  # styles for different levels of importance
-    bullet: str  # bullet character to use in (unordered) lists
-    rulechar: str  # character for *horizontal* rules
-    sep: str  # separator character for joined-together strings (e.g. "•" for "foo•bar")
-    range_sep: str  # separator character for ranges (e.g. "..." for "2010...2020")
-    datefmt: DateFormat  # date formats in different levels of detail
+    emphasis: t.Annotated[Emphasis, Field(description="styles for different levels of importance")]
+    bullet: t.Annotated[str, Field(description="bullet character to use in (unordered) lists")]
+    rulechar: t.Annotated[str, Field(description="character for *horizontal* rules")]
+    sep: t.Annotated[str, Field(description="separator character for joined-together strings (e.g. '•' for 'foo•bar')")]
+    range_sep: t.Annotated[str, Field(description="separator character for ranges (e.g. '...' for '2010...2020')")]
+    datefmt: t.Annotated[DateFormat, Field(description="date formats in different levels of detail")]
 
 
 # See here for available colors:
@@ -61,9 +63,7 @@ THEMES = {
         sep="•",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(
-            full=parse_pattern("yyyy-MM"), year_only=parse_pattern("yyyy")
-        ),
+        datefmt=DateFormat(full=parse_pattern("yyyy-MM"), year_only=parse_pattern("yyyy")),
     ),
     "grayscale": Theme(
         emphasis=Emphasis(
@@ -76,9 +76,7 @@ THEMES = {
         sep="*",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(
-            full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
-        ),
+        datefmt=DateFormat(full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")),
     ),
     "basic": Theme(
         emphasis=Emphasis(
@@ -91,9 +89,7 @@ THEMES = {
         sep="•",
         range_sep="–",
         rulechar="─",
-        datefmt=DateFormat(
-            full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
-        ),
+        datefmt=DateFormat(full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")),
     ),
     "lollipop": Theme(
         emphasis=Emphasis(
@@ -106,9 +102,7 @@ THEMES = {
         sep="•",
         range_sep="➔",
         rulechar="─",
-        datefmt=DateFormat(
-            full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
-        ),
+        datefmt=DateFormat(full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")),
     ),
     "hendrix": Theme(
         emphasis=Emphasis(
@@ -121,8 +115,6 @@ THEMES = {
         sep="•",
         range_sep="➔",
         rulechar="─",
-        datefmt=DateFormat(
-            full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")
-        ),
+        datefmt=DateFormat(full=parse_pattern("MMMM yyyy"), year_only=parse_pattern("yyyy")),
     ),
 }
