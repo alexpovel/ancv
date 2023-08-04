@@ -38,7 +38,7 @@ def api(
         # ceiling:
         token=os.environ.get("GH_TOKEN"),
         terminal_landing_page=os.environ.get(
-            "HOMEPAGE", METADATA.home_page or "NO HOMEPAGE SET"
+            "HOMEPAGE", str(METADATA.home_page) or "NO HOMEPAGE SET"
         ),
         # When visiting this endpoint in a browser, we want to redirect to the homepage.
         # That page cannot be this same path under the same hostname again, else we get

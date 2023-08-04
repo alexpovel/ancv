@@ -454,7 +454,9 @@ class Sequential(Template):
             yield Align.center(Text(label, style=self.theme.emphasis.strong))
             yield NewLine()
 
-        contact_items = [item for item in (item.email, item.phone, item.url) if item]
+        contact_items = [
+            str(item) for item in (item.email, item.phone, item.url) if item
+        ]
         if contact_items:
             yield Align.center(
                 Text(
@@ -543,7 +545,7 @@ class Sequential(Template):
                         f" {self.theme.sep} " if (location and url) else "",
                         self.theme.emphasis.weak,
                     ),
-                    (url or "", self.theme.emphasis.weak),
+                    (str(url) or "", self.theme.emphasis.weak),
                 )
             )
 
@@ -600,7 +602,7 @@ class Sequential(Template):
 
         if url := item.url:
             yield NewLine()
-            yield indent(Text(url, self.theme.emphasis.weak))
+            yield indent(Text(str(url), self.theme.emphasis.weak))
 
     @format.register
     def _(self, item: EducationItem) -> RenderableGenerator:
@@ -647,7 +649,7 @@ class Sequential(Template):
 
         if url := item.url:
             yield NewLine()
-            yield indent(Text(url, style=self.theme.emphasis.weak))
+            yield indent(Text(str(url), style=self.theme.emphasis.weak))
 
     @format.register
     def _(self, item: Award) -> RenderableGenerator:
@@ -687,7 +689,7 @@ class Sequential(Template):
 
         if url := item.url:
             yield NewLine()
-            yield indent(Text(url, style=self.theme.emphasis.weak))
+            yield indent(Text(str(url), style=self.theme.emphasis.weak))
 
     @format.register
     def _(self, item: Publication) -> RenderableGenerator:
@@ -714,7 +716,7 @@ class Sequential(Template):
 
         if url := item.url:
             yield NewLine()
-            yield indent(Text(url, style=self.theme.emphasis.weak))
+            yield indent(Text(str(url), style=self.theme.emphasis.weak))
 
     @format.register
     def _(self, item: Language) -> RenderableGenerator:
@@ -810,7 +812,7 @@ class Sequential(Template):
             yield NewLine()
 
         footer = join(
-            (item.url, Style()), (item.entity, Style()), separator=self.theme.sep
+            (str(item.url), Style()), (item.entity, Style()), separator=self.theme.sep
         )
         if footer:
             footer.style = self.theme.emphasis.weak
