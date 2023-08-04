@@ -2,23 +2,22 @@
 
 ## Environment setup
 
-Sadly, the setup cannot be automated arbitrarily (say, using a `make init` target).
-Installing `poetry` requires system packages (`python3`, `pip`, `curl`) that cannot be easily installed on the user's behalf in a distribution-independent way.
-Further, inserting `poetry` in one's `$PATH` is best done manually and consciously (environments, user desires etc. differ too much).
+[![Built with Devbox](https://jetpack.io/img/devbox/shield_moon.svg)](https://jetpack.io/devbox/docs/contributor-quickstart/)
 
-1. [Install `poetry`](https://python-poetry.org/docs/master/#installing-with-the-official-installer).
+Use devbox to set up a development environment.
+Refer to [the available `script`s](devbox.json) to see what's possible.
+Generally, even when running in a `devbox shell`, `poetry run` is necessary:
 
-   If you're having trouble with version mismatch, check which version the `poetry` installation currently uses in the [CI](https://github.com/alexpovel/ancv/actions).
-2. Run `poetry install` in the root directly (where the [`pyproject.toml`](./pyproject.toml) is located).
+- devbox sets up what used to be system-wide packages (Python, poetry, ...) deterministically and automatically
+- within the devbox virtual environment, we still manage and use a Python virtual environment through `poetry run`
 
-   `poetry` will throw an error here if your Python version isn't supported by the project.
-   If that is the case, look into using [`pyenv`](https://github.com/pyenv/pyenv), which will use the version specified in [`.python-version`](.python-version), guaranteeing a version match.
-3. Enter into the created environment with `poetry shell`.
+That way, we get the normal Python package management for normal Python packages (`ruff`, `black`, `pytest`, ...), and devbox for the overarching rest.
 
-   *Alternatively*, prepend all commands pertaining to the repository with `poetry run`, like `poetry run python -m ancv`.
-4. Set up `git` hooks provided by [`pre-commit`](https://pre-commit.com/#intro) (already installed through `poetry`): `make hooks`.
+Lastly, for bonus points, set up pre-commit hooks:
 
-   For this to work, you will have to have `make` installed (Windows alternatives exist).
+```bash
+devbox run install-hooks
+```
 
 ## Creating components
 

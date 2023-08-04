@@ -8,7 +8,7 @@ repos:
       - id: lint
         name: Run linting
         language: system
-        entry: make lint
+        entry: devbox run lint
         stages:
           - "commit"
           - "push"
@@ -20,7 +20,7 @@ repos:
       - id: check-formatting
         name: Check formatting
         language: system
-        entry: make formatcheck
+        entry: devbox run format-check
         stages:
           - "commit"
           - "push"
@@ -32,7 +32,7 @@ repos:
       - id: run-typecheck
         name: Run typecheck
         language: system
-        entry: make typecheck
+        entry: devbox run typecheck
         stages:
           - "commit"
           - "push"
@@ -44,7 +44,7 @@ repos:
       - id: run-tests
         name: Run tests
         language: system
-        entry: make test
+        entry: devbox run test
         stages:
           - "commit"
           - "push"
@@ -56,6 +56,6 @@ repos:
       - id: build-image
         name: Build image
         language: system
-        entry: make image
+        entry: devbox run build-image
         stages:
           - "push"

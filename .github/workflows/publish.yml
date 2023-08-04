@@ -12,51 +12,27 @@ jobs:
   tests:
     name: Run tests
 
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.11"]
-        os: ["ubuntu-latest"]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
-      # Installing via `pipx` is 'fully supported', so no need for
-      # https://github.com/snok/install-poetry, which is a bit slower. See also
-      # https://python-poetry.org/docs/master/#installing-with-pipx
-      - name: Install Poetry
-        run: pipx install poetry
-
-        # Counterintuitively, the Python setup step itself is setup *after* installing
-        # `poetry`, else the `poetry` command isn't found and the setup step fails. See
-        # also:
-        # https://github.com/marketplace/actions/setup-python#caching-packages-dependencies
-      - uses: actions/setup-python@v4
+      - name: Install devbox
+        uses: jetpack-io/devbox-install-action@v0.5.0
         with:
-          python-version: ${{ matrix.python-version }}
-          cache: poetry
-
-      - name: Set up Python environment
-        # `poetry env use` instructs all `poetry` runs to go through the correct (NOT
-        # the default aka system) Python environment, see also:
-        # https://github.com/actions/setup-python/issues/374#issuecomment-1088938718
-        # As long as we then call all actions via `poetry run ...`, we're fine.
-        run: |
-          poetry env use ${{ matrix.python-version }}
-          poetry install
+          enable-cache: true
 
       - name: Run linting
-        run: make lint
+        run: devbox run lint
 
       - name: Check code formatting
-        run: make formatcheck
+        run: devbox run format-check
 
       - name: Run type checks
-        run: make typecheck
+        run: devbox run typecheck
 
       - name: Run tests
-        run: make test
+        run: devbox run test
         env:
           # Unit tests actually run against the GH API for 'real integration testing',
           # and providing a token will increase the otherwise too-low rate limit.
