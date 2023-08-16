@@ -17,7 +17,7 @@ from ancv.visualization.templates import (
 )
 from ancv.visualization.themes import DateFormat, Emphasis, Theme
 from ancv.visualization.translations import Translation
-from tests import EXPECTED_OUTPUTS_DIR, RESUMES_DIR
+from tests import ACTUAL_OUTPUTS_DIR, EXPECTED_OUTPUTS_DIR, RESUMES_DIR
 
 
 @pytest.mark.parametrize(
@@ -377,7 +377,7 @@ def test_rejects_unknown_configs(model, expectation) -> None:
 
 
 @pytest.mark.parametrize(
-    ["path"], [(file,) for file in Path(RESUMES_DIR).glob("*.resume.json")]
+    ["path"], [(file,) for file in sorted(Path(RESUMES_DIR).glob("*.resume.json"))]
 )
 def test_expected_outputs(path: Path) -> None:
     """For each resume, compare with expected rendered output in sibling directory."""
@@ -388,4 +388,18 @@ def test_expected_outputs(path: Path) -> None:
 
     expected_output = EXPECTED_OUTPUTS_DIR / f"{path.name}.resume.output.txt"
 
-    assert rendered_resume == expected_output.read_text(encoding="utf-8")
+    is_equal = rendered_resume == expected_output.read_text(encoding="utf-8")
+
+    # Provide a mechanism for debugging tests easier: write out to a file. The diff
+    # printed by `pytest -vv` is not very helpful, as the ANSI escape codes are rendered
+    # and cannot be inspected 'raw'. Open the below file in a text editor to see raw
+    # bytes and compare.
+    with open(
+        ACTUAL_OUTPUTS_DIR
+        / f"{'OK' if is_equal else 'FAIL'}-{path.name}.resume.output.txt",
+        "w",
+        encoding="utf8",
+    ) as f:
+        f.write(rendered_resume)
+
+    assert is_equal

@@ -1,6 +1,9 @@
 # pydeps dependency graph output file
 depgraph.svg
 
+# This is discardable output for debugging tests
+tests/test_data/actual-outputs
+
 # We're not using this directly, but `poetry.lock`. However, since Python dependencies
 # are still a nightmare, we'll use `poetry.lock` to generate `requirements.txt` and
 # use that temporarily.

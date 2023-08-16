@@ -7,7 +7,11 @@ import requests
 TESTS_DIR = Path(__file__).parent
 DATA_DIR = TESTS_DIR / "test_data"
 RESUMES_DIR = DATA_DIR / "resumes"
+
 EXPECTED_OUTPUTS_DIR = DATA_DIR / "expected-outputs"
+ACTUAL_OUTPUTS_DIR = EXPECTED_OUTPUTS_DIR.parent / "actual-outputs"
+Path.mkdir(ACTUAL_OUTPUTS_DIR, exist_ok=True)
+
 RESUMES = {p.name: p for p in RESUMES_DIR.iterdir()}
 
 GH_TOKEN = os.environ.get("GH_TOKEN", None)

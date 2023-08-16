@@ -340,7 +340,7 @@
 
     [38;5;117mHTML, Java, JavaScript[0m
 
-    [38;5;182mhttps://calculater.com/[0m[38;5;182m•[0m[38;5;182mCoders for Change[0m
+    [38;5;182mhttps://calculater.com/•Coders for Change[0m
 
 
 [1;38;5;215mBetter Cat Petter[0m [1;38;5;215m•[0m [38;5;182mApplication[0m                                                            [38;5;182m                   April 2019[0m
@@ -377,7 +377,7 @@
 
     [38;5;117mHammer, Nails, Some cables[0m
 
-    [38;5;182mhttps://iphone34.com[0m[38;5;182m•[0m[38;5;182mSelf-Employed[0m
+    [38;5;182mhttps://iphone34.com•Self-Employed[0m
 
 
 [1;38;5;215mSniffing Dog[0m                                                                                                   [38;5;182m         [0m
