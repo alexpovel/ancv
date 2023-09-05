@@ -3,7 +3,8 @@
     "python@3",
     "poetry@1.5",
     "graphviz@8",
-    "pre-commit@3"
+    "pre-commit@3",
+    "gcc@latest"
   ],
   "env": {
     "LIBRARY": "ancv"
