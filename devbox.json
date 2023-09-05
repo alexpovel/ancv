@@ -1,10 +1,9 @@
 {
   "packages": [
-    "python@3",
+    "python@3.10",
     "poetry@1.5",
     "graphviz@8",
-    "pre-commit@3",
-    "gcc@latest"
+    "pre-commit@3"
   ],
   "env": {
     "LIBRARY": "ancv"
