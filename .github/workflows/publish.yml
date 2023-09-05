@@ -19,6 +19,8 @@ jobs:
 
       - name: Install devbox
         uses: jetpack-io/devbox-install-action@v0.6.0
+        with:
+          devbox-version: "0.5.11"
 
       - name: Run linting
         run: devbox run lint
