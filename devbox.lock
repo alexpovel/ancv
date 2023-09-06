@@ -20,12 +20,11 @@
       "source": "devbox-search",
       "version": "3.3.3"
     },
-    "python@3.10": {
-      "last_modified": "2023-02-24T18:08:35Z",
-      "plugin_version": "0.0.1",
-      "resolved": "github:NixOS/nixpkgs/806075be2bdde71895359ed18cb530c4d323e6f6#python3",
+    "python@3.11": {
+      "last_modified": "2023-09-04T16:24:30Z",
+      "resolved": "github:NixOS/nixpkgs/3c15feef7770eb5500a4b8792623e2d6f598c9c1#python311",
       "source": "devbox-search",
-      "version": "3.10.9"
+      "version": "3.11.4"
     }
   }
 }
