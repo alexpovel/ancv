@@ -2,7 +2,7 @@
 
                                                        [3;38;5;114mProgrammer[0m                                                       
 
-                                 [38;5;182mjohn@gmail.com • (912) 555-4321 • https://johndoe.com[0m                                  
+                                 [38;5;182mjohn@gmail.com • (912) 555-4321 • https://johndoe.com/[0m                                 
 
 [38;5;117mA summary of John Doe that is more than 200 characters long so that it can be tested and verified to see if it works and[0m
 [38;5;117mhow linebreaks are processed.[0m
@@ -33,7 +33,7 @@
         [38;5;117m➔ Worked on the company's second product[0m
         [38;5;117m➔ Worked on the company's third product[0m
 
-    [38;5;182mSan Francisco, CA[0m[38;5;182m • [0m[38;5;182mhttps://example.com[0m
+    [38;5;182mSan Francisco, CA[0m[38;5;182m • [0m[38;5;182mhttps://example.com/[0m
 
 [1;38;5;215mMoogle[0m [38;5;182mA search engine for motorcycles[0m                                    [38;5;182m                      September 2019 ➔ present[0m
 
@@ -47,7 +47,7 @@
         [38;5;117m➔ Worked on the company's third product, which was a motorcycle calender app that I was able to make in a week [0m 
         [38;5;117musing blockchain technology.[0m                                                                                    
 
-    [38;5;182mSan Antonio, TX[0m[38;5;182m • [0m[38;5;182mhttps://example.com[0m
+    [38;5;182mSan Antonio, TX[0m[38;5;182m • [0m[38;5;182mhttps://example.com/[0m
 
 [1;38;5;215mPoogle[0m [38;5;182mA search engine for the unspeakable[0m                                                                            [38;5;182m  [0m
 
@@ -169,11 +169,11 @@
 
 [1;38;5;215mCertificate of Excellence[0m [38;5;182m(Legitimate Certificate Authority)[0m                                       [38;5;182m        November 2021[0m
 
-    [38;5;182mhttps://certificate.com[0m
+    [38;5;182mhttps://certificate.com/[0m
 
 [1;38;5;215mCertificate of Merit[0m [38;5;182m(United States of America)[0m                                               [38;5;182m             November 2020[0m
 
-    [38;5;182mhttps://example.com[0m
+    [38;5;182mhttps://example.com/[0m
 
 [1;38;5;215mCertificate of Existence[0m                                                                                            [38;5;182m    [0m
 
@@ -191,7 +191,7 @@
     [38;5;117mThis paper is about how I did this and that, despite the fact that I did not write it.[0m
     [38;5;117mCome to think of it, I probably committed a felony.[0m                                   
 
-    [38;5;182mhttps://publication.com[0m
+    [38;5;182mhttps://publication.com/[0m
 
 [1;38;5;215mHex-Quantum Fields of Becker-Mendel Swirls in the Presence of a Non-Abelian Group[0m [38;5;182m(Physics of the Literally [0m  [38;5;182mMarch 2009[0m
 [38;5;182mImpossible)[0m                                                                                                             
@@ -200,7 +200,7 @@
     [38;5;117mAlmost every person thought it was about quantum mechanics, but I am not sure.[0m
     [38;5;117mIn fact, they called it impossible. They were right.[0m                          
 
-    [38;5;182mhttps://publication.com[0m
+    [38;5;182mhttps://publication.com/[0m
 
 [1;38;5;215mCryptanalysis of the RSA Algorithm Using a Quantum Computer[0m                                                           [38;5;182m  [0m
 
@@ -377,7 +377,7 @@
 
     [38;5;117mHammer, Nails, Some cables[0m
 
-    [38;5;182mhttps://iphone34.com•Self-Employed[0m
+    [38;5;182mhttps://iphone34.com/•Self-Employed[0m
 
 
 [1;38;5;215mSniffing Dog[0m                                                                                                   [38;5;182m         [0m
