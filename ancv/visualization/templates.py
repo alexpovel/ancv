@@ -551,7 +551,7 @@ class Sequential(Template):
                         f" {self.theme.sep} " if (location and url) else "",
                         self.theme.emphasis.weak,
                     ),
-                    (str(url) or "", self.theme.emphasis.weak),
+                    ("" if url is None else str(url), self.theme.emphasis.weak),
                 )
             )
 
@@ -818,7 +818,9 @@ class Sequential(Template):
             yield NewLine()
 
         footer = join(
-            (str(item.url), Style()), (item.entity, Style()), separator=self.theme.sep
+            ("" if item.url is None else str(item.url), Style()),
+            (item.entity, Style()),
+            separator=self.theme.sep,
         )
         if footer:
             footer.style = self.theme.emphasis.weak
