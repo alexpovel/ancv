@@ -1,0 +1,9 @@
+{
+    "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+    "packages": {
+        "ancv": {
+            "release-type": "python"
+        }
+    },
+    "bootstrap-sha": "3a0b0400c92329a3aeecdc88ca66ae009c2b730c"
+}
