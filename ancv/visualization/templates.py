@@ -216,7 +216,13 @@ class Template(ABC):
         """
 
         if (config := model.meta.config) is None:
-            config = TemplateConfig()
+            config = TemplateConfig(
+                template=None,
+                theme=None,
+                language=None,
+                ascii_only=None,
+                dec31_as_year=None,
+            )
 
         if (theme_name := config.theme) is None:
             theme_name = "lollipop"
