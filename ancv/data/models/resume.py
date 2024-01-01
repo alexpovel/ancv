@@ -3,10 +3,8 @@
 See: https://jsonresume.org/schema/.
 """
 
-from __future__ import annotations
-
+import datetime
 import typing as t
-from datetime import date, datetime
 
 from pydantic import AnyUrl, BaseModel, ConfigDict, EmailStr, Field
 
@@ -112,7 +110,9 @@ class Certificate(BaseModel):
     name: t.Annotated[
         t.Optional[str], Field(description="e.g. Certified Kubernetes Administrator")
     ] = None
-    date: t.Annotated[t.Optional[date], Field(description="e.g. 1989-06-12")] = None
+    date: t.Annotated[
+        t.Optional[datetime.date], Field(description="e.g. 1989-06-12")
+    ] = None
     url: t.Annotated[
         t.Optional[AnyUrl], Field(description="e.g. http://example.com")
     ] = None
@@ -211,7 +211,7 @@ class Meta(BaseModel):
         Field(description="A version field which follows semver - e.g. v1.0.0"),
     ] = None
     lastModified: t.Annotated[
-        t.Optional[datetime],
+        t.Optional[datetime.datetime],
         Field(description="Using ISO 8601 with YYYY-MM-DDThh:mm:ss"),
     ] = None
     config: t.Annotated[
@@ -244,8 +244,8 @@ class WorkItem(BaseModel):
     url: t.Annotated[
         t.Optional[AnyUrl], Field(description="e.g. http://facebook.example.com")
     ] = None
-    startDate: t.Optional[date] = None
-    endDate: t.Optional[date] = None
+    startDate: t.Optional[datetime.date] = None
+    endDate: t.Optional[datetime.date] = None
     summary: t.Annotated[
         t.Optional[str],
         Field(description="Give an overview of your responsibilities at the company"),
@@ -272,8 +272,8 @@ class VolunteerItem(BaseModel):
     url: t.Annotated[
         t.Optional[AnyUrl], Field(description="e.g. http://facebook.example.com")
     ] = None
-    startDate: t.Optional[date] = None
-    endDate: t.Optional[date] = None
+    startDate: t.Optional[datetime.date] = None
+    endDate: t.Optional[datetime.date] = None
     summary: t.Annotated[
         t.Optional[str],
         Field(description="Give an overview of your responsibilities at the company"),
@@ -300,8 +300,8 @@ class EducationItem(BaseModel):
     ] = None
     area: t.Annotated[t.Optional[str], Field(description="e.g. Arts")] = None
     studyType: t.Annotated[t.Optional[str], Field(description="e.g. Bachelor")] = None
-    startDate: t.Optional[date] = None
-    endDate: t.Optional[date] = None
+    startDate: t.Optional[datetime.date] = None
+    endDate: t.Optional[datetime.date] = None
     score: t.Annotated[
         t.Optional[str], Field(description="grade point average, e.g. 3.67/4.0")
     ] = None
@@ -322,7 +322,7 @@ class Award(BaseModel):
         t.Optional[str],
         Field(description="e.g. One of the 100 greatest minds of the century"),
     ] = None
-    date: t.Optional[date] = None
+    date: datetime.date | None = None
     awarder: t.Annotated[
         t.Optional[str], Field(description="e.g. Time Magazine")
     ] = None
@@ -346,7 +346,7 @@ class Publication(BaseModel):
     publisher: t.Annotated[
         t.Optional[str], Field(description="e.g. IEEE, Computer Magazine")
     ] = None
-    releaseDate: t.Optional[date] = None
+    releaseDate: t.Optional[datetime.date] = None
     url: t.Annotated[
         t.Optional[AnyUrl],
         Field(
@@ -382,8 +382,8 @@ class Project(BaseModel):
     keywords: t.Annotated[
         t.Optional[list[str]], Field(description="Specify special elements involved")
     ] = None
-    startDate: t.Optional[date] = None
-    endDate: t.Optional[date] = None
+    startDate: t.Optional[datetime.date] = None
+    endDate: t.Optional[datetime.date] = None
     url: t.Annotated[
         t.Optional[AnyUrl],
         Field(
