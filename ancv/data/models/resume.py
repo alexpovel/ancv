@@ -8,7 +8,7 @@ from __future__ import annotations
 from datetime import date, datetime
 from typing import Optional, Union
 
-from pydantic import AnyUrl, BaseModel, EmailStr, Extra, Field
+from pydantic import ConfigDict, AnyUrl, BaseModel, EmailStr, Field
 
 
 class Location(BaseModel):
@@ -16,9 +16,7 @@ class Location(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L50-L73
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     address: Optional[str] = Field(
         None,
@@ -40,9 +38,7 @@ class Profile(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L74-L99
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     network: Optional[str] = Field(None, description="e.g. Facebook or Twitter")
     username: Optional[str] = Field(None, description="e.g. neutralthoughts")
@@ -56,9 +52,7 @@ class Basics(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L17-L49
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     name: Optional[str] = None
     label: Optional[str] = Field(None, description="e.g. Web Developer")
@@ -89,9 +83,7 @@ class Certificate(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L264-L292
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     name: Optional[str] = Field(
         None, description="e.g. Certified Kubernetes Administrator"
@@ -106,9 +98,7 @@ class Skill(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L324-L351
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     name: Optional[str] = Field(None, description="e.g. Web Development")
     level: Optional[str] = Field(None, description="e.g. Master")
@@ -122,9 +112,7 @@ class Language(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L352-L370
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     language: Optional[str] = Field(None, description="e.g. English, Spanish")
     fluency: Optional[str] = Field(None, description="e.g. Fluent, Beginner")
@@ -135,9 +123,7 @@ class Interest(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L371-L392
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     name: Optional[str] = Field(None, description="e.g. Philosophy")
     keywords: Optional[list[str]] = None
@@ -148,9 +134,7 @@ class Reference(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L393-L411
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     name: Optional[str] = Field(None, description="e.g. Timothy Cook")
     reference: Optional[str] = Field(
@@ -166,11 +150,11 @@ class TemplateConfig(BaseModel):
     It occurs as an additional, but optional field in the JSON resume.
     """
 
-    template: Optional[str]
-    theme: Optional[str]
-    language: Optional[str]
-    ascii_only: Optional[bool]
-    dec31_as_year: Optional[bool]
+    template: Optional[str] = None
+    theme: Optional[str] = None
+    language: Optional[str] = None
+    ascii_only: Optional[bool] = None
+    dec31_as_year: Optional[bool] = None
 
 
 class Meta(BaseModel):
@@ -178,9 +162,7 @@ class Meta(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L477-L497
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     canonical: Optional[AnyUrl] = Field(
         None, description="URL (as per RFC 3986) to latest version of this document"
@@ -203,9 +185,7 @@ class WorkItem(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L100-L149
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     name: Optional[str] = Field(None, description="e.g. Facebook")
     location: Optional[str] = Field(None, description="e.g. Menlo Park, CA")
@@ -227,9 +207,7 @@ class VolunteerItem(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L150-L191
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     organization: Optional[str] = Field(None, description="e.g. Facebook")
     position: Optional[str] = Field(None, description="e.g. Software Engineer")
@@ -249,9 +227,7 @@ class EducationItem(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L192-L237
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     institution: Optional[str] = Field(
         None, description="e.g. Massachusetts Institute of Technology"
@@ -272,9 +248,7 @@ class Award(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L238-L263
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     title: Optional[str] = Field(
         None, description="e.g. One of the 100 greatest minds of the century"
@@ -291,9 +265,7 @@ class Publication(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L293-L323
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     name: Optional[str] = Field(None, description="e.g. The World Wide Web")
     publisher: Optional[str] = Field(None, description="e.g. IEEE, Computer Magazine")
@@ -313,9 +285,7 @@ class Project(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json#L412-L476
     """
-
-    class Config:
-        extra = Extra.allow
+    model_config = ConfigDict(extra="allow")
 
     name: Optional[str] = Field(None, description="e.g. The World Wide Web")
     description: Optional[str] = Field(
@@ -351,9 +321,7 @@ class ResumeSchema(BaseModel):
 
     See: https://github.com/alexpovel/resume-schema/blob/6e3244639cebfa89e66ee60d47c665a96e01a811/schema.json
     """
-
-    class Config:
-        extra = Extra.forbid
+    model_config = ConfigDict(extra="forbid")
 
     schema_: Optional[AnyUrl] = Field(
         None,
