@@ -1,3 +1,4 @@
+import json
 from datetime import date
 from pathlib import Path
 from typing import Optional
@@ -381,7 +382,13 @@ def test_rejects_unknown_configs(model, expectation) -> None:
 )
 def test_expected_outputs(path: Path) -> None:
     """For each resume, compare with expected rendered output in sibling directory."""
-    rendered_resume = Template.from_model_config(ResumeSchema.parse_file(path)).render()
+
+    with open(path, encoding="utf8") as f:
+        json_data = json.load(f)
+
+    rendered_resume = Template.from_model_config(
+        ResumeSchema.model_validate(json_data)
+    ).render()
 
     while path.suffix:
         path = path.with_suffix("")
