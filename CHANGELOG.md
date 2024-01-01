@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.0](https://github.com/alexpovel/ancv/compare/v1.3.1...v1.4.0) (2024-01-01)
+
+
+### Features
+
+* Set up devbox ([b1156f6](https://github.com/alexpovel/ancv/commit/b1156f650380079d87f0062aa9d4e6e481ae0225))
+
+
+### Bug Fixes
+
+* **ci:** Bootstrap release-please after its v4 release ([926edc6](https://github.com/alexpovel/ancv/commit/926edc645b59d477ae88d2e968a55f11c37fa278))
+
 ## [1.3.1](https://github.com/alexpovel/ancv/compare/v1.3.0...v1.3.1) (2023-04-21)
 
 
