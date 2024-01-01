@@ -41,7 +41,7 @@ classifiers = [
 python = "^3.10"
 gidgethub = "^5.1.0"
 aiohttp = { extras = ["speedups"], version = "^3.8.1" }
-pydantic = {extras = ["email"], version = "^2.5.3"}
+pydantic = { extras = ["email"], version = "^2.5.3" }
 structlog = ">=21.5,<24.0"
 cachetools = "^5.2.0"
 humanize = "^4.1.0"
@@ -91,7 +91,10 @@ show_error_codes = true
 strict = true
 namespace_packages = true
 disallow_any_unimported = true
-disallow_any_explicit = true
+# Disable until https://github.com/python/mypy/issues/16454 fixed (inheriting from
+# `Basemodel` gives ancv/visualization/translations.py:4: error: Explicit "Any" is not
+# allowed  [misc])
+disallow_any_explicit = false
 disallow_any_generics = true
 disallow_subclassing_any = true
 disallow_untyped_defs = true
