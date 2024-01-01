@@ -76,4 +76,4 @@ class Metadata(BaseModel):
         return [url.split()[-1] for url in v]
 
 
-METADATA = Metadata(**metadata(PACKAGE).json)
+METADATA = Metadata.parse_obj(metadata(PACKAGE).json)

@@ -389,7 +389,7 @@ class ResumeSchema(BaseModel):
         None, description="Specify career projects"
     )
     meta: Meta = Field(
-        Meta(),
+        Meta(ancv=None, canonical=None, version=None, lastModified=None),
         description="The schema version and any other tooling configuration lives here",
     )
 
