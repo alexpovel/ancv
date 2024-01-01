@@ -29,14 +29,6 @@ jobs:
       - name: Run type checks
         run: devbox run typecheck
 
-      # https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/making-authenticated-api-requests-with-a-github-app-in-a-github-actions-workflow
-      - name: Fetch GitHub token for integration tests
-        uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-
       - name: Run tests
         run: devbox run test
         env:
@@ -45,7 +37,9 @@ jobs:
           # The `GITHUB_TOKEN` failed (https://github.com/alexpovel/ancv/actions/runs/4093416643/jobs/7063406195):
           #
           # body = b'{"message":"Resource not accessible by integration","documentation_url":"https://docs.github.com/rest/reference/gists#list-gists-for-a-user"}'
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          #
+          # So use a personal token.
+          GH_TOKEN: ${{ secrets.GH_PERMISSIONLESS_FGAT }}
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
