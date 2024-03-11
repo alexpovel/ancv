@@ -11,7 +11,7 @@ Generally, even when running in a `devbox shell`, `poetry run` is necessary:
 - devbox sets up what used to be system-wide packages (Python, poetry, ...) deterministically and automatically
 - within the devbox virtual environment, we still manage and use a Python virtual environment through `poetry run`
 
-That way, we get the normal Python package management for normal Python packages (`ruff`, `black`, `pytest`, ...), and devbox for the overarching rest.
+That way, we get the normal Python package management for normal Python packages (`ruff`, `pytest`, ...), and devbox for the overarching rest.
 
 Lastly, for bonus points, set up pre-commit hooks:
 

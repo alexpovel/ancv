@@ -232,9 +232,9 @@ class WorkItem(BaseModel):
     model_config = ConfigDict(extra="allow")
 
     name: t.Annotated[t.Optional[str], Field(description="e.g. Facebook")] = None
-    location: t.Annotated[
-        t.Optional[str], Field(description="e.g. Menlo Park, CA")
-    ] = None
+    location: t.Annotated[t.Optional[str], Field(description="e.g. Menlo Park, CA")] = (
+        None
+    )
     description: t.Annotated[
         t.Optional[str], Field(description="e.g. Social Media Company")
     ] = None
@@ -263,9 +263,9 @@ class VolunteerItem(BaseModel):
 
     model_config = ConfigDict(extra="allow")
 
-    organization: t.Annotated[
-        t.Optional[str], Field(description="e.g. Facebook")
-    ] = None
+    organization: t.Annotated[t.Optional[str], Field(description="e.g. Facebook")] = (
+        None
+    )
     position: t.Annotated[
         t.Optional[str], Field(description="e.g. Software Engineer")
     ] = None
@@ -323,9 +323,9 @@ class Award(BaseModel):
         Field(description="e.g. One of the 100 greatest minds of the century"),
     ] = None
     date: datetime.date | None = None
-    awarder: t.Annotated[
-        t.Optional[str], Field(description="e.g. Time Magazine")
-    ] = None
+    awarder: t.Annotated[t.Optional[str], Field(description="e.g. Time Magazine")] = (
+        None
+    )
     summary: t.Annotated[
         t.Optional[str],
         Field(description="e.g. Received for my work with Quantum Physics"),
@@ -340,9 +340,9 @@ class Publication(BaseModel):
 
     model_config = ConfigDict(extra="allow")
 
-    name: t.Annotated[
-        t.Optional[str], Field(description="e.g. The World Wide Web")
-    ] = None
+    name: t.Annotated[t.Optional[str], Field(description="e.g. The World Wide Web")] = (
+        None
+    )
     publisher: t.Annotated[
         t.Optional[str], Field(description="e.g. IEEE, Computer Magazine")
     ] = None
@@ -369,9 +369,9 @@ class Project(BaseModel):
 
     model_config = ConfigDict(extra="allow")
 
-    name: t.Annotated[
-        t.Optional[str], Field(description="e.g. The World Wide Web")
-    ] = None
+    name: t.Annotated[t.Optional[str], Field(description="e.g. The World Wide Web")] = (
+        None
+    )
     description: t.Annotated[
         t.Optional[str],
         Field(description="Short summary of project. e.g. Collated works of 2017."),

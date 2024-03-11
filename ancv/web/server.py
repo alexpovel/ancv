@@ -54,8 +54,7 @@ class Runnable(ABC):
     """A server object that can be `run`, enabling different server implementations."""
 
     @abstractmethod
-    def run(self, context: ServerContext) -> None:
-        ...
+    def run(self, context: ServerContext) -> None: ...
 
 
 class APIHandler(Runnable):
