@@ -73,7 +73,7 @@ def render(
     path: Path = typer.Argument(
         Path("resume.json"),
         help="File path to the JSON resume file.",
-    )
+    ),
 ) -> None:
     """Locally renders the JSON resume at the given file path."""
 
@@ -90,7 +90,7 @@ def validate(
     path: Path = typer.Argument(
         Path("resume.json"),
         help="File path to the JSON resume file.",
-    )
+    ),
 ) -> None:
     """Checks the validity of the given JSON resume without rendering."""
 
@@ -225,7 +225,7 @@ def generate_schema() -> None:
 def main(
     verbose: bool = typer.Option(
         False, "--verbose", "-v", help="Turn on verbose logging output."
-    )
+    ),
 ) -> None:
     """CLI-wide, global options.
 
