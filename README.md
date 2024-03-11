@@ -16,6 +16,17 @@ Be warned though, for this is kinda useless and just for fun:
 
 1. Create your resume according to the [JSON Resume Schema](https://jsonresume.org/schema/) (see also the [schema specification](https://github.com/jsonresume/resume-schema/blob/master/schema.json)) either:
 
+   - use ChatGPT (or another LLM) with the following prompt (you need to fill in the spaces for `[resume]` and `[json_schema]`):
+      ```
+      Resume:[resume]
+
+      JSON Resume Schema:[json_schema]
+
+      Provide JSON data structure of the resume, formatted according to the JSON Resume Schema
+      
+      Output json, no yapping
+      ```
+      Note: for `json_schema` you can just use the example [from here](https://jsonresume.org/schema/)
    - manually (see [the `heyho` sample](./ancv/data/showcase.resume.json) for a possible starting point),
    - exporting from [LinkedIn](https://www.linkedin.com/) using [Joshua Tzucker's LinkedIn exporter](https://joshuatz.com/projects/web-stuff/linkedin-profile-to-json-resume-exporter/) ([repo](https://github.com/joshuatz/linkedin-to-jsonresume))[^1], or
    - exporting from one of the platforms advertised as offering [JSON resume integration](https://jsonresume.org/schema/).
