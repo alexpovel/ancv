@@ -48,7 +48,6 @@ humanize = "^4.1.0"
 rich = ">=12.4.4,<14.0.0"
 typer = ">=0.6.1,<0.10.0"
 Babel = "^2.10.3"
-bump-pydantic = "^0.8.0"
 
 [tool.poetry.group.dev.dependencies]
 black = ">=22.3,<25.0"
