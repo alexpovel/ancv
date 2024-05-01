@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/alexpovel/ancv/compare/v1.4.0...v1.4.1) (2024-05-01)
+
+
+### Bug Fixes
+
+* Provide libc for pydantic ([49a91f9](https://github.com/alexpovel/ancv/commit/49a91f98f9764d5f67ee53b0de54e53d0b759eff))
+
 ## [1.4.0](https://github.com/alexpovel/ancv/compare/v1.3.1...v1.4.0) (2024-05-01)
 
 
