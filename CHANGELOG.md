@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.4.0](https://github.com/alexpovel/ancv/compare/v1.3.1...v1.4.0) (2024-05-01)
+
+
+### Features
+
+* Set up devbox ([b1156f6](https://github.com/alexpovel/ancv/commit/b1156f650380079d87f0062aa9d4e6e481ae0225))
+
+
+### Bug Fixes
+
+* **ci:** Allow release-please to run as full bot account ([2fcafa2](https://github.com/alexpovel/ancv/commit/2fcafa28f5ef8f35930c0c329ebace1bb11cc21b))
+* **ci:** Bootstrap release-please ([bd5cb39](https://github.com/alexpovel/ancv/commit/bd5cb39c69b02cbcdb30c0f934309e37aecc219e))
+* **ci:** Bootstrap release-please after its v4 release ([926edc6](https://github.com/alexpovel/ancv/commit/926edc645b59d477ae88d2e968a55f11c37fa278))
+* **ci:** Package manifest path ([d6c914d](https://github.com/alexpovel/ancv/commit/d6c914d4df8f56856feb1122fcb2ad013dd6fb6c))
+* **ci:** Roll back to normal PAT ([5a84fc4](https://github.com/alexpovel/ancv/commit/5a84fc4432e1f53f5dbf077906873e4ac01c13c6))
+* **tests:** URL str output changed subtly ([bfc8632](https://github.com/alexpovel/ancv/commit/bfc8632a3648122e1c858a817666beff77e1ffbc))
+* Type errors after mypy version bump ([dcc813d](https://github.com/alexpovel/ancv/commit/dcc813d3ad8ab9984e3edfae0eac5cd730ea87a0))
+* **typing:** Allow `Any` until `mypy`/`pydantic` play well together again ([22dff21](https://github.com/alexpovel/ancv/commit/22dff2144aff6fb19097c0080d3a5369cea7b15e))
+
+
+### Documentation
+
+* Suggest a gpt prompt for generating resumes in JSON Resume Schema format ([321c438](https://github.com/alexpovel/ancv/commit/321c438601b1257f6b32e39be726cb0c006297d3))
+
 ## [1.3.1](https://github.com/alexpovel/ancv/compare/v1.3.0...v1.3.1) (2023-04-21)
 
 
