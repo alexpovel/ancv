@@ -60,7 +60,7 @@ pytest-aiohttp = "^1.0.4"
 pytest-rerunfailures = ">=10.2,<13.0"
 requests = "^2.28.1"
 types-babel = "^2.10.0"
-ruff = "^0.3.2"
+ruff = ">=0.3.2,<0.5.0"
 ipython = "^8.14.0"
 
 [build-system]
