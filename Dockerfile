@@ -18,7 +18,7 @@ COPY . .
 
 RUN poetry install --only main
 
-FROM python:3.10-alpine
+FROM python:3.10
 
 ARG WORKDIR
 
@@ -26,8 +26,7 @@ WORKDIR ${WORKDIR}
 
 COPY --from=builder ${WORKDIR} .
 
-# For options, see https://boxmatrix.info/wiki/Property:adduser
-RUN adduser app -DHh ${WORKDIR} -u 1000
+RUN useradd -u 1000 -d ${WORKDIR} -M app
 USER 1000
 
 # App-specific settings:
