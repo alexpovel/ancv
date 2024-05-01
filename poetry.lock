@@ -746,13 +746,13 @@ test-randomorder = ["pytest-randomly"]
 
 [[package]]
 name = "datamodel-code-generator"
-version = "0.25.4"
+version = "0.25.6"
 description = "Datamodel Code Generator"
 optional = false
-python-versions = ">=3.7,<4.0"
+python-versions = "<4.0,>=3.7"
 files = [
-    {file = "datamodel_code_generator-0.25.4-py3-none-any.whl", hash = "sha256:cbf179517c610dce81589203d72b52e6ab848d78cb57264c1e5d929a9cc9d9a4"},
-    {file = "datamodel_code_generator-0.25.4.tar.gz", hash = "sha256:8e64c94a3bc92c69a6f56de84f0d61f70fd65c2e0ac95a27ce66837bd04c5492"},
+    {file = "datamodel_code_generator-0.25.6-py3-none-any.whl", hash = "sha256:adbdb485a713a7035d7260c28d3f280e598b0eb3170d2361cb92431a44c4d154"},
+    {file = "datamodel_code_generator-0.25.6.tar.gz", hash = "sha256:466f56de876947b73d4a4cd0c947ce37f63f68f2f6c0ce1477045d1e6e495da5"},
 ]
 
 [package.dependencies]
