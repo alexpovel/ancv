@@ -1875,18 +1875,18 @@ testing = ["fields", "hunter", "process-tests", "pytest-xdist", "virtualenv"]
 
 [[package]]
 name = "pytest-rerunfailures"
-version = "12.0"
+version = "14.0"
 description = "pytest plugin to re-run tests to eliminate flaky failures"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.8"
 files = [
-    {file = "pytest-rerunfailures-12.0.tar.gz", hash = "sha256:784f462fa87fe9bdf781d0027d856b47a4bfe6c12af108f6bd887057a917b48e"},
-    {file = "pytest_rerunfailures-12.0-py3-none-any.whl", hash = "sha256:9a1afd04e21b8177faf08a9bbbf44de7a0fe3fc29f8ddbe83b9684bd5f8f92a9"},
+    {file = "pytest-rerunfailures-14.0.tar.gz", hash = "sha256:4a400bcbcd3c7a4ad151ab8afac123d90eca3abe27f98725dc4d9702887d2e92"},
+    {file = "pytest_rerunfailures-14.0-py3-none-any.whl", hash = "sha256:4197bdd2eaeffdbf50b5ea6e7236f47ff0e44d1def8dae08e409f536d84e7b32"},
 ]
 
 [package.dependencies]
 packaging = ">=17.1"
-pytest = ">=6.2"
+pytest = ">=7.2"
 
 [[package]]
 name = "pyyaml"
@@ -2351,4 +2351,4 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "d55201f2d6d4c56b6e3a6541e040185d2a70d968cff054f12c987e92e63964f6"
+content-hash = "293ebf2590e4fe1f5f03b2733f93f5158e84b56f98e885e4a381c4d4fae072e9"
