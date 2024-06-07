@@ -112,7 +112,7 @@ In summary:
     If that toggle is `true`, dates in the format `YYYY-12-31` will be displayed as `YYYY` only.
   - lastly, there's a toggle for ASCII-only output.
 
-    It only concerns the *template* and controls the drawing of boxes and such (e.g., [`-`](https://unicode-table.com/en/002D/) versus [`─`](https://unicode-table.com/en/2500/) : only the latter will produce gapless rules).
+    It only concerns the *template* and controls the drawing of boxes and such (e.g., [`-`](https://symbl.cc/en/002D/) versus [`─`](https://symbl.cc/en/2500/) : only the latter will produce gapless rules).
     If you yourself use non-ASCII characters in your texts, use a *language* containing non-ASCII characters (Spanish, French, ...) or a *theme* with non-ASCII characters (e.g., a theme might use the `•` character to print bullet points), non-ASCII Unicode will still occur.
     As such, this toggle currently isn't very powerful, but with some care it *does* ultimately allow you to be ASCII-only.
 
