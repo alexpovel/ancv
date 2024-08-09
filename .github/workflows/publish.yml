@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.10.0
+        uses: jetpack-io/devbox-install-action@v0.11.0
 
       - name: Run linting
         run: devbox run lint
@@ -97,7 +97,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.10.0
+        uses: jetpack-io/devbox-install-action@v0.11.0
         with:
           enable-cache: true
 
