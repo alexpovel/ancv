@@ -1763,13 +1763,13 @@ typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
 name = "pydeps"
-version = "1.12.19"
+version = "1.12.20"
 description = "Display module dependencies"
 optional = false
 python-versions = "*"
 files = [
-    {file = "pydeps-1.12.19-py3-none-any.whl", hash = "sha256:5626bf05c06ec9c1e2221c7c861f6e0ea3be89b864a67afef76988eebf32b386"},
-    {file = "pydeps-1.12.19.tar.gz", hash = "sha256:5131629a91571c71416cd8577dddc9628904980b715d8653740d688a3b92312d"},
+    {file = "pydeps-1.12.20-py3-none-any.whl", hash = "sha256:7278a8912bdada26b773d3550f0cc8fd76bed172d23dc1472c457d6292b67fd7"},
+    {file = "pydeps-1.12.20.tar.gz", hash = "sha256:4f6a833a7998bfa24e339c55535882905c22960efc14902c361f74b2952aff19"},
 ]
 
 [package.dependencies]
