@@ -36,6 +36,7 @@ except KeyError as e:
     try:
         if resp.json()["message"] == "Bad credentials":
             raise KeyError("Bad credentials for GH_TOKEN") from e
+        raise
     except KeyError:
         raise
 
