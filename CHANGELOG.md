@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.2](https://github.com/alexpovel/ancv/compare/v1.4.1...v1.4.2) (2024-10-23)
+
+
+### Bug Fixes
+
+* `remaining` variable possibly unbound ([ea03173](https://github.com/alexpovel/ancv/commit/ea03173d92943797c5d0a16ebdadb993b3ba4c47))
+* **project-setup:** Switch from `poetry` to `uv`, bump all dependency versions to latest ([4983dee](https://github.com/alexpovel/ancv/commit/4983dee25ab3d23781ab2b7bd59077e00a9d3e99))
+
 ## [1.4.1](https://github.com/alexpovel/ancv/compare/v1.4.0...v1.4.1) (2024-05-01)
 
 
