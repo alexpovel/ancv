@@ -19,7 +19,7 @@ classifiers = [
     "Natural Language :: English",
     "Natural Language :: German",
     "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Internet :: WWW/HTTP",
     "Topic :: Office/Business",
@@ -38,8 +38,8 @@ classifiers = [
 
 [tool.poetry.dependencies]
 # https://stackoverflow.com/a/69608708/11477374:
-python = "^3.10"
-gidgethub = "^5.1.0"
+python = "^3.12"
+gidgethub = "^5.3.0"
 aiohttp = { extras = ["speedups"], version = "^3.8.1" }
 pydantic = { extras = ["email"], version = "^2.5.3" }
 structlog = ">=21.5,<25.0"
@@ -81,7 +81,7 @@ ignore = ["E501"]
 fail_under = 80.0
 
 [tool.datamodel-codegen]
-target-python-version = "3.10"
+target-python-version = "3.12"
 
 [tool.mypy]
 mypy_path = "stubs/"
