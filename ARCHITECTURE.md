@@ -14,7 +14,7 @@ This document is less about software architecture per-se, but rather about techn
   - but since switched to [Google Cloud Run](https://cloud.google.com/run), which is based on regular OCI containers (see [Dockerfile](./Dockerfile)), hence resolving the hell that is dependency management in serverless environments.
 
   Fully serverless is still interesting since it's such a fitting use-case.
-  The best solution seems to [vendor all dependencies](https://www.serverless.com/plugins/serverless-python-requirements), instead of trying our luck with the serverless provider reading and correctly installing the dependencies for us (which often requires a `requirements.txt` instead of a [`poetry.lock`](./poetry.lock) or similar).
+  The best solution seems to [vendor all dependencies](https://www.serverless.com/plugins/serverless-python-requirements), instead of trying our luck with the serverless provider reading and correctly installing the dependencies for us (which often requires a `requirements.txt` instead of a `poetry.lock` or similar).
 
   However, since this project treats self-hosting as a first-class citizen, going full serverless and abandoning providing Docker images entirely isn't an option anyway.
   Hosting serverlessly would be a split, required maintenance of two hosting options instead of just building one image and calling it a day.
@@ -23,7 +23,7 @@ This document is less about software architecture per-se, but rather about techn
 - [`pydantic`](https://pydantic-docs.helpmanual.io/) for fully typed data validation (e.g., for APIs), facilitated by [automatic `pydantic` model generation](https://koxudaxi.github.io/datamodel-code-generator/) from e.g. OpenAPI specs like [GitHub's](https://github.com/github/rest-api-description/tree/main/descriptions/api.github.com) or [JSON Resume's](https://github.com/jsonresume/resume-schema/blob/master/schema.json), allowing full support from `mypy` and the IDE when using said validated data
 - [12 Factor App](https://12factor.net/) conformance:
   1. [Codebase](https://12factor.net/codebase): [GitHub-hosted repo](https://github.com/alexpovel/ancv/)
-  2. [Dependencies](https://12factor.net/dependencies): taken care of by [poetry](https://python-poetry.org/) and its standardized ([PEP 621](https://peps.python.org/pep-0621/)) [config](pyproject.toml) and [lock](poetry.lock) files, pinning all transient dependencies and providing virtual environments
+  2. [Dependencies](https://12factor.net/dependencies): taken care of by [uv](https://docs.astral.sh/uv/)
   3. [Config](https://12factor.net/config): the app is configured using environment variables.
      Although [problematic](https://news.ycombinator.com/item?id=31200132), this approach was chosen for its simplicity
   4. [Backing Services](https://12factor.net/backing-services): not applicable for this very simple app

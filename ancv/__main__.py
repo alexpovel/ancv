@@ -166,6 +166,11 @@ def generate_schema() -> None:
     from ancv.visualization.themes import THEMES
     from ancv.visualization.translations import TRANSLATIONS
 
+    if METADATA.project_url is not None:
+        homepage = METADATA.project_url[0].split(",")[-1].strip()
+    else:
+        homepage = None
+
     schema = {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "allOf": [
@@ -184,7 +189,7 @@ def generate_schema() -> None:
                         "properties": {
                             METADATA.name: {
                                 "type": "object",
-                                "description": f"{METADATA.name}-specific ({METADATA.home_page}) properties",
+                                "description": f"{METADATA.name}-specific ({homepage}) properties",
                                 "properties": {
                                     "template": {
                                         "type": "string",

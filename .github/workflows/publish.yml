@@ -102,7 +102,7 @@ jobs:
           enable-cache: true
 
       - name: Build package
-        run: devbox run poetry build
+        run: devbox run uv build
 
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@v1.10.2

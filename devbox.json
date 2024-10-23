@@ -1,7 +1,9 @@
 {
   "packages": [
     "python@3.12",
-    "poetry@1.8",
+    "uv@0.4",
+    "ruff@0.4",
+    "pydeps@1.12",
     "graphviz@8",
     "pre-commit@3"
   ],
@@ -11,18 +13,18 @@
   "shell": {
     "init_hook": [
       "echo 'Running command in devbox shell...'",
-      "poetry install"
+      "uv sync"
     ],
     "scripts": {
-      "build-image": "docker build --progress=plain --tag \"$LIBRARY\"/\"$LIBRARY\":$(poetry version --short) .",
-      "format-check": "poetry run ruff format --check --diff",
+      "build-image": "docker build --progress=plain --tag \"$LIBRARY\"/\"$LIBRARY\":dev .",
+      "format-check": "ruff format --check --diff",
       "install-hooks": "pre-commit install --hook-type pre-push --hook-type pre-commit --hook-type commit-msg",
-      "lint": "poetry run ruff --verbose .",
-      "make-depgraph.svg": "poetry run pydeps --max-bacon=4 --cluster -T svg -o depgraph.svg \"$LIBRARY\"",
-      "make-github.py": "poetry run datamodel-codegen --url \"https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/dereferenced/api.github.com.deref.json\" --encoding utf-8 --input-file-type openapi --openapi-scopes paths --output github.py",
-      "make-resume.py": "poetry run datamodel-codegen --url \"https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json\" --encoding utf-8 --input-file-type jsonschema --output resume.py",
-      "test": "poetry run pytest --cov=\"$LIBRARY\" --cov-report=html --cov-report=term --cov-report=xml",
-      "typecheck": "poetry run mypy -p \"$LIBRARY\""
+      "lint": "ruff check --verbose .",
+      "make-depgraph.svg": "pydeps --max-bacon=4 --cluster -T svg -o depgraph.svg \"$LIBRARY\"",
+      "make-github.py": "uv run datamodel-codegen --url \"https://raw.githubusercontent.com/github/rest-api-description/main/descriptions-next/api.github.com/dereferenced/api.github.com.deref.json\" --encoding utf-8 --input-file-type openapi --openapi-scopes paths --output github.py",
+      "make-resume.py": "uv run datamodel-codegen --url \"https://raw.githubusercontent.com/jsonresume/resume-schema/master/schema.json\" --encoding utf-8 --input-file-type jsonschema --output resume.py",
+      "test": "uv run pytest -vv --cov=\"$LIBRARY\" --cov-report=html --cov-report=term --cov-report=xml",
+      "typecheck": "uv run mypy -v -p \"$LIBRARY\""
     }
   }
 }

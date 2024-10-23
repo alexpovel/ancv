@@ -6,10 +6,10 @@
 
 Use devbox to set up a development environment.
 Refer to [the available `script`s](devbox.json) to see what's possible.
-Generally, even when running in a `devbox shell`, `poetry run` is necessary:
+Generally, even when running in a `devbox shell`, running `uv` is necessary:
 
-- devbox sets up what used to be system-wide packages (Python, poetry, ...) deterministically and automatically
-- within the devbox virtual environment, we still manage and use a Python virtual environment through `poetry run`
+- devbox sets up what used to be system-wide packages (Python, uv, ...) deterministically and automatically
+- within the devbox virtual environment, we still manage and use a Python virtual environment through `uv` commands
 
 That way, we get the normal Python package management for normal Python packages (`ruff`, `pytest`, ...), and devbox for the overarching rest.
 

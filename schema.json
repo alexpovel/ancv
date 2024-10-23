@@ -16,7 +16,7 @@
                     "properties": {
                         "ancv": {
                             "type": "object",
-                            "description": "ancv-specific (https://ancv.io/) properties",
+                            "description": "ancv-specific (https://ancv.io) properties",
                             "properties": {
                                 "template": {
                                     "type": "string",
