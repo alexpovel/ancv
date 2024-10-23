@@ -1,7 +1,7 @@
 {
   "packages": [
-    "python@3.10",
-    "poetry@1.5",
+    "python@3.12",
+    "poetry@1.8",
     "graphviz@8",
     "pre-commit@3"
   ],
