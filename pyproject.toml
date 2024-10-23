@@ -1,6 +1,6 @@
 [project]
 name = "ancv"
-version = "1.4.1"
+version = "1.4.2"
 description = "Renders your (JSON) resume/CV for online & pretty terminal display"
 authors = [{ name = "Alex Povel", email = "python@alexpovel.de" }]
 readme = "README.md"
