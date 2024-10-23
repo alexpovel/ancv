@@ -22,7 +22,7 @@ headers = {
     "Accept": "application/vnd.github+json",
     "User-Agent": "ancv-pytest",
 }
-if GH_TOKEN is not None:
+if GH_TOKEN:
     headers["Authorization"] = f"Bearer {GH_TOKEN}"
 
 resp = requests.get(
