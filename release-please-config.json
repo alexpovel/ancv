@@ -3,12 +3,5 @@
     "packages": {
         ".": {}
     },
-    "release-type": "python",
-    "extra-files": [
-        {
-            "type": "toml",
-            "path": "uv.lock",
-            "jsonpath": "$.package[?(@.name==\"ancv\")].version"
-        }
-    ]
+    "release-type": "python"
 }

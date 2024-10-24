@@ -11,12 +11,12 @@ USER 1000
 COPY pyproject.toml uv.lock ./
 # https://docs.astral.sh/uv/guides/integration/docker/#installing-uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/
-RUN uv sync --locked --no-dev
+RUN uv sync --frozen --no-dev
 
 COPY ancv/ ancv/
 
 # Required for Google Cloud Run to auto-detect
 EXPOSE 8080
 
-ENTRYPOINT [ "uv", "run", "--locked", "--module", "ancv" ]
+ENTRYPOINT [ "uv", "run", "--frozen", "--module", "ancv" ]
 CMD [ "serve", "api", "--port", "8080" ]
