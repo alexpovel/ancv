@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.3](https://github.com/alexpovel/ancv/compare/v1.4.2...v1.4.3) (2024-10-24)
+
+
+### Bug Fixes
+
+* **ci:** Empty fix to trigger CI ([60736c4](https://github.com/alexpovel/ancv/commit/60736c4a884c9bb9f59fc5dc338f5c09236c8b80))
+* **docker:** `error: failed to write to file `/app/uv.lock` ([a12a2d5](https://github.com/alexpovel/ancv/commit/a12a2d5cabc6e1ad1f19582a805b8d2a7d29ad92))
+
 ## [1.4.2](https://github.com/alexpovel/ancv/compare/v1.4.1...v1.4.2) (2024-10-23)
 
 
