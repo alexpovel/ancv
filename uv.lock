@@ -75,7 +75,7 @@ wheels = [
 
 [[package]]
 name = "ancv"
-version = "1.4.3"
+version = "1.4.4"
 source = { editable = "." }
 dependencies = [
     { name = "aiohttp" },
