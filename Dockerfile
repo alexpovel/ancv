@@ -19,4 +19,4 @@ COPY ancv/ ancv/
 EXPOSE 8080
 
 ENTRYPOINT [ "uv", "run", "--frozen", "--module", "ancv" ]
-CMD [ "serve", "api", "--port", "8080" ]
+CMD [ "--verbose", "serve", "api", "--port", "8080" ]
