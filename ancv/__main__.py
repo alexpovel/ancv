@@ -38,14 +38,15 @@ def api(
         # ceiling:
         token=os.environ.get("GH_TOKEN"),
         terminal_landing_page=os.environ.get(
-            "HOMEPAGE", str(METADATA.home_page) or "NO HOMEPAGE SET"
+            "HOMEPAGE",
+            str(METADATA.project_urls.get("Homepage", "No homepage set")),
         ),
         # When visiting this endpoint in a browser, we want to redirect to the homepage.
         # That page cannot be this same path under the same hostname again, else we get
         # a loop.
         browser_landing_page=os.environ.get(
             "LANDING_PAGE",
-            METADATA.project_url[0] if METADATA.project_url else "https://github.com/",
+            str(METADATA.project_urls.get("Homepage", "https://github.com/")),
         ),
     )
     api.run(context)
@@ -166,11 +167,6 @@ def generate_schema() -> None:
     from ancv.visualization.themes import THEMES
     from ancv.visualization.translations import TRANSLATIONS
 
-    if METADATA.project_url is not None:
-        homepage = METADATA.project_url[0].split(",")[-1].strip()
-    else:
-        homepage = None
-
     schema = {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "allOf": [
@@ -189,7 +185,7 @@ def generate_schema() -> None:
                         "properties": {
                             METADATA.name: {
                                 "type": "object",
-                                "description": f"{METADATA.name}-specific ({homepage}) properties",
+                                "description": f"{METADATA.name}-specific ({METADATA.project_urls.get("Homepage")}) properties",
                                 "properties": {
                                     "template": {
                                         "type": "string",
@@ -238,10 +234,11 @@ def main(
     """
 
     import logging
-    import os
 
     import structlog
     from structlog.processors import JSONRenderer, TimeStamper, add_log_level
+
+    from ancv.reflection import METADATA
 
     structlog.configure(  # This is global state
         processors=[  # https://www.structlog.org/en/stable/api.html#procs
@@ -255,7 +252,7 @@ def main(
     )
 
     log = structlog.get_logger()
-    log.debug(f"Starting up with environment: {os.environ}")
+    log.debug("Got app metadata.", metadata=METADATA.model_dump())
 
 
 if __name__ == "__main__":

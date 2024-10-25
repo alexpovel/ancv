@@ -1,7 +1,13 @@
 import typing as t
 from importlib.metadata import metadata
 
-from pydantic import AnyUrl, BaseModel, EmailStr, Field, field_validator
+from pydantic import (
+    AnyUrl,
+    BaseModel,
+    EmailStr,
+    Field,
+    computed_field,
+)
 
 from ancv import PACKAGE
 
@@ -45,10 +51,6 @@ class Metadata(BaseModel):
         Field(
             description="One-line summary of the package, e.g. 'Ancv is a package for ...'",
         ),
-    ] = None
-    home_page: t.Annotated[
-        t.Optional[AnyUrl],
-        Field(description="Homepage of the package, e.g. https://ancv.io/'"),
     ] = None
     download_url: t.Annotated[
         t.Optional[AnyUrl],
@@ -102,17 +104,29 @@ class Metadata(BaseModel):
         ),
     ] = None
 
-    @field_validator("project_url")
-    @classmethod
-    def strip_prefix(cls, v: t.Optional[list[str]]) -> t.Optional[list[str]]:
-        """Strips the prefixes 'Name, ' from the URLs.
+    @computed_field  # type: ignore[prop-decorator]
+    @property
+    def project_urls(
+        self,
+    ) -> t.Annotated[
+        dict[str, str],
+        Field(description="Map of project URLs, e.g. {'Homepage': 'https://ancv.io/'}"),
+    ]:
+        """Converts the 'Name, https://example.com' array of project URLs to a dict.
 
-        For example, extracts just the URL from:
-        'Repository, https://github.com/namespace/ancv/'.
+        https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#urls
         """
-        if v is None:
-            return v
-        return [url.split()[-1] for url in v]
+
+        urls: dict[str, str] = dict()
+
+        if self.project_url is None:
+            return urls
+
+        for url in self.project_url:
+            name, url = url.split(",")
+            urls[name.strip()] = url.strip()
+
+        return urls
 
 
 METADATA = Metadata.model_validate(metadata(PACKAGE).json)
