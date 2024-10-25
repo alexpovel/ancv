@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.4](https://github.com/alexpovel/ancv/compare/v1.4.3...v1.4.4) (2024-10-25)
+
+
+### Bug Fixes
+
+* **metadata:** Fix URL metadata fetching & printing ([3c4bbb5](https://github.com/alexpovel/ancv/commit/3c4bbb5751cc73e793051192d6e75d284bf6da54))
+
 ## [1.4.3](https://github.com/alexpovel/ancv/compare/v1.4.2...v1.4.3) (2024-10-24)
 
 
