@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.5](https://github.com/alexpovel/ancv/compare/v1.4.4...v1.4.5) (2024-10-25)
+
+
+### Bug Fixes
+
+* Release process ([dc64e98](https://github.com/alexpovel/ancv/commit/dc64e98d27b9ba95a9ac8d271036b5aafb4a8b9c))
+
 ## [1.4.4](https://github.com/alexpovel/ancv/compare/v1.4.3...v1.4.4) (2024-10-25)
 
 
