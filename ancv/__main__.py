@@ -69,6 +69,33 @@ def file(
     FileHandler(file).run(context)
 
 
+@server_app.command(no_args_is_help=True)
+def web(
+    destination: str = typer.Argument(
+        ..., help="HTTP/HTTPS URL of the JSON resume file to serve."
+    ),
+    refresh: int = typer.Option(
+        3600, help="Refresh interval in seconds for fetching updates from the URL."
+    ),
+    port: int = typer.Option(8080, help="Port to bind to."),
+    host: str = typer.Option("0.0.0.0", help="Hostname to bind to."),
+    path: Optional[str] = typer.Option(
+        None, help="File system path for an HTTP server UNIX domain socket."
+    ),
+) -> None:
+    """Starts a web server that serves a JSON resume from a URL with periodic refresh.
+
+    The server will fetch and render the resume from the provided URL, caching it for the specified
+    refresh interval. This is useful for serving resumes hosted on external services.
+    """
+
+    from ancv.web.server import WebHandler, ServerContext
+    from datetime import timedelta
+
+    context = ServerContext(host=host, port=port, path=path)
+    WebHandler(destination, refresh_interval=timedelta(seconds=refresh)).run(context)
+
+
 @app.command()
 def render(
     path: Path = typer.Argument(
