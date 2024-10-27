@@ -19,11 +19,11 @@ from ancv.web.client import get_resume
 
 LOGGER = get_logger()
 
-_SHOWCASE_RESUME = Template.from_file(
+SHOWCASE_RESUME = Template.from_file(
     PROJECT_ROOT / "data" / "showcase.resume.json"
 ).render()
 
-_SHOWCASE_USERNAME = "heyho"
+SHOWCASE_USERNAME = "heyho"
 
 
 def is_terminal_client(user_agent: str) -> bool:
@@ -96,7 +96,7 @@ class APIHandler(Runnable):
             [
                 # Order matters, see also https://www.grandmetric.com/2020/07/08/routing-order-in-aiohttp-library-in-python/
                 web.get("/", self.root),
-                web.get(f"/{_SHOWCASE_USERNAME}", self.showcase),
+                web.get(f"/{SHOWCASE_USERNAME}", self.showcase),
                 web.get("/{username}", self.username),
             ]
         )
@@ -166,7 +166,7 @@ class APIHandler(Runnable):
     async def showcase(self, request: web.Request) -> web.Response:
         """The showcase endpoint, returning a static resume."""
 
-        return web.Response(text=_SHOWCASE_RESUME)
+        return web.Response(text=SHOWCASE_RESUME)
 
     async def username(self, request: web.Request) -> web.Response:
         """The username endpoint, returning a dynamic resume from a user's gists."""

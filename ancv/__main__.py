@@ -161,13 +161,14 @@ def generate_schema() -> None:
     """
 
     import json
+    import typing as t
 
     from ancv.reflection import METADATA
     from ancv.visualization.templates import Template
     from ancv.visualization.themes import THEMES
     from ancv.visualization.translations import TRANSLATIONS
 
-    schema = {
+    schema: dict[str, t.Any] = {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "allOf": [
             {

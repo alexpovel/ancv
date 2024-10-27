@@ -9,8 +9,8 @@ from aiohttp.client import ClientResponse
 from aiohttp.web import Application
 
 from ancv.web.server import (
-    _SHOWCASE_RESUME,
-    _SHOWCASE_USERNAME,
+    SHOWCASE_RESUME,
+    SHOWCASE_USERNAME,
     is_terminal_client,
     server_timing_header,
 )
@@ -160,9 +160,9 @@ class TestApiHandler:
 
         client = await aiohttp_client(api_client_app)
 
-        resp: ClientResponse = await client.get(f"/{_SHOWCASE_USERNAME}")
+        resp: ClientResponse = await client.get(f"/{SHOWCASE_USERNAME}")
         assert resp.status == HTTPStatus.OK
-        assert await resp.text() == _SHOWCASE_RESUME
+        assert await resp.text() == SHOWCASE_RESUME
 
     @pytest.mark.parametrize(
         ["username", "expected_contained_text"],
@@ -297,4 +297,4 @@ def test_server_timing_header(
 
 
 def test_exact_showcase_output(showcase_output: str) -> None:
-    assert _SHOWCASE_RESUME == showcase_output
+    assert SHOWCASE_RESUME == showcase_output
