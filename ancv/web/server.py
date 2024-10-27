@@ -185,16 +185,13 @@ class APIHandler(Runnable):
         # Implicit 'downcasting' from `Any` doesn't require an explicit `cast` call, just
         # regular type hints:
         # https://adamj.eu/tech/2021/07/06/python-type-hints-how-to-use-typing-cast/
-        session: ClientSession = request.app["client_session"]
         github: GitHubAPI = request.app["github"]
 
         log = log.bind(user=user)
 
         stopwatch.stop()
         try:
-            resume = await get_resume(
-                user=user, session=session, github=github, stopwatch=stopwatch
-            )
+            resume = await get_resume(user=user, github=github, stopwatch=stopwatch)
         except ResumeLookupError as e:
             stopwatch.stop()
             log.warning(str(e))

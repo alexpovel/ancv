@@ -2,7 +2,6 @@ import json
 from http import HTTPStatus
 from types import SimpleNamespace
 
-import aiohttp
 import gidgethub
 from gidgethub.aiohttp import GitHubAPI
 from humanize import naturalsize
@@ -20,7 +19,6 @@ LOGGER = get_logger()
 
 async def get_resume(
     user: str,
-    session: aiohttp.ClientSession,
     github: GitHubAPI,
     stopwatch: Stopwatch,
     filename: str = "resume.json",
@@ -46,7 +44,6 @@ async def get_resume(
 
     Args:
         user: The GitHub username to fetch the resume from.
-        session: The `aiohttp.ClientSession` to use for the request.
         github: The API object to use for the request.
         stopwatch: The `Stopwatch` to use for timing.
         filename: The name of the file to look for in the user's gists.
@@ -56,7 +53,7 @@ async def get_resume(
         The parsed resume.
     """
 
-    log = LOGGER.bind(user=user, session=session)
+    log = LOGGER.bind(user=user)
 
     stopwatch("Fetching Gists")
     gists = github.getiter(f"/users/{user}/gists")

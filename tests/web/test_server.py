@@ -1,3 +1,4 @@
+import asyncio
 from contextlib import nullcontext as does_not_raise
 from datetime import timedelta
 from http import HTTPStatus
@@ -59,7 +60,6 @@ def test_is_terminal_client(user_agent: str, expected: bool) -> None:
 
 @pytest.mark.filterwarnings("ignore:Request.message is deprecated")  # No idea...
 @pytest.mark.filterwarnings("ignore:Exception ignored in")  # No idea...
-@pytest.mark.asyncio
 class TestApiHandler:
     @pytest.mark.parametrize(
         ["user_agent", "expected_http_code"],
@@ -80,8 +80,9 @@ class TestApiHandler:
         expected_http_code: HTTPStatus,
         aiohttp_client: Any,
         api_client_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(api_client_app)
 
         resp: ClientResponse = await client.get(
@@ -139,8 +140,9 @@ class TestApiHandler:
         expected_error_message: Optional[str],
         aiohttp_client: Any,
         api_client_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(api_client_app)
 
         resp = await client.get(f"/{username}")
@@ -153,8 +155,9 @@ class TestApiHandler:
         self,
         aiohttp_client: Any,
         api_client_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(api_client_app)
 
         resp: ClientResponse = await client.get(f"/{_SHOWCASE_USERNAME}")
@@ -174,8 +177,9 @@ class TestApiHandler:
         expected_contained_text: str,
         aiohttp_client: Any,
         api_client_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(api_client_app)
 
         resp = await client.get(f"/{username}")
@@ -186,7 +190,6 @@ class TestApiHandler:
 
 @pytest.mark.filterwarnings("ignore:Request.message is deprecated")  # No idea...
 @pytest.mark.filterwarnings("ignore:Exception ignored in")  # No idea...
-@pytest.mark.asyncio
 class TestFileHandler:
     @pytest.mark.parametrize(
         ["expected_http_code", "expected_str_content"],
@@ -202,8 +205,9 @@ class TestFileHandler:
         expected_str_content: str,
         aiohttp_client: Any,
         file_handler_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(file_handler_app)
 
         resp: ClientResponse = await client.get("/")

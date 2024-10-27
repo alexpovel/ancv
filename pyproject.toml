@@ -58,6 +58,7 @@ dev-dependencies = [
     "pydeps>=2.0.1",
     "pytest-aiohttp>=1.0.5",
     "pytest-cov>=5.0.0",
+    "pytest-asyncio>=0.24.0",
     "pytest-rerunfailures>=14.0",
     "pytest>=8.3.3",
     "requests>=2.32.3",
@@ -81,6 +82,10 @@ fail_under = 80.0
 
 [tool.datamodel-codegen]
 target-python-version = "3.12"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
 
 [tool.mypy]
 mypy_path = "stubs/"

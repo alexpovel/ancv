@@ -1,3 +1,4 @@
+import asyncio
 from contextlib import nullcontext as does_not_raise
 from typing import ContextManager
 
@@ -19,14 +20,22 @@ def stopwatch():
 
 
 @pytest.fixture(scope="function")
-async def client_session():
+async def client_session() -> aiohttp.ClientSession:
+    assert (
+        asyncio.get_running_loop()
+    ), "`aiohttp.ClientSession` constructor will need loop running."
+
+    # The constructor accesses the async event loop, and if none is running errors. So
+    # this pytest fixture function needs to be marked `async` for `pytest-asyncio` with
+    # the `asyncio_mode = "auto"` option set to pick it up automatically and *provide* a
+    # loop.
     return aiohttp.ClientSession()
 
 
 @pytest.fixture(scope="function")
-async def gh_api(client_session):
+def gh_api(client_session: aiohttp.ClientSession):
     return GitHubAPI(
-        await client_session,
+        client_session,
         requester=f"{METADATA.name}-PYTEST-REQUESTER",
         oauth_token=GH_TOKEN,
     )
@@ -67,23 +76,22 @@ async def gh_api(client_session):
         ),
     ],
 )
-@pytest.mark.asyncio
 @gh_rate_limited
 async def test_get_resume_validations(
     username: str,
-    client_session: aiohttp.ClientSession,
-    gh_api: GitHubAPI,
-    stopwatch: Stopwatch,
     size_limit: int,
     filename: str,
     expectation: ContextManager,
+    # Fixtures:
+    gh_api: GitHubAPI,
+    stopwatch: Stopwatch,
 ) -> None:
-    api = await gh_api
+    assert asyncio.get_running_loop()
+
     with expectation:
         await get_resume(
             user=username,
-            session=client_session,
-            github=api,
+            github=gh_api,
             stopwatch=stopwatch,
             filename=filename,
             size_limit=size_limit,
