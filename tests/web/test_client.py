@@ -1,6 +1,6 @@
 import asyncio
+from contextlib import AbstractContextManager
 from contextlib import nullcontext as does_not_raise
-from typing import ContextManager
 
 import aiohttp
 import pytest
@@ -81,7 +81,7 @@ async def test_get_resume_validations(
     username: str,
     size_limit: int,
     filename: str,
-    expectation: ContextManager,
+    expectation: AbstractContextManager[pytest.ExceptionInfo[BaseException]],  # Unsure
     # Fixtures:
     gh_api: GitHubAPI,
     stopwatch: Stopwatch,

@@ -1,8 +1,9 @@
 import asyncio
+from contextlib import AbstractContextManager
 from contextlib import nullcontext as does_not_raise
 from datetime import timedelta
 from http import HTTPStatus
-from typing import Any, ContextManager, Optional
+from typing import Any, Optional
 
 import pytest
 from aiohttp.client import ClientResponse
@@ -290,7 +291,7 @@ class TestFileHandler:
 def test_server_timing_header(
     timings: dict[str, timedelta],
     expected: str,
-    expectation: ContextManager,
+    expectation: AbstractContextManager[pytest.ExceptionInfo[BaseException]],  # Unsure
 ) -> None:
     with expectation:
         assert server_timing_header(timings) == expected
