@@ -857,19 +857,11 @@ class Sequential(Template):
 
             yield NewLine()
 
-        # Need to help `mypy` type inference out a bit here.
-        items: Optional[Iterable[ResumeItem]]
-        title: str
-
         # Shortcut names
         m = self.model
         t = self.translation
 
-        # The 'main loop'. All items are rendered through `singledispatch`. This is
-        # somewhat elegant, but has limitations: all elements can only easily be
-        # rendered on their own, forcing sequential flow. Multi-column outputs are not
-        # possible, for example.
-        for items, title in [
+        items_with_title: list[tuple[Optional[Iterable[ResumeItem]], str]] = [
             (m.work, t.work),
             (m.education, t.education),
             (m.skills, t.skills),
@@ -881,7 +873,13 @@ class Sequential(Template):
             (m.volunteer, t.volunteer),
             (m.projects, t.projects),
             (m.interests, t.interests),
-        ]:
+        ]
+
+        # The 'main loop'. All items are rendered through `singledispatch`. This is
+        # somewhat elegant, but has limitations: all elements can only easily be
+        # rendered on their own, forcing sequential flow. Multi-column outputs are not
+        # possible, for example.
+        for items, title in items_with_title:
             # Key aka section might be missing entirely (`None`) *or* be empty (`[]`),
             # the latter of which type checking cannot protect against. In either case,
             # skip the section.

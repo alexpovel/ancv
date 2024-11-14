@@ -1,15 +1,19 @@
+import asyncio
+import json
+from contextlib import AbstractContextManager
 from contextlib import nullcontext as does_not_raise
 from datetime import timedelta
 from http import HTTPStatus
-from typing import Any, ContextManager, Optional
+from typing import Any, Optional
 
 import pytest
 from aiohttp.client import ClientResponse
-from aiohttp.web import Application
+from aiohttp.web import Application, Response
 
 from ancv.web.server import (
-    _SHOWCASE_RESUME,
-    _SHOWCASE_USERNAME,
+    SHOWCASE_RESUME,
+    SHOWCASE_USERNAME,
+    WebHandler,
     is_terminal_client,
     server_timing_header,
 )
@@ -59,7 +63,6 @@ def test_is_terminal_client(user_agent: str, expected: bool) -> None:
 
 @pytest.mark.filterwarnings("ignore:Request.message is deprecated")  # No idea...
 @pytest.mark.filterwarnings("ignore:Exception ignored in")  # No idea...
-@pytest.mark.asyncio
 class TestApiHandler:
     @pytest.mark.parametrize(
         ["user_agent", "expected_http_code"],
@@ -80,8 +83,9 @@ class TestApiHandler:
         expected_http_code: HTTPStatus,
         aiohttp_client: Any,
         api_client_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(api_client_app)
 
         resp: ClientResponse = await client.get(
@@ -139,8 +143,9 @@ class TestApiHandler:
         expected_error_message: Optional[str],
         aiohttp_client: Any,
         api_client_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(api_client_app)
 
         resp = await client.get(f"/{username}")
@@ -153,13 +158,14 @@ class TestApiHandler:
         self,
         aiohttp_client: Any,
         api_client_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(api_client_app)
 
-        resp: ClientResponse = await client.get(f"/{_SHOWCASE_USERNAME}")
+        resp: ClientResponse = await client.get(f"/{SHOWCASE_USERNAME}")
         assert resp.status == HTTPStatus.OK
-        assert await resp.text() == _SHOWCASE_RESUME
+        assert await resp.text() == SHOWCASE_RESUME
 
     @pytest.mark.parametrize(
         ["username", "expected_contained_text"],
@@ -174,8 +180,9 @@ class TestApiHandler:
         expected_contained_text: str,
         aiohttp_client: Any,
         api_client_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(api_client_app)
 
         resp = await client.get(f"/{username}")
@@ -186,7 +193,6 @@ class TestApiHandler:
 
 @pytest.mark.filterwarnings("ignore:Request.message is deprecated")  # No idea...
 @pytest.mark.filterwarnings("ignore:Exception ignored in")  # No idea...
-@pytest.mark.asyncio
 class TestFileHandler:
     @pytest.mark.parametrize(
         ["expected_http_code", "expected_str_content"],
@@ -202,8 +208,9 @@ class TestFileHandler:
         expected_str_content: str,
         aiohttp_client: Any,
         file_handler_app: Application,
-        event_loop: Any,
     ) -> None:
+        assert asyncio.get_running_loop()
+
         client = await aiohttp_client(file_handler_app)
 
         resp: ClientResponse = await client.get("/")
@@ -286,11 +293,80 @@ class TestFileHandler:
 def test_server_timing_header(
     timings: dict[str, timedelta],
     expected: str,
-    expectation: ContextManager,
+    expectation: AbstractContextManager[pytest.ExceptionInfo[BaseException]],  # Unsure
 ) -> None:
     with expectation:
         assert server_timing_header(timings) == expected
 
 
 def test_exact_showcase_output(showcase_output: str) -> None:
-    assert _SHOWCASE_RESUME == showcase_output
+    assert SHOWCASE_RESUME == showcase_output
+
+
+@pytest.mark.filterwarnings("ignore:Request.message is deprecated")
+@pytest.mark.filterwarnings("ignore:Exception ignored in")
+class TestWebHandler:
+    async def test_web_handler_basic_functionality(
+        self,
+        aiohttp_client: Any,
+        aiohttp_server: Any,
+    ) -> None:
+        # Set up a mock resume server
+        async def mock_resume_handler(request):
+            return Response(
+                text=json.dumps({"basics": {"name": "Test User", "label": "Developer"}})
+            )
+
+        # Create and start mock server
+        mock_app = Application()
+        mock_app.router.add_get("/resume.json", mock_resume_handler)
+        mock_server = await aiohttp_server(mock_app)
+
+        # Create WebHandler pointing to our mock server
+        destination = f"http://localhost:{mock_server.port}/resume.json"
+        refresh_interval = timedelta(seconds=1)
+        handler = WebHandler(destination, refresh_interval=refresh_interval)
+
+        # Create test client
+        client = await aiohttp_client(handler.app)
+
+        # Test initial fetch
+        resp = await client.get("/")
+        assert resp.status == HTTPStatus.OK
+        content = await resp.text()
+        assert "Test User" in content
+        assert "Developer" in content
+
+        # Test caching
+        first_response = content
+        resp = await client.get("/")
+        assert await resp.text() == first_response
+
+        # Test refresh after interval
+        await asyncio.sleep(refresh_interval.total_seconds() + 0.1)
+        resp = await client.get("/")
+        assert resp.status == HTTPStatus.OK
+        assert await resp.text() == first_response  # Should be same content
+
+    async def test_web_handler_error_handling(
+        self,
+        aiohttp_client: Any,
+        aiohttp_server: Any,
+    ) -> None:
+        # Set up server that returns errors
+        async def error_handler(request):
+            return Response(status=500)
+
+        mock_app = Application()
+        mock_app.router.add_get("/error.json", error_handler)
+        mock_server = await aiohttp_server(mock_app)
+
+        # Create WebHandler pointing to error endpoint
+        destination = f"http://localhost:{mock_server.port}/error.json"
+        handler = WebHandler(destination)
+
+        client = await aiohttp_client(handler.app)
+
+        # Test error response
+        resp = await client.get("/")
+        assert resp.status == HTTPStatus.NOT_FOUND

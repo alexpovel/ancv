@@ -2,7 +2,7 @@
   "packages": [
     "python@3.12",
     "uv@0.4",
-    "ruff@0.4",
+    "ruff@0.7",
     "pydeps@1.12",
     "graphviz@8",
     "pre-commit@3"

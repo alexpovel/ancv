@@ -23,11 +23,11 @@ from ancv.web.client import get_resume
 
 LOGGER = get_logger()
 
-_SHOWCASE_RESUME = Template.from_file(
+SHOWCASE_RESUME = Template.from_file(
     PROJECT_ROOT / "data" / "showcase.resume.json"
 ).render()
 
-_SHOWCASE_USERNAME = "heyho"
+SHOWCASE_USERNAME = "heyho"
 
 
 def is_terminal_client(user_agent: str) -> bool:
@@ -100,7 +100,7 @@ class APIHandler(Runnable):
             [
                 # Order matters, see also https://www.grandmetric.com/2020/07/08/routing-order-in-aiohttp-library-in-python/
                 web.get("/", self.root),
-                web.get(f"/{_SHOWCASE_USERNAME}", self.showcase),
+                web.get(f"/{SHOWCASE_USERNAME}", self.showcase),
                 web.get("/{username}", self.username),
             ]
         )
@@ -170,7 +170,7 @@ class APIHandler(Runnable):
     async def showcase(self, request: web.Request) -> web.Response:
         """The showcase endpoint, returning a static resume."""
 
-        return web.Response(text=_SHOWCASE_RESUME)
+        return web.Response(text=SHOWCASE_RESUME)
 
     async def username(self, request: web.Request) -> web.Response:
         """The username endpoint, returning a dynamic resume from a user's gists."""
@@ -189,16 +189,13 @@ class APIHandler(Runnable):
         # Implicit 'downcasting' from `Any` doesn't require an explicit `cast` call, just
         # regular type hints:
         # https://adamj.eu/tech/2021/07/06/python-type-hints-how-to-use-typing-cast/
-        session: ClientSession = request.app["client_session"]
         github: GitHubAPI = request.app["github"]
 
         log = log.bind(user=user)
 
         stopwatch.stop()
         try:
-            resume = await get_resume(
-                user=user, session=session, github=github, stopwatch=stopwatch
-            )
+            resume = await get_resume(user=user, github=github, stopwatch=stopwatch)
         except ResumeLookupError as e:
             stopwatch.stop()
             log.warning(str(e))
@@ -366,7 +363,10 @@ class WebHandler(Runnable):
         """
         try:
             template = Template.from_model_config(resume_data)
-            return template.render()
+            rendered = template.render()
+            if isinstance(rendered, str):
+                return rendered
+            return web.Response(text="Template rendering failed")
         except ResumeConfigError as exc:
             return web.Response(text=str(exc))
 
@@ -407,6 +407,8 @@ class WebHandler(Runnable):
                 if isinstance(resume_data, web.Response):
                     return resume_data
                 rendered = self.render(resume_data)
+                if isinstance(rendered, web.Response):
+                    return rendered
                 self._last_valid_render = rendered
                 self.cache = rendered
                 self.last_fetch = current_time
