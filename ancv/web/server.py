@@ -264,6 +264,24 @@ def server_timing_header(timings: dict[str, timedelta]) -> str:
     )
 
 
+class RenderError(Exception):
+    """Base exception for resume rendering failures"""
+
+    pass
+
+
+class TemplateRenderError(RenderError):
+    """Raised when template rendering fails"""
+
+    pass
+
+
+class InvalidResumeDataError(RenderError):
+    """Raised when resume data is invalid"""
+
+    pass
+
+
 class WebHandler(Runnable):
     """A handler serving a rendered template loaded from a URL with periodic refresh."""
 
@@ -284,10 +302,8 @@ class WebHandler(Runnable):
 
         LOGGER.debug("Instantiating web application.")
         self.app = web.Application()
-
         LOGGER.debug("Adding routes.")
         self.app.add_routes([web.get("/", self.root)])
-
         self.app.cleanup_ctx.append(self.app_context)
 
     def run(self, context: ServerContext) -> None:
@@ -302,20 +318,17 @@ class WebHandler(Runnable):
         """
         log = LOGGER.bind(app=app)
         log.debug("App context initialization starting.")
-
         log.debug("Starting client session.")
         session = ClientSession()
         app["client_session"] = session
         log.debug("Started client session.")
-
         log.debug("App context initialization done, yielding.")
         yield
-
         log.debug("App context teardown starting.")
         await session.close()
         log.debug("App context teardown done.")
 
-    async def fetch(self, session: ClientSession) -> ResumeSchema | web.Response:
+    async def fetch(self, session: ClientSession) -> ResumeSchema:
         """Fetches and validates resume JSON from the destination URL.
 
         Args:
@@ -323,31 +336,22 @@ class WebHandler(Runnable):
 
         Returns:
             ResumeSchema: The validated resume data
-
-        Raises:
-            ResumeLookupError: When resume cannot be fetched from destination
-            json.JSONDecodeError: When response is not valid JSON
-            aiohttp.ClientError: When network request fails
-            ValidationError: When JSON data doesn't match resume schema
+            web.Response: Error response when:
+                - Resume cannot be fetched from destination (NOT_FOUND)
+                - Response is not valid JSON (BAD_REQUEST)
+                - JSON data doesn't match resume schema
         """
         async with session.get(self.destination) as response:
             if response.status != HTTPStatus.OK:
-                return web.Response(
-                    text=f"Failed to fetch resume from {self.destination}",
-                    status=HTTPStatus.NOT_FOUND,
-                )
+                raise RenderError(f"Failed to fetch resume from {self.destination}")
             content = await response.text()
             try:
                 resume_data = json.loads(content)
                 return ResumeSchema(**resume_data)
             except json.JSONDecodeError:
-                LOGGER.error("Invalid JSON format in resume data")
-                return web.Response(
-                    text="Invalid JSON format in resume data",
-                    status=HTTPStatus.BAD_REQUEST,
-                )
+                raise InvalidResumeDataError("Invalid JSON format in resume data")
 
-    def render(self, resume_data: ResumeSchema) -> str | web.Response:
+    def render(self, resume_data: ResumeSchema) -> str:
         """Renders resume data into a formatted template string.
 
         Args:
@@ -355,20 +359,18 @@ class WebHandler(Runnable):
 
         Returns:
             str: The successfully rendered resume template
-            web.Response: Error response when rendering fails
-
-        Raises:
-            ResumeConfigError: When resume data doesn't match expected schema
-            ValueError: When template rendering fails
+            web.Response: Error response when:
+                - Resume data doesn't match expected schema
+                - Template rendering fails
         """
         try:
             template = Template.from_model_config(resume_data)
             rendered = template.render()
-            if isinstance(rendered, str):
-                return rendered
-            return web.Response(text="Template rendering failed")
-        except ResumeConfigError as exc:
-            return web.Response(text=str(exc))
+            if not rendered:
+                raise TemplateRenderError("Template rendering failed")
+            return rendered
+        except ResumeConfigError:
+            raise InvalidResumeDataError("Resume configuration error")
 
     async def root(self, request: web.Request) -> web.Response:
         """The root endpoint, returning the rendered template with periodic refresh.
@@ -404,11 +406,7 @@ class WebHandler(Runnable):
             log.debug("Fetching fresh resume data.")
             try:
                 resume_data = await self.fetch(session)
-                if isinstance(resume_data, web.Response):
-                    return resume_data
                 rendered = self.render(resume_data)
-                if isinstance(rendered, web.Response):
-                    return rendered
                 self._last_valid_render = rendered
                 self.cache = rendered
                 self.last_fetch = current_time
@@ -417,18 +415,19 @@ class WebHandler(Runnable):
                 if self._last_valid_render:
                     self.cache = self._last_valid_render
                     log.warning("Using last valid render as fallback")
-                elif not self.cache:
+                else:
                     return web.Response(
                         text="No cache available", status=HTTPStatus.SERVICE_UNAVAILABLE
                     )
-            except ResumeConfigError as exc:
-                log.error("Resume configuration error", error=str(exc))
+            except (RenderError, InvalidResumeDataError) as exc:
+                log.error("Resume rendering error", error=str(exc))
                 if self._last_valid_render:
                     self.cache = self._last_valid_render
                     log.warning("Using last valid render as fallback")
-                elif not self.cache:
+                else:
                     return web.Response(
-                        text="Invalid resume format", status=HTTPStatus.BAD_REQUEST
+                        text="Unable to render resume",
+                        status=HTTPStatus.INTERNAL_SERVER_ERROR,
                     )
 
         log.debug("Serving rendered template.")

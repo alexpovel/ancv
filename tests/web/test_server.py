@@ -1,5 +1,4 @@
 import asyncio
-import json
 from contextlib import AbstractContextManager
 from contextlib import nullcontext as does_not_raise
 from datetime import timedelta
@@ -8,7 +7,7 @@ from typing import Any, Optional
 
 import pytest
 from aiohttp.client import ClientResponse
-from aiohttp.web import Application, Response
+from aiohttp.web import Application, Response, json_response
 
 from ancv.web.server import (
     SHOWCASE_RESUME,
@@ -311,10 +310,14 @@ class TestWebHandler:
         aiohttp_client: Any,
         aiohttp_server: Any,
     ) -> None:
+        hitcount = 0
+
         # Set up a mock resume server
         async def mock_resume_handler(request):
-            return Response(
-                text=json.dumps({"basics": {"name": "Test User", "label": "Developer"}})
+            nonlocal hitcount
+            hitcount += 1
+            return json_response(
+                {"basics": {"name": "Test User", "label": "Developer"}}
             )
 
         # Create and start mock server
@@ -333,6 +336,7 @@ class TestWebHandler:
         # Test initial fetch
         resp = await client.get("/")
         assert resp.status == HTTPStatus.OK
+        assert hitcount == 1  # First hit
         content = await resp.text()
         assert "Test User" in content
         assert "Developer" in content
@@ -341,12 +345,14 @@ class TestWebHandler:
         first_response = content
         resp = await client.get("/")
         assert await resp.text() == first_response
+        assert hitcount == 1  # Still one hit, response was cached
 
         # Test refresh after interval
         await asyncio.sleep(refresh_interval.total_seconds() + 0.1)
         resp = await client.get("/")
         assert resp.status == HTTPStatus.OK
-        assert await resp.text() == first_response  # Should be same content
+        assert await resp.text() == first_response
+        assert hitcount == 2  # Second hit after cache expired
 
     async def test_web_handler_error_handling(
         self,
@@ -369,4 +375,4 @@ class TestWebHandler:
 
         # Test error response
         resp = await client.get("/")
-        assert resp.status == HTTPStatus.NOT_FOUND
+        assert resp.status == HTTPStatus.BAD_REQUEST
