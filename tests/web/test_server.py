@@ -7,11 +7,12 @@ from typing import Any, Optional
 
 import pytest
 from aiohttp.client import ClientResponse
-from aiohttp.web import Application
+from aiohttp.web import Application, Response, json_response
 
 from ancv.web.server import (
     SHOWCASE_RESUME,
     SHOWCASE_USERNAME,
+    WebHandler,
     is_terminal_client,
     server_timing_header,
 )
@@ -299,3 +300,79 @@ def test_server_timing_header(
 
 def test_exact_showcase_output(showcase_output: str) -> None:
     assert SHOWCASE_RESUME == showcase_output
+
+
+@pytest.mark.filterwarnings("ignore:Request.message is deprecated")
+@pytest.mark.filterwarnings("ignore:Exception ignored in")
+class TestWebHandler:
+    async def test_web_handler_basic_functionality(
+        self,
+        aiohttp_client: Any,
+        aiohttp_server: Any,
+    ) -> None:
+        hitcount = 0
+
+        # Set up a mock resume server
+        async def mock_resume_handler(request):
+            nonlocal hitcount
+            hitcount += 1
+            return json_response(
+                {"basics": {"name": "Test User", "label": "Developer"}}
+            )
+
+        # Create and start mock server
+        mock_app = Application()
+        mock_app.router.add_get("/resume.json", mock_resume_handler)
+        mock_server = await aiohttp_server(mock_app)
+
+        # Create WebHandler pointing to our mock server
+        destination = f"http://localhost:{mock_server.port}/resume.json"
+        refresh_interval = timedelta(seconds=1)
+        handler = WebHandler(destination, refresh_interval=refresh_interval)
+
+        # Create test client
+        client = await aiohttp_client(handler.app)
+
+        # Test initial fetch
+        resp = await client.get("/")
+        assert resp.status == HTTPStatus.OK
+        assert hitcount == 1  # First hit
+        content = await resp.text()
+        assert "Test User" in content
+        assert "Developer" in content
+
+        # Test caching
+        first_response = content
+        resp = await client.get("/")
+        assert await resp.text() == first_response
+        assert hitcount == 1  # Still one hit, response was cached
+
+        # Test refresh after interval
+        await asyncio.sleep(refresh_interval.total_seconds() + 0.1)
+        resp = await client.get("/")
+        assert resp.status == HTTPStatus.OK
+        assert await resp.text() == first_response
+        assert hitcount == 2  # Second hit after cache expired
+
+    async def test_web_handler_error_handling(
+        self,
+        aiohttp_client: Any,
+        aiohttp_server: Any,
+    ) -> None:
+        # Set up server that returns errors
+        async def error_handler(request):
+            return Response(status=500)
+
+        mock_app = Application()
+        mock_app.router.add_get("/error.json", error_handler)
+        mock_server = await aiohttp_server(mock_app)
+
+        # Create WebHandler pointing to error endpoint
+        destination = f"http://localhost:{mock_server.port}/error.json"
+        handler = WebHandler(destination)
+
+        client = await aiohttp_client(handler.app)
+
+        # Test error response
+        resp = await client.get("/")
+        assert resp.status == HTTPStatus.BAD_REQUEST

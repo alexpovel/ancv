@@ -168,6 +168,25 @@ $ ancv render resume.json
 $ docker run -v $(pwd)/resume.json:/app/resume.json ghcr.io/alexpovel/ancv render
 ```
 
+Alternatively, you can directly serve your resume from any HTTP URL using he built-in web server:
+
+```bash
+# pip route:
+$ ancv serve web https://raw.githubusercontent.com/alexpovel/ancv/refs/heads/main/ancv/data/showcase.resume.json
+# container route:
+$ docker run ghcr.io/alexpovel/ancv serve web https://raw.githubusercontent.com/alexpovel/ancv/refs/heads/main/ancv/data/showcase.resume.json
+```
+
+Test it:
+```bash
+curl http://localhost:8080
+```
+
+The web server includes useful features like:
+- Automatic refresh of resume content (configurable interval)
+- Fallback to cached version if source is temporarily unavailable
+- Configurable host/port binding (default: http://localhost:8080)
+
 ## Self-hosting
 
 Self-hosting is a first-class citizen here.
