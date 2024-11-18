@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.1](https://github.com/alexpovel/ancv/compare/v1.5.0...v1.5.1) (2024-11-18)
+
+
+### Bug Fixes
+
+* **build:** Docker ARM build ([8216ac8](https://github.com/alexpovel/ancv/commit/8216ac8bff3bc328369e6fdc211c9610cda517c2))
+
+
+### Documentation
+
+* Add port mapping for docker command ([3c1d404](https://github.com/alexpovel/ancv/commit/3c1d404804e9c609cf280543d7babf7859818757))
+
 ## [1.5.0](https://github.com/alexpovel/ancv/compare/v1.4.5...v1.5.0) (2024-11-18)
 
 
