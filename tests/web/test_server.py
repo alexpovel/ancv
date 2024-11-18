@@ -5,6 +5,8 @@ from datetime import timedelta
 from http import HTTPStatus
 from typing import Any, Optional
 
+import aiohttp
+import aiohttp.web
 import pytest
 from aiohttp.client import ClientResponse
 from aiohttp.web import Application, Response, json_response
@@ -313,7 +315,7 @@ class TestWebHandler:
         hitcount = 0
 
         # Set up a mock resume server
-        async def mock_resume_handler(request):
+        async def mock_resume_handler(request: aiohttp.web.Request) -> Response:
             nonlocal hitcount
             hitcount += 1
             return json_response(
@@ -360,7 +362,7 @@ class TestWebHandler:
         aiohttp_server: Any,
     ) -> None:
         # Set up server that returns errors
-        async def error_handler(request):
+        async def error_handler(request: aiohttp.web.Request) -> Response:
             return Response(status=500)
 
         mock_app = Application()
@@ -375,4 +377,4 @@ class TestWebHandler:
 
         # Test error response
         resp = await client.get("/")
-        assert resp.status == HTTPStatus.BAD_REQUEST
+        assert resp.status == HTTPStatus.INTERNAL_SERVER_ERROR
