@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/alexpovel/ancv/compare/v1.4.5...v1.5.0) (2024-11-18)
+
+
+### Features
+
+* **web:** Add web server command to serve JSON resume from URL with periodic refresh ([#241](https://github.com/alexpovel/ancv/issues/241)) ([51e1640](https://github.com/alexpovel/ancv/commit/51e1640d4629342ecf279530b5f4400f5c13d0e7))
+
 ## [1.4.5](https://github.com/alexpovel/ancv/compare/v1.4.4...v1.4.5) (2024-10-25)
 
 
