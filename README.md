@@ -23,7 +23,7 @@ Be warned though, for this is kinda useless and just for fun:
       JSON Resume Schema:[json_schema]
 
       Provide JSON data structure of the resume, formatted according to the JSON Resume Schema
-      
+
       Output json, no yapping
       ```
       Note: for `json_schema` you can just use the example [from here](https://jsonresume.org/schema/)
@@ -174,15 +174,17 @@ Alternatively, you can directly serve your resume from any HTTP URL using he bui
 # pip route:
 $ ancv serve web https://raw.githubusercontent.com/alexpovel/ancv/refs/heads/main/ancv/data/showcase.resume.json
 # container route:
-$ docker run ghcr.io/alexpovel/ancv serve web https://raw.githubusercontent.com/alexpovel/ancv/refs/heads/main/ancv/data/showcase.resume.json
+$ docker run -p 8080:8080 ghcr.io/alexpovel/ancv serve web https://raw.githubusercontent.com/alexpovel/ancv/refs/heads/main/ancv/data/showcase.resume.json
 ```
 
 Test it:
+
 ```bash
 curl http://localhost:8080
 ```
 
 The web server includes useful features like:
+
 - Automatic refresh of resume content (configurable interval)
 - Fallback to cached version if source is temporarily unavailable
 - Configurable host/port binding (default: http://localhost:8080)
