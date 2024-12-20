@@ -42,7 +42,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PERMISSIONLESS_FGAT }}
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           # Docs say a token isn't required for public GitHub repositories using GH
           # Actions, but it didn't work and failed with:
