@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.3](https://github.com/alexpovel/ancv/compare/v1.5.2...v1.5.3) (2025-01-05)
+
+
+### Bug Fixes
+
+* Move `ancv.io` -&gt; `ancv.povel.dev` ([3e45365](https://github.com/alexpovel/ancv/commit/3e4536508039214e5f0c649bba571440a6ee9dc7))
+
 ## [1.5.2](https://github.com/alexpovel/ancv/compare/v1.5.1...v1.5.2) (2024-11-18)
 
 
