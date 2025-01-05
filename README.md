@@ -40,20 +40,20 @@ Be warned though, for this is kinda useless and just for fun:
    - curl:
 
       ```bash
-      curl -L ancv.io/heyho
+      curl -L ancv.povel.dev/heyho
       ```
 
-      with `-L` being shorthand for [`--location`](https://curl.se/docs/manpage.html), allowing you to follow the redirect from `http://ancv.io` through to `https://ancv.io`.
+      with `-L` being shorthand for [`--location`](https://curl.se/docs/manpage.html), allowing you to follow the redirect from `http://ancv.povel.dev` through to `https://ancv.povel.dev`.
       It's shorter than its also perfectly viable alternative:
 
       ```bash
-      curl https://ancv.io/heyho
+      curl https://ancv.povel.dev/heyho
       ```
 
       Lastly, you might want to page the output for easiest reading, top-to-bottom:
 
       ```bash
-      curl -sL ancv.io/heyho | less
+      curl -sL ancv.povel.dev/heyho | less
       ```
 
       If that garbles the rendered output, try `less -r` aka [`--raw-control-chars`](https://man7.org/linux/man-pages/man1/less.1.html).
@@ -61,7 +61,7 @@ Be warned though, for this is kinda useless and just for fun:
    - wget:
 
      ```bash
-     wget -O - --quiet ancv.io/heyho
+     wget -O - --quiet ancv.povel.dev/heyho
      ```
 
      where `-O` is short for [`--output-document`](https://linux.die.net/man/1/wget), used here to redirect to stdout.
@@ -69,14 +69,14 @@ Be warned though, for this is kinda useless and just for fun:
    - PowerShell 7:
 
      ```powershell
-     (iwr ancv.io/heyho).Content
+     (iwr ancv.povel.dev/heyho).Content
      ```
 
      where `iwr` is an alias for [`Invoke-Webrequest`](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.utility/invoke-webrequest?view=powershell-7.2), returning an object whose `Content` we access.
    - PowerShell 5:
 
      ```powershell
-     (iwr -UseBasicParsing ancv.io/heyho).Content
+     (iwr -UseBasicParsing ancv.povel.dev/heyho).Content
      ```
 
      where `-UseBasicParsing` is *only* required if you haven't set up Internet Explorer yet ([yes, really](https://stackoverflow.com/q/38005341/11477374)).
@@ -195,7 +195,7 @@ Self-hosting is a first-class citizen here.
 
 ### Context: Cloud Hosting
 
-The <https://ancv.io> site is hosted on [Google Cloud Run](https://cloud.google.com/run) (serverless) and deployed there [automatically](https://github.com/alexpovel/ancv/runs/8172131447), such that the latest release you see here is also the code executing in that cloud environment.
+The <https://ancv.povel.dev> site is hosted on [Google Cloud Run](https://cloud.google.com/run) (serverless) and deployed there [automatically](https://github.com/alexpovel/ancv/runs/8172131447), such that the latest release you see here is also the code executing in that cloud environment.
 That's convenient to get started: simply create a `resume.json` gist and you're good to go within minutes.
 It can also be used for debugging and playing around; it's a playground of sorts.
 

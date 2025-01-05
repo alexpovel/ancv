@@ -110,7 +110,9 @@ class Metadata(BaseModel):
         self,
     ) -> t.Annotated[
         dict[str, str],
-        Field(description="Map of project URLs, e.g. {'Homepage': 'https://ancv.io/'}"),
+        Field(
+            description="Map of project URLs, e.g. {'Homepage': 'https://ancv.povel.dev/'}"
+        ),
     ]:
         """Converts the 'Name, https://example.com' array of project URLs to a dict.
 

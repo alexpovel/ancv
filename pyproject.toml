@@ -42,7 +42,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://ancv.io"
+Homepage = "https://ancv.povel.dev"
 Repository = "https://github.com/alexpovel/ancv/"
 Issues = "https://github.com/alexpovel/ancv/issues/"
 Changelog = "https://github.com/alexpovel/ancv/blob/main/CHANGELOG.md"
