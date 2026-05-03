@@ -95,7 +95,7 @@ async def get_resume(
     if file.size is None or file.size > size_limit:
         size = "unknown" if file.size is None else str(naturalsize(file.size))
         raise ResumeLookupError(
-            "Resume file too large" f" (limit: {naturalsize(size_limit)}, got {size})."
+            f"Resume file too large (limit: {naturalsize(size_limit)}, got {size})."
         )
     log.info("Fetching resume contents of user.")
     raw_resume: str = await github.getitem(str(file.raw_url))

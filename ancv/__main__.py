@@ -10,9 +10,21 @@ from typing import Optional
 import typer
 
 app = typer.Typer(no_args_is_help=True, help=__doc__)
-server_app = typer.Typer(no_args_is_help=True, help="Interacts with the web server.")
+server_app = typer.Typer(
+    invoke_without_command=True,
+    help="Interacts with the web server.",
+)
 
 app.add_typer(server_app, name="serve")
+
+
+@server_app.callback()
+def serve(ctx: typer.Context) -> None:
+    """Interacts with the web server."""
+
+    if ctx.invoked_subcommand is None:
+        typer.echo(ctx.get_help())
+        raise typer.Exit()
 
 
 @server_app.command()
@@ -89,8 +101,9 @@ def web(
     refresh interval. This is useful for serving resumes hosted on external services.
     """
 
-    from ancv.web.server import WebHandler, ServerContext
     from datetime import timedelta
+
+    from ancv.web.server import ServerContext, WebHandler
 
     context = ServerContext(host=host, port=port, path=path)
     WebHandler(destination, refresh_interval=timedelta(seconds=refresh)).run(context)
@@ -213,7 +226,7 @@ def generate_schema() -> None:
                         "properties": {
                             METADATA.name: {
                                 "type": "object",
-                                "description": f"{METADATA.name}-specific ({METADATA.project_urls.get("Homepage")}) properties",
+                                "description": f"{METADATA.name}-specific ({METADATA.project_urls.get('Homepage')}) properties",
                                 "properties": {
                                     "template": {
                                         "type": "string",

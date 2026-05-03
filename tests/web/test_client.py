@@ -21,9 +21,9 @@ def stopwatch():
 
 @pytest.fixture(scope="function")
 async def client_session() -> aiohttp.ClientSession:
-    assert (
-        asyncio.get_running_loop()
-    ), "`aiohttp.ClientSession` constructor will need loop running."
+    assert asyncio.get_running_loop(), (
+        "`aiohttp.ClientSession` constructor will need loop running."
+    )
 
     # The constructor accesses the async event loop, and if none is running errors. So
     # this pytest fixture function needs to be marked `async` for `pytest-asyncio` with

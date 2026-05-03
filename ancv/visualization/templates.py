@@ -87,7 +87,7 @@ class Template(ABC):
             Renderable elements for `rich` to work with.
         """
 
-        return NotImplemented
+        raise NotImplementedError
 
     def render(self) -> str:
         """Renders the template to a console-printable string.
@@ -447,7 +447,7 @@ class Sequential(Template):
     @singledispatchmethod
     def format(self, item: ResumeItem) -> RenderableGenerator:
         """Formats aka renders a resume item. Base case for method overloading."""
-        return NotImplemented
+        raise NotImplementedError(f"Unsupported resume item type: {type(item)!r}")
 
     @format.register
     def _(self, item: Basics) -> RenderableGenerator:

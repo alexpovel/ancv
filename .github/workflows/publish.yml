@@ -17,20 +17,30 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.14.0
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+        with:
+          enable-cache: true
+
+      - name: Sync dependencies
+        run: uv sync --frozen
 
       - name: Run linting
-        run: devbox run lint
+        run: make lint
 
       - name: Check code formatting
-        run: devbox run format-check
+        run: make format-check
 
       - name: Run type checks
-        run: devbox run typecheck
+        run: make typecheck
 
       - name: Run tests
-        run: devbox run test
+        run: make test
         env:
           # Unit tests actually run against the GH API for 'real integration testing',
           # and providing a token will increase the otherwise too-low rate limit.
@@ -79,13 +89,18 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Install devbox
-        uses: jetpack-io/devbox-install-action@v0.14.0
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: ".python-version"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
         with:
           enable-cache: true
 
       - name: Build package
-        run: devbox run uv build
+        run: make build
 
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@v1.13.0

@@ -2,21 +2,30 @@
 
 ## Environment setup
 
-[![Built with Devbox](https://jetpack.io/img/devbox/shield_moon.svg)](https://jetpack.io/devbox/docs/contributor-quickstart/)
-
-Use devbox to set up a development environment.
-Refer to [the available `script`s](devbox.json) to see what's possible.
-Generally, even when running in a `devbox shell`, running `uv` is necessary:
-
-- devbox sets up what used to be system-wide packages (Python, uv, ...) deterministically and automatically
-- within the devbox virtual environment, we still manage and use a Python virtual environment through `uv` commands
-
-That way, we get the normal Python package management for normal Python packages (`ruff`, `pytest`, ...), and devbox for the overarching rest.
-
-Lastly, for bonus points, set up pre-commit hooks:
+Use the project Python version from [`.python-version`](./.python-version) and
+[`uv`](https://docs.astral.sh/uv/) directly:
 
 ```bash
-devbox run install-hooks
+make sync
+```
+
+Common targets:
+
+```bash
+make lint
+make format-check
+make typecheck
+make test
+make check
+make build
+make build-image
+```
+
+Schema/model regeneration:
+
+```bash
+make make-github.py
+make make-resume.py
 ```
 
 ## Creating components
