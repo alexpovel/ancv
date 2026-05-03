@@ -1,7 +1,5 @@
 # Architecture
 
-[![codecov](https://codecov.io/gh/alexpovel/ancv/branch/main/graph/badge.svg?token=I5XFLBHRCH)](https://codecov.io/gh/alexpovel/ancv)
-
 This document is less about software architecture per-se, but rather about technical details deemed out-of-scope for the [README](./README.md).
 
 ## Features
