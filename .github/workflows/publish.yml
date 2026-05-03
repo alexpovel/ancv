@@ -135,7 +135,7 @@ jobs:
             type=semver,value=${{ needs.release-please.outputs.tag_name }},pattern={{major}},enable=${{ !startsWith(needs.release-please.outputs.tag_name, 'v0.') }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: .
           push: true
