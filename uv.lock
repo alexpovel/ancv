@@ -130,31 +130,31 @@ dev = [
 
 [package.metadata]
 requires-dist = [
-    { name = "aiohttp", specifier = ">=3.10.10" },
-    { name = "babel", specifier = ">=2.16.0" },
-    { name = "cachetools", specifier = ">=5.5.0" },
-    { name = "gidgethub", specifier = ">=5.3.0" },
-    { name = "humanize", specifier = ">=4.11.0" },
-    { name = "pydantic", extras = ["email"], specifier = ">=2.9.2" },
-    { name = "rich", specifier = ">=13.9.3" },
-    { name = "structlog", specifier = ">=24.4.0" },
-    { name = "typer", specifier = ">=0.12.5" },
+    { name = "aiohttp", specifier = ">=3,<4" },
+    { name = "babel", specifier = ">=2,<3" },
+    { name = "cachetools", specifier = ">=7,<8" },
+    { name = "gidgethub", specifier = ">=5,<6" },
+    { name = "humanize", specifier = ">=4,<5" },
+    { name = "pydantic", extras = ["email"], specifier = ">=2,<3" },
+    { name = "rich", specifier = ">=15,<16" },
+    { name = "structlog", specifier = ">=25,<26" },
+    { name = "typer", specifier = ">=0.25,<0.26" },
 ]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "datamodel-code-generator", extras = ["http"], specifier = ">=0.26.2" },
-    { name = "ipython", specifier = ">=8.28.0" },
-    { name = "mypy", specifier = ">=1.13.0" },
-    { name = "pytest", specifier = ">=8.3.3" },
-    { name = "pytest-aiohttp", specifier = ">=1.0.5" },
-    { name = "pytest-asyncio", specifier = ">=0.24.0" },
-    { name = "pytest-cov", specifier = ">=5.0.0" },
-    { name = "pytest-rerunfailures", specifier = ">=14.0" },
-    { name = "requests", specifier = ">=2.32.3" },
-    { name = "ruff", specifier = ">=0.7.0" },
-    { name = "types-babel", specifier = ">=2.11.0.15" },
-    { name = "types-cachetools", specifier = ">=5.5.0.20240820" },
+    { name = "datamodel-code-generator", extras = ["http"], specifier = ">=0.56,<0.57" },
+    { name = "ipython", specifier = ">=9,<10" },
+    { name = "mypy", specifier = ">=1,<2" },
+    { name = "pytest", specifier = ">=9,<10" },
+    { name = "pytest-aiohttp", specifier = ">=1,<2" },
+    { name = "pytest-asyncio", specifier = ">=1,<2" },
+    { name = "pytest-cov", specifier = ">=7,<8" },
+    { name = "pytest-rerunfailures", specifier = ">=16,<17" },
+    { name = "requests", specifier = ">=2,<3" },
+    { name = "ruff", specifier = ">=0.15,<0.16" },
+    { name = "types-babel", specifier = ">=2,<3" },
+    { name = "types-cachetools", specifier = ">=7,<8" },
 ]
 
 [[package]]
