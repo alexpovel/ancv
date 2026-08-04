@@ -37,7 +37,7 @@ dependencies = [
     "cachetools>=7,<8",
     "humanize>=4,<5",
     "rich>=15,<16",
-    "typer>=0.25,<0.26",
+    "typer>=0.25,<0.27",
     "babel>=2,<3",
     "pydantic[email]>=2,<3",
 ]
