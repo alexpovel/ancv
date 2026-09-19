@@ -62,7 +62,7 @@ dev = [
     "pytest-rerunfailures>=16,<17",
     "pytest>=9,<10",
     "requests>=2,<3",
-    "ruff>=0.15,<0.16",
+    "ruff>=0.15,<0.17",
     "types-babel>=2,<3",
     "types-cachetools>=7,<8",
 ]
