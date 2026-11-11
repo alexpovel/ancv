@@ -4,6 +4,7 @@ Comes with a server serving either an API or a single file, and a CLI to render 
 locally.
 """
 
+import json
 from pathlib import Path
 from typing import Optional
 
@@ -144,6 +145,9 @@ def validate(
         Template.from_file(path)
     except (ValidationError, ResumeConfigError) as e:
         print(str(e))
+        raise typer.Exit(code=1)
+    except json.JSONDecodeError as e:
+        print(f"Invalid JSON in resume file {path}: {e}")
         raise typer.Exit(code=1)
     else:
         print("Pass!")
